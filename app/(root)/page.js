@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 
 function page() {
   const chooseUs = [
@@ -57,7 +58,7 @@ function page() {
       duration: 10,
     },
     {
-      image: "./London.jpg",
+      image: "./london.png",
       place: "London, UK",
       price: "AED 729",
       duration: 12,
@@ -69,11 +70,17 @@ function page() {
       duration: 28,
     },
   ];
-
+  useEffect(() => {
+    const marquee = document.getElementById("marquee");
+    if (marquee) {
+      marquee.innerHTML += marquee.innerHTML;
+    }
+  }, []);
   return (
     <>
-      <div className='h-screen bg-[url("/hero-image.png")] bg-cover bg-center flex justify-center'>
-        <div className="w-[60%] flex flex-col items-center justify-center gap-5 mt-12">
+      {/* hero section  */}
+      <div className='h-screen bg-[url("/hero-image.png")] bg-cover bg-center flex flex-col items-center justify-between'>
+        <div className="w-[60%] h-full flex flex-col items-center justify-center gap-5 mt-12">
           <h1 className=" mb-0 text-center leading-none">
             <span className="text-[5em] font-bold text-white ">
               Your Dream Vacation
@@ -100,7 +107,7 @@ function page() {
               Plan your Trip
             </button>
           </div>
-          <div className="flex justify-between w-[100%] mt-12">
+          {/* <div className="flex justify-between w-[100%] mt-12">
             <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center w-[25%]">
               <span className="font-bold text-[2em]">500+</span>
               <br />
@@ -116,6 +123,49 @@ function page() {
               <br />
               Years Experience
             </div>
+          </div> */}
+          {/* <div className="secondDivAni pl-[100vw] flex gap-12 align-middle">
+            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+              500+ Destinations
+            </div>
+            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+              10K+ Happy Customers
+            </div>
+            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+              15+ Years Experience
+            </div>
+            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+              500+ Destinations
+            </div>
+            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+              10K+ Happy Customers
+            </div>
+            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+              15+ Years Experience
+            </div>
+          </div> */}
+        </div>
+        {/* marquee */}
+
+        <div className="marquee mt-20">
+          <div className="marquee-content" id="marquee">
+            <span>
+              {" "}
+              <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+                500+ Destinations
+              </div>
+            </span>
+            <span>
+              <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+                10K+ Happy Customers
+              </div>
+            </span>
+            <span>
+              {" "}
+              <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
+                15+ Years Experience
+              </div>
+            </span>
           </div>
         </div>
       </div>
@@ -214,17 +264,23 @@ function page() {
           collection of dream destinations. Each with personalized packages
           tailored to your preferences.
         </p>
-        <div className="grid grid-cols-12 gap-12 py-16">
+        <div className="grid grid-cols-12 gap-8 py-16">
           {world.map((item, index) => {
             return (
-              <div className="col-span-4" key={index}>
-                <img className="" src={item.image} />
-                <div className="flex justify-between">
-                  <p>{item.place}</p>
-                  <p>{item.price}</p>
-                </div>
-                <div className="flex gap-1 items-center">
-                  <img src="./navigation.png" className="w-4 h-4 "/> {item.duration} Days Trip
+              <div
+                className="col-span-4 rounded-xl shadow-md font-extralight"
+                key={index}
+              >
+                <img className="h-80 w-[100%] rounded-t-xl" src={item.image} />
+                <div className="p-4 text-[#5E6282]">
+                  <div className="flex justify-between text-lg">
+                    <p>{item.place}</p>
+                    <p>{item.price}</p>
+                  </div>
+                  <div className="flex gap-1 items-center my-2 text-sm">
+                    <img src="./navigation.png" className="w-4 h-4 " />{" "}
+                    {item.duration} Days Trip
+                  </div>
                 </div>
               </div>
             );
@@ -232,14 +288,19 @@ function page() {
         </div>
       </div>
       {/* contact us  */}
-       <div className="bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12">
+      <div className="bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12">
         <h1 className="text-[3em] font-bold m-0">Never Miss a Great Deal !</h1>
         <p className="mb-2">
           Subscribe to our newsletter and get exclusive travel deals,
           destination guides, and travel tips delivered to your inbox.
         </p>
-        <input className=" bg-white/20 px-4 py-2 rounded-lg placeholder:text-white" placeholder="Enter your email"/>
-        <button className="bg-[#FA7C28] px-4 py-2 rounded-lg mx-2">Subscribe</button>
+        <input
+          className=" bg-white/20 px-4 py-2 rounded-lg placeholder:text-white"
+          placeholder="Enter your email"
+        />
+        <button className="bg-[#FA7C28] px-4 py-2 rounded-lg mx-2">
+          Subscribe
+        </button>
       </div>
     </>
   );

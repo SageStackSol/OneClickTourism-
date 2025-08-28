@@ -2,10 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: white;
+}
+ /* .secondDivAni {
+    animation: 20s slide linear infinite;
+  
+  }
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+  
+    to {
+      transform: translateX(-100%);
+    }
+  } */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
+/* example  */
+ .marquee {
+      position: relative;
+      /* overflow: hidden; */
+      white-space: nowrap;
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 15s linear infinite;
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    .marquee span {
+      display: inline-block;
+      margin-right: 2rem;
+    }
 
 @theme inline {
   --color-background: var(--background);
