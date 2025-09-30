@@ -1,7 +1,13 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import WhatWeDo from "../components/WhatWeDo";
+import WhyChooseUs from "../components/WhyChooseUs";
+import InboundCarousal from "../components/InboundCarousal";
+import Link from "next/link";
 
 function page() {
+  const [destinationType, setDestinationType] = useState("inbound");
+
   const chooseUs = [
     {
       image: "./dollar.png",
@@ -79,100 +85,27 @@ function page() {
   return (
     <>
       {/* hero section  */}
-      <div className='h-screen bg-[url("/hero-image.png")] bg-cover bg-center flex flex-col items-center justify-between'>
-        <div className="w-[60%] h-full flex flex-col items-center justify-center gap-5 mt-12">
-          <h1 className=" mb-0 text-center leading-none">
-            <span className="text-[5em] font-bold text-white ">
-              Your Dream Vacation
-            </span>{" "}
-            {/* <br /> */}
-            <span className="text-[3em] font-semibold text-[#FA7C28] text-center">
-              Just One Click Away
-            </span>
+      <div className='h-screen bg-[url("/hero-finalBg.jpg")] bg-cover flex items-end justify-center '>
+        <div className=" pb-16">
+          <h1 className="text-7xl font-black text-center leading-none text-white">
+            Not just a <span className="text-[#F97A1E]">Journey</span>, but a{" "}
+            <span className="text-[#F97A1E]">Story</span>
           </h1>
-
-          <div className="w-[60%]">
-            <p className="text-white text-center text-[1.2em]">
-              Discover breathtaking destinations, create unforgettable memories,
-              and experience the world with our expertly crafted travel packages
-              tailored just for you.
-            </p>
-          </div>
-
-          <div className="flex justify-evenly w-[100%]">
-            <button className="bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white rounded-lg px-6 py-3">
-              Book Your Destination
-            </button>{" "}
-            <button className="text-white rounded-lg px-6 py-3 bg-white/40 ">
-              Plan your Trip
+          <p className="text-white text-center text-[1.8em] mt-2">
+            Experience the rush of the desert, the beauty of the sea, and the
+            magic of a city that never sleeps.
+          </p>{" "}
+          <div className=" flex justify-center">
+            <button className=" bg-gradient-to-r bg-[#F97A1E] text-[1.2em] font-bold text-white px-8 py-2 rounded-3xl my-2 mx-auto">
+              Story Begins
             </button>
-          </div>
-          {/* <div className="flex justify-between w-[100%] mt-12">
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center w-[25%]">
-              <span className="font-bold text-[2em]">500+</span>
-              <br />
-              Destinations
-            </div>{" "}
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center w-[25%]">
-              <span className="font-bold text-[2em]">10K+</span>
-              <br />
-              Happy Customers
-            </div>
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center w-[25%]">
-              <span className="font-bold text-[2em]">15+</span>
-              <br />
-              Years Experience
-            </div>
-          </div> */}
-          {/* <div className="secondDivAni pl-[100vw] flex gap-12 align-middle">
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-              500+ Destinations
-            </div>
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-              10K+ Happy Customers
-            </div>
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-              15+ Years Experience
-            </div>
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-              500+ Destinations
-            </div>
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-              10K+ Happy Customers
-            </div>
-            <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-              15+ Years Experience
-            </div>
-          </div> */}
-        </div>
-        {/* marquee */}
-
-        <div className="marquee mt-20">
-          <div className="marquee-content" id="marquee">
-            <span>
-              {" "}
-              <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-                500+ Destinations
-              </div>
-            </span>
-            <span>
-              <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-                10K+ Happy Customers
-              </div>
-            </span>
-            <span>
-              {" "}
-              <div className="text-white rounded-lg px-6 py-3 bg-white/40 text-center font-semibold text-nowrap">
-                15+ Years Experience
-              </div>
-            </span>
           </div>
         </div>
       </div>
 
       {/* below hero section */}
 
-      <div className="py-20 px-40">
+      {/* <div className="py-20 px-40">
         <h2 className="font-semibold text-[4em] text-center text-transparent bg-gradient-to-r from-[#089CE0] to-[#16DBE4] bg-clip-text">
           "Every Trip, a Story Worth Telling."
         </h2>
@@ -207,9 +140,44 @@ function page() {
           as you are. Discover new horizons. Create stories you’ll cherish for a
           lifetime. The world is waiting — your next chapter starts now.
         </p>
+      </div> */}
+      <div className="py-20 px-40 text-[#2D464C] grid grid-cols-12 my-12 ">
+        <div className=" col-span-6">
+          <h2 className="font-semibold text-4xl mb-8">
+            "Every Trip, a Story Worth Telling."
+          </h2>
+          <p className=" text-xl my-4">
+            Every destination holds a secret, and every moment tells a story.
+            Our passion is taking you to places where dreams awaken and memories
+            are etched forever. From iconic landmarks to hidden treasures far
+            from the crowds, we ensure each step of your journey is filled with
+            discovery and wonder.
+          </p>
+
+          <p className="text-xl">
+            Your adventure begins the moment you say yes. Let us turn your
+            travel dreams into reality with experiences as unique as you are.
+            Discover new horizons. Create stories you’ll cherish for a lifetime.
+            The world is waiting — your next chapter starts now.
+          </p>
+        </div>
+        <div className="flex justify-center items-center col-span-6 ">
+          <img
+            src="./belowHero.png"
+            className=" h-96 rounded-lg shadow-slate-600 shadow-[10px_10px_15px_rgba(0,0,0,0.5)] "
+          />
+        </div>
       </div>
+      {/* what do we do */}
+      <div className="text-[#2D464C] bg-gray-100 py-20 px-40 text-center">
+        <h2 className="text-5xl font-bold mb-8">
+          What we <span className="text-[#F97A1E]">Offer </span>{" "}
+        </h2>
+        <WhatWeDo />
+      </div>
+
       {/* why choose us */}
-      <div className="px-40 ">
+      {/* <div className="px-40 ">
         <h4 className="text-3xl font-semibold text-center text-[#1A1A1A]">
           WHY CHOOSE US?
         </h4>
@@ -228,34 +196,102 @@ function page() {
             );
           })}
         </div>
+      </div> */}
+
+      <div className="px-40 py-20 text-[#2D464C] text-center">
+        <h2 className="text-5xl font-bold mb-8">
+          What we <span className="text-[#F97A1E]">Offer </span>{" "}
+        </h2>
+        <WhyChooseUs />
       </div>
-      {/* travel solutions */}
-      <div className="px-40">
-        <h4 className="text-4xl font-semibold text-center">
-          Complete <span className="text-[#0497E0]">Travel Solutions</span>
-        </h4>
-        <p className="text-[#827F7F] text-center my-4 mx-36 text-xl">
-          From visa processing to luxury tours and worldwide destinations
-          everything you need for your perfect journey.
-        </p>
-        <div className="grid grid-cols-12 gap-12 py-16">
-          {travelSolutions.map((item, index) => {
-            return (
-              <div key={index} className="col-span-3 px-6 py-3">
-                <img className="w-20 mx-auto" src={item.image} />
-                <h5 className="text-center my-4 text-lg font-semibold text-[#1E1D4C]">
-                  {item.title}
-                </h5>
-                <p className="text-center my-4 text-base text-[#5E6282]">
-                  {item.description}
-                </p>
+
+      {/* most popular destinations  */}
+      <div
+        className="flex flex-col justify-center items-center pt-20 text-[#2D464C] text-center stamp bg-[url('/stamp.jpg')]"
+        style={{ background: "url('/stamp.jpg') center/cover no-repeat" }}
+      >
+        <div className="bg-white p-12 rounded-lg w-[90vw]">
+          <h2 className="text-5xl font-bold mb-8">
+            Most Popular <span className="text-[#F97A1E]">Destinations </span>{" "}
+          </h2>
+          {destinationType === "inbound" ? (
+            <div className="grid grid-cols-12 my-20">
+              <div className="col-span-8 ">
+                <InboundCarousal />
               </div>
-            );
-          })}
+              <div className="col-span-4">
+                <p>
+                  We provide reliable inbound services to handle customer
+                  inquiries, support requests, and order management with care
+                  and efficiency. Our customer-first approach ensures timely
+                  responses, smooth experiences, and stronger brand loyalty.
+                </p>
+                <Link href="/inbound">
+                 <button className=" bg-gradient-to-r bg-[#F97A1E] text-[1.2em] font-bold text-white px-8 py-2 rounded-3xl my-2 mx-auto">
+                  Explore More
+                </button>
+                </Link>
+               
+              </div>
+            </div>
+          ) : (
+            <div>need data for destination</div>
+          )}
+        </div>
+        <div className=" flex justify-evenly w-[50vw] my-12">
+          <button
+            onClick={() => {
+              setDestinationType("inbound");
+            }}
+            className={` w-[16vw] bg-gradient-to-r  text-[1.2em] font-bold ${
+              destinationType === "inbound"
+                ? "bg-[#F97A1E] text-white "
+                : "bg-white text-[#2D464C]"
+            } px-8 py-2 rounded-lg my-2 mx-auto shadow-lg shadow-gray-400`}
+          >
+            Inbound
+          </button>
+          <button
+            onClick={() => {
+              setDestinationType("destinations");
+            }}
+            className={`w-[16vw] bg-gradient-to-r  text-[1.2em] font-bold ${
+              destinationType === "destinations"
+                ? "bg-[#F97A1E] text-white "
+                : "bg-white text-[#2D464C]"
+            } px-8 py-2 rounded-lg my-2 mx-auto shadow-lg shadow-gray-400`}
+          >
+            Destinations
+          </button>
+        </div>
+      </div>
+
+      {/* travel solutions */}
+      <div className="px-40 py-20 text-[#2D464C] grid grid-cols-12">
+        <div className="col-span-6">
+          <h2 className="text-5xl font-bold leading-normal mb-8">
+            Your Journey, Our Visa Travel Without Barriers
+          </h2>
+          <p className=" mb-6">
+            Visa Assistance Made Simple Tired of the paperwork, long embassy
+            queues, and confusing requiremennts? We take the stress out of
+            travel by offering fast, reliable, and professional visa oisa
+            assistance for travelers worldwide. Whether it's for tourism,
+            business, or family visits -we ensure your visa process is smooth,
+            secure, and worry-free.
+          </p>
+          <p>
+             No stress, No delays: Just your passport, ready to fly:
+          </p>
+        </div>
+        <div className="col-span-6 h-full  flex items-end justify-center bg-[url('/setup.png')] bg-cover rounded-lg mx-4">
+ {/* <button className=" bg-gradient-to-r bg-[#F97A1E] text-[1.2em] font-bold text-white px-8 py-2 rounded-3xl my-2 mx-auto">
+                  Explore More
+                </button> */}
         </div>
       </div>
       {/* explore the world  */}
-      <div className="px-40">
+      {/* <div className="px-40">
         <h4 className="text-4xl font-semibold text-center">
           Explore the <span className="text-[#F97A1E]">World</span>
         </h4>
@@ -286,9 +322,9 @@ function page() {
             );
           })}
         </div>
-      </div>
+      </div> */}
       {/* contact us  */}
-      <div className="bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12">
+      {/* <div className="bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12">
         <h1 className="text-[3em] font-bold m-0">Never Miss a Great Deal !</h1>
         <p className="mb-2">
           Subscribe to our newsletter and get exclusive travel deals,
@@ -301,7 +337,7 @@ function page() {
         <button className="bg-[#FA7C28] px-4 py-2 rounded-lg mx-2">
           Subscribe
         </button>
-      </div>
+      </div> */}
     </>
   );
 }

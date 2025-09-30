@@ -1,6 +1,29 @@
+@import "@glidejs/glide/dist/css/glide.core.min.css";
+@import "@glidejs/glide/dist/css/glide.theme.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* extra utilities for 3D flip */
+.perspective {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+
+
+
 
 body{
   background-color: white;
@@ -21,6 +44,10 @@ body{
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+.stamp{
+  background-image: url('/public/dubai.png');
+  
 }
 
 /* example  */

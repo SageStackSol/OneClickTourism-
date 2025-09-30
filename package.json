@@ -9,9 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.7.1",
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide": "^4.1.4",
+    "framer-motion": "^12.23.16",
+    "lucide-react": "^0.544.0",
+    "mongodb": "^6.20.0",
     "next": "15.5.0",
+    "postcss-import": "^16.1.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "swiper": "^12.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
