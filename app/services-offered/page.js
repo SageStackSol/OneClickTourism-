@@ -1,19 +1,19 @@
 import React from "react";
-
+import WhatWeDo from "../components/WhatWeDo";
 function page() {
   return (
     <>
-      <div className="px-40 py-20">
+      <div className="px-40 py-20 text-[#2D464C]" >
         <h1 className="text-5xl font-extrabold leading-normal text-center">
           Everything You Need for the <br />
-          <span className="text-[#0497E0]">Perfect Journey</span>
+          <span className="text-[#F97A1E]">Perfect Journey</span>
         </h1>
         <p className="text-center text-base px-44 my-4">
           From planning to execution, we handle every detail of your trip so you
           can focus on creating memories.
         </p>
 
-        <div className=" grid grid-cols-12 gap-6">
+        {/* <div className=" grid grid-cols-12 gap-6">
           <div className="col-span-6 border border-[#827F7F] px-6 py-3 rounded-xl bg-[#827f7f27] text-base">
             <b>Flight Booking</b>
             <p className="my-3">
@@ -41,7 +41,8 @@ function page() {
           <div className="col-span-6 border border-[#827F7F] px-6 py-3 rounded-xl bg-[#827f7f27] text-base">
             <b>Travel Insurance</b>
             <p className="my-3">
-              Travel with peace of mind with comprehensive coverage for medical, trip, and baggage protection.
+              Travel with peace of mind with comprehensive coverage for medical,
+              trip, and baggage protection.
             </p>
             <ul className=" list-disc pl-4 ">
               <li>Medical Coverage</li>
@@ -49,10 +50,11 @@ function page() {
               <li>Emergency Support</li>
             </ul>
           </div>
-               <div className="col-span-6 border border-[#827F7F] px-6 py-3 rounded-xl bg-[#827f7f27] text-base">
+          <div className="col-span-6 border border-[#827F7F] px-6 py-3 rounded-xl bg-[#827f7f27] text-base">
             <b>Trip Planning</b>
             <p className="my-3">
-             Personalized itineraries created by travel experts based on your preferences and interests.
+              Personalized itineraries created by travel experts based on your
+              preferences and interests.
             </p>
             <ul className=" list-disc pl-4 ">
               <li>Custom Itineraries</li>
@@ -60,18 +62,27 @@ function page() {
               <li>Budget Planning</li>
             </ul>
           </div>
-       
-           <div className="col-span-12 bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12 rounded-lg border border-[#827F7F]">
-        <h1 className="text-[3em] font-bold m-0">Ready to Start Your Adventure?</h1>
-        <p className="mb-2">
-         Let our travel experts create a personalized itinerary that matches your dreams and budget.
-        </p>
-      
-        <button className="bg-[#FA7C28] px-4 py-2 rounded-lg mx-auto flex items-center ">
-          <img src="./query_builder.png" className="w-8"/> <span>Get Free Consultation</span>
-        </button>
-      </div>
-        </div>
+
+          <div className="col-span-12 bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12 rounded-lg border border-[#827F7F]">
+            <h1 className="text-[3em] font-bold m-0">
+              Ready to Start Your Adventure?
+            </h1>
+            <p className="mb-2">
+              Let our travel experts create a personalized itinerary that
+              matches your dreams and budget.
+            </p>
+
+            <button className="bg-[#FA7C28] px-4 py-2 rounded-lg mx-auto flex items-center ">
+              <img src="./query_builder.png" className="w-8" />{" "}
+              <span>Get Free Consultation</span>
+            </button>
+          </div>
+        </div> */}
+          {/* <h2 className="text-5xl font-bold mb-8">
+                  What we <span className="text-[#F97A1E]">Offer </span>{" "}
+                </h2> */}
+                <WhatWeDo />
+
       </div>
     </>
   );
