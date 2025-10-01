@@ -65,15 +65,15 @@ function Footer() {
           </div>
         </div>
       </div> */}
-      <div className="bg-[#7B7B78] px-20 py-10">
-        <h2 className="text-5xl font-bold leading-normal mb-8">Get in Touch</h2>
-        <input className="bg-[#D9D9D9] w-[32vw] h-9 rounded-md focus:outline-none mr-8" />
-        <button className="px-8 py-2 bg-gradient-to-r from-[#FFA203] to-[#FDE8BF] rounded-full">
+      <div className="bg-[#7B7B78] lg:px-20 lg:py-10 md:lg-20 md:py-10 px-4 py-2">
+        <h2 className="text-5xl font-bold leading-normal mb-8 lg:text-left md:text-left text-center">Get in Touch</h2>
+        <input className="bg-[#D9D9D9] lg:w-[32vw] md:w-[32vw] w-full h-9 rounded-md focus:outline-none mr-8" />
+        <button className="px-8 py-2 bg-gradient-to-r from-[#FFA203] to-[#FDE8BF] mx-auto w-full lg:my-0 md:my-0 my-2 rounded-full">
           Submit
         </button>
         <hr className="my-4" />
         <div className="grid grid-cols-12 gap-12">
-          <div className="col-span-5 bg-[#D9D9D9] h-full"></div>
+          <div className="lg:col-span-5 md:col-span-5 col-span-12 bg-[#D9D9D9] h-full"></div>
           <div className="col-span-7 grid grid-cols-12">
             <div className="col-span-6 flex flex-col  ">
               <h3 className="font-semibold text-[1.2em] mb-2 text-[#F97A1E]">

@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import WhatWeDo from "../components/WhatWeDo";
+import WhyChooseUs from "../components/WhyChooseUs";
 
 function page() {
   return (
@@ -65,42 +67,42 @@ function page() {
         </div>
       </div> */}
       {/* aboutUs Hero */}
-      <div className=" bg-[url('/aboutUsHeroCrop.png')] bg-cover bg-center h-screen py-44 px-10">
-        <h1 className="text-7xl font-black leading-none text-white mb-4">
+      <div className=" bg-[url('/aboutUsHeroCrop.png')] bg-cover bg-center h-screen py-44 lg:px-10 md:px-10 px-4">
+        <h1 className="lg:text-7xl md:text-7xl text-3xl font-black leading-none text-white lg:mb-4 md:mb-4">
           Not just a Journey, but a Story
         </h1>
-        <p className="text-xl text-white">
+        <p className="lg:text-xl md:text-xl text-base text-white">
           Experience the rush of the desert, the beauty of the sea, and the
           magic of a city that never sleeps.
         </p>
       </div>
       {/* about us  */}
-      <div className="bg-[#C7B5A2] py-20 px-10">
+      <div className="bg-[#C7B5A2] lg:py-20 lg:px-10 md:py-20 md:px-10 py-8">
         <div className="flex flex-row-reverse w-[100%] items-center gap-2">
-          <hr className="w-[60%] border-[#F97A1E] border-[.1em]" />
+          <hr className="lg:w-[60%] md:w-[60%] w-[80%] border-[#F97A1E] border-[.1em]" />
           <div className="w-3 h-3 bg-black rounded-full"></div>
         </div>
-        <p className="text-xl mt-8 px-8">
+        <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
           Founded in Dubai, our journey began with a simple belief — travel
           should be effortless, inspiring, and unforgettable. We set out to
           create experiences that go beyond tickets and tours, offering
           travellers a seamless way to explore Dubai and destinations across the
           world.
         </p>
-        <p className="text-xl mt-8 px-8">
+        <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
           From the golden sands of the desert to iconic skylines and hidden
           cultural gems, we craft journeys that are easy, convenient, and
           tailored to every traveler’s dream. Our website is designed to be the
           first step of that adventure — intuitive, welcoming, and filled with
           choices that transform plans into lasting memories.
         </p>
-        <p className="text-xl mt-8 px-8">
+        <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
           Today, we are more than a travel company. We are storytellers,
           experience makers, and trusted companions who bring the world closer
           to you. With us, every journey becomes more than a trip — it becomes a
           story worth cherishing forever.
         </p>
-        <div className="flex justify-center mt-16">
+        <div className="flex justify-center lg:mt-16 md:mt-16 mt-4">
           <Link href="/contact-us">
            <button className="px-8 py-2 text-2xl bg-[#FFA100] rounded-3xl">
             Get in Touch
@@ -110,7 +112,7 @@ function page() {
         </div>
       </div>
       {/* mission and vision  */}
-      <div className="py-20 px-20 grid grid-cols-12 items-center">
+      <div className="py-20 px-20 lg:grid md:grid hidden grid-cols-12 items-center ">
         <div className="col-span-5 h-52 bg-[#C7541B] flex justify-center items-center rounded-3xl">
           <h2 className="text-white text-4xl font-black ">Our Mission</h2>
         </div>
@@ -135,6 +137,20 @@ function page() {
           <h2 className="text-white text-4xl font-black ">Our vision</h2>
         </div>
       </div>
+   {/* what do we do */}
+      <div className="text-[#2D464C] bg-gray-100 lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-center">
+        <h2 className="text-5xl font-bold mb-8">
+          What we <span className="text-[#F97A1E]">Offer </span>{" "}
+        </h2>
+        <WhatWeDo />
+      </div>
+      {/* why choose us */}
+       <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] text-center">
+               <h2 className="text-5xl font-bold mb-8">
+                 What we <span className="text-[#F97A1E]">Offer </span>{" "}
+               </h2>
+               <WhyChooseUs />
+             </div>
     </>
   );
 }

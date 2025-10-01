@@ -131,7 +131,7 @@ const stats = [
 
 export default function WhatWeDo() {
   return (
-    <div className=" flex items-center justify-center  p-8">
+    <div className=" flex items-center justify-center  lg:p-8 md:p-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
         {stats.map((item, index) => (
           <motion.div

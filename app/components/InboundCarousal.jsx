@@ -97,8 +97,12 @@ export default function Carousel() {
          effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
-        slidesPerView={3}
-        
+        // slidesPerView={3}
+           breakpoints={{
+        1200: { slidesPerView: 3 },
+        992:  { slidesPerView: 2 },
+        600:  { slidesPerView: 2 },
+      }}
         loop={true}
         autoplay={{
           delay: 2500,
@@ -111,7 +115,7 @@ export default function Carousel() {
           modifier: 2.5, // intensity of 3D effect
           slideShadows: false,
         }}
-        pagination={{ clickable: true }}
+        // pagination={{ clickable: true }}
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper "
       >
