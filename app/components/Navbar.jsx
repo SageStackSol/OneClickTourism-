@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -8,7 +8,7 @@ function Navbar() {
   const pathname = usePathname();
   console.log(pathname);
   const [serviceMenuStatus, setServiceMenuStatus] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +26,7 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   // const serviceActive =
-    // pathname === "/services-offered" || "/inbound" || "/visa" || "/destination";
+  // pathname === "/services-offered" || "/inbound" || "/visa" || "/destination";
 
   // console.log(serviceActive);
   return (
@@ -158,12 +158,13 @@ function Navbar() {
         </button>
       </div> */}
 
-
-      <div className= {` z-[1000] h-[4em] flex items-center justify-between px-12 py-6 w-screen fixed  transition-all duration-300 ${
-        scrolled ? "bg-white/50 backdrop-blur-md " : "bg-transparent"
-      }`} >
+      <div
+        className={` z-[1000] h-[4em] flex items-center justify-between px-12 py-6 w-screen fixed  transition-all duration-300 ${
+          scrolled ? "bg-white/50 backdrop-blur-md " : "bg-transparent"
+        }`}
+      >
         <Link href={"/"}>
-          <div className="flex"> 
+          <div className="flex">
             {/* <img src="/logo.png" alt="logo" className="w-12" /> */}
             <p className=" text-3xl font-bold">
               {/* <span className=" font-bold text-black">One Click</span>
@@ -171,12 +172,11 @@ function Navbar() {
               Tourism Services */}
               {/* Logo */}
             </p>
-            <img src="./logoPI.png" className="w-28"/>
+            <img src="./logoPI.png" className="w-28" />
           </div>
         </Link>
 
-        <ul className="flex gap-12 text-lg 
- font-semibold pr-6">
+        <ul className="lg:flex gap-12 text-lg font-semibold pr-6 md:flex hidden">
           <Link href={"/"}>
             <li
               className={`${
@@ -192,10 +192,13 @@ function Navbar() {
             }}
             className={`relative flex items-center cursor-pointer 
               ${
-              pathname === "/services-offered" || pathname === "/inbound" || pathname === "/visa" || pathname === "/destination"
-                ? "text-[#F97A1E]"
-                : "text-black"
-            }
+                pathname === "/services-offered" ||
+                pathname === "/inbound" ||
+                pathname === "/visa" ||
+                pathname === "/destination"
+                  ? "text-[#F97A1E]"
+                  : "text-black"
+              }
             `}
           >
             Services{" "}

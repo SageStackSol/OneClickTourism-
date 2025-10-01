@@ -55,6 +55,11 @@ export default function WhyChooseUs() {
       type: "carousel",
       startAt: 0,
       perView: 3.3, // number of slides visible
+      breakpoints: {
+        1200: { perView: 3 },
+        992:  { perView: 2.2 },
+        600:  { perView: 1.2 }
+      },
       autoplay: 2000, // autoplay every 2s
       hoverpause: true, // pause on hover
       animationDuration: 800, // smooth animation
@@ -71,11 +76,11 @@ export default function WhyChooseUs() {
   return (
     <div className="glide mt-16" ref={glideRef}>
       <div className="glide__track " data-glide-el="track">
-        <ul className="glide__slides text-[#2D464C] h-96 p-4">
+        <ul className="glide__slides text-[#2D464C] h-96 lg:p-4 md:p-4 p-2">
           {data.map((item,index)=>{
             return <>
-            <li id={index} className="glide__slide p-8 shadow-[0_0_10px_rgba(0,0,0,0.3)] rounded-tl-[4em] rounded-tr-[1em] rounded-bl-[1em] rounded-br-[4em]">
-           <h3 className="text-2xl mb-2 text-center">{item.title}</h3>
+            <li id={index} className="glide__slide lg:p-8 md:p-8 p-4  shadow-[0_0_10px_rgba(0,0,0,0.3)] rounded-tl-[4em] rounded-tr-[1em] rounded-bl-[1em] rounded-br-[4em]">
+           <h3 className="text-2xl mb-2 text-center lg:pt-0 md:pt-0 pt-4">{item.title}</h3>
            <p className="text-left">{item.description}</p>
           </li>
             </>

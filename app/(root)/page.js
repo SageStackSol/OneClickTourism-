@@ -86,12 +86,12 @@ function page() {
     <>
       {/* hero section  */}
       <div className='h-screen bg-[url("/hero-finalBg.jpg")] bg-cover flex items-end justify-center '>
-        <div className=" pb-16">
-          <h1 className="text-7xl font-black text-center leading-none text-white">
+        <div className=" pb-16 lg:px-0 md:px-0 px-4">
+          <h1 className="lg:text-7xl md:text-7xl text-4xl font-black text-center leading-none text-white">
             Not just a <span className="text-[#F97A1E]">Journey</span>, but a{" "}
             <span className="text-[#F97A1E]">Story</span>
           </h1>
-          <p className="text-white text-center text-[1.8em] mt-2">
+          <p className="text-white text-center lg:text-[1.8em] md:text-[1.8em] text-[1em] mt-2">
             Experience the rush of the desert, the beauty of the sea, and the
             magic of a city that never sleeps.
           </p>{" "}
@@ -141,8 +141,8 @@ function page() {
           lifetime. The world is waiting — your next chapter starts now.
         </p>
       </div> */}
-      <div className="py-20 px-40 text-[#2D464C] grid grid-cols-12 my-12 ">
-        <div className=" col-span-6">
+      <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] grid grid-cols-12 my-12 ">
+        <div className=" lg:col-span-6 md:col-span-6 col-span-12">
           <h2 className="font-semibold text-4xl mb-8">
             "Every Trip, a Story Worth Telling."
           </h2>
@@ -161,7 +161,7 @@ function page() {
             The world is waiting — your next chapter starts now.
           </p>
         </div>
-        <div className="flex justify-center items-center col-span-6 ">
+        <div className="flex justify-center items-center lg:col-span-6 md:col-span-6 col-span-12 ">
           <img
             src="./belowHero.png"
             className=" h-96 rounded-lg shadow-slate-600 shadow-[10px_10px_15px_rgba(0,0,0,0.5)] "
@@ -169,7 +169,7 @@ function page() {
         </div>
       </div>
       {/* what do we do */}
-      <div className="text-[#2D464C] bg-gray-100 py-20 px-40 text-center">
+      <div className="text-[#2D464C] bg-gray-100 lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-center">
         <h2 className="text-5xl font-bold mb-8">
           What we <span className="text-[#F97A1E]">Offer </span>{" "}
         </h2>
@@ -198,7 +198,7 @@ function page() {
         </div>
       </div> */}
 
-      <div className="px-40 py-20 text-[#2D464C] text-center">
+      <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] text-center">
         <h2 className="text-5xl font-bold mb-8">
           What we <span className="text-[#F97A1E]">Offer </span>{" "}
         </h2>
@@ -210,16 +210,16 @@ function page() {
         className="flex flex-col justify-center items-center pt-20 text-[#2D464C] text-center stamp bg-[url('/stamp.jpg')]"
         style={{ background: "url('/stamp.jpg') center/cover no-repeat" }}
       >
-        <div className="bg-white p-12 rounded-lg w-[90vw]">
-          <h2 className="text-5xl font-bold mb-8">
+        <div className="bg-white lg:p-12 md:p-12 p-4 rounded-lg w-[90vw]">
+          <h2 className="text-5xl font-bold lg:mb-8 md:mb-8">
             Most Popular <span className="text-[#F97A1E]">Destinations </span>{" "}
           </h2>
           {destinationType === "inbound" ? (
             <div className="grid grid-cols-12 my-20">
-              <div className="col-span-8 ">
+              <div className="lg:col-span-8 md:col-span-8 col-span-12">
                 <InboundCarousal />
               </div>
-              <div className="col-span-4">
+              <div className="lg:col-span-4 md:col-span-4 col-span-12">
                 <p>
                   We provide reliable inbound services to handle customer
                   inquiries, support requests, and order management with care
@@ -238,12 +238,12 @@ function page() {
             <div>need data for destination</div>
           )}
         </div>
-        <div className=" flex justify-evenly w-[50vw] my-12">
+        <div className=" lg:flex md:flex block justify-evenly w-[50vw] my-12">
           <button
             onClick={() => {
               setDestinationType("inbound");
             }}
-            className={` w-[16vw] bg-gradient-to-r  text-[1.2em] font-bold ${
+            className={` lg:w-[16vw] md:w-[16vw] w-[100%] bg-gradient-to-r  text-[1.2em] font-bold ${
               destinationType === "inbound"
                 ? "bg-[#F97A1E] text-white "
                 : "bg-white text-[#2D464C]"
@@ -255,7 +255,7 @@ function page() {
             onClick={() => {
               setDestinationType("destinations");
             }}
-            className={`w-[16vw] bg-gradient-to-r  text-[1.2em] font-bold ${
+            className={`lg:w-[16vw] md:w-[16vw] w-[100%] bg-gradient-to-r  text-[1.2em] font-bold ${
               destinationType === "destinations"
                 ? "bg-[#F97A1E] text-white "
                 : "bg-white text-[#2D464C]"
@@ -267,8 +267,8 @@ function page() {
       </div>
 
       {/* travel solutions */}
-      <div className="px-40 py-20 text-[#2D464C] grid grid-cols-12">
-        <div className="col-span-6">
+      <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] grid grid-cols-12">
+        <div className="lg:col-span-6 md:col-span-6 col-span-12">
           <h2 className="text-5xl font-bold leading-normal mb-8">
             Your Journey, Our Visa Travel Without Barriers
           </h2>
@@ -284,7 +284,7 @@ function page() {
              No stress, No delays: Just your passport, ready to fly:
           </p>
         </div>
-        <div className="col-span-6 h-full  flex items-end justify-center bg-[url('/setup.png')] bg-cover rounded-lg mx-4">
+        <div className="lg:col-span-6 md:col-span-6 col-span-12 lg:h-full md:h-full h-64  flex items-end justify-center bg-[url('/setup.png')] bg-cover rounded-lg lg:mx-4 md:mx-4">
  {/* <button className=" bg-gradient-to-r bg-[#F97A1E] text-[1.2em] font-bold text-white px-8 py-2 rounded-3xl my-2 mx-auto">
                   Explore More
                 </button> */}
