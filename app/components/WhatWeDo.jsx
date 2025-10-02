@@ -101,32 +101,47 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BarChart3, Users, Globe2 } from "lucide-react";
+import Link from "next/link";
 
 const stats = [
   {
     title: "Inbound Experiences",
-    description: "Discover Dubai like never before with curated local adventures.",
-    image: "./dubaiWWD.jpg" 
+    description:
+      "Discover Dubai like never before with curated local adventures.",
+    image: "./dubaiWWD.jpg",
+    link: "/inbound",
   },
-   {
+  {
     title: "Global Destinations",
-    description: "Explore the destinations worldwide with personalized itineraries.",
-    image: "./destinationWWD.jpg" 
+    description:
+      "Explore the destinations worldwide with personalized itineraries.",
+    image: "./destinationWWD.jpg",
+    link: "/destinations",
   },
   {
     title: "Visa Assistance",
     description: "Hassle-free visa support for smooth travel planning.",
-    image: "./visaWWD.jpg" 
-  },{
+    image: "./visaWWD.jpg",
+    link: "/visa",
+  },
+  {
     title: "Flight Bookings",
     description: "Hassle-free visa support for smooth travel planning.",
-    image: "./flightWWD.jpg" 
-  },{
+    image: "./flightWWD.jpg",
+    link: "/flight-bookings",
+  },
+  {
     title: "Hotel Bookings",
     description: "Hassle-free visa support for smooth travel planning.",
-    image: "./hotelWWD.jpg" 
+    image: "./hotelWWD.jpg",
+    link: "/hotel-bookings",
   },
- 
+  {
+    title: "Car Rentals",
+    description: "Hassle-free visa support for smooth travel planning.",
+    image: "./cars.jpg",
+    link: "/car-rentals",
+  },
 ];
 
 export default function WhatWeDo() {
@@ -134,18 +149,19 @@ export default function WhatWeDo() {
     <div className=" flex items-center justify-center  lg:p-8 md:p-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
         {stats.map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            whileHover={{ scale: 1.05, rotate: 1 }}
-            className="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center text-center cursor-pointer"
-          >
-           <img src={item.image} className="rounded-lg"/>
-            <p className=" mt-2 text-3xl font-bold">{item.title}</p>
-            <p>{item.description}</p>
-          </motion.div>
+          <Link href={item.link} key={index}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              className="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center text-center cursor-pointer"
+            >
+              <img src={item.image} className="rounded-lg h-44" />
+              <p className=" mt-2 text-3xl font-bold">{item.title}</p>
+              <p>{item.description}</p>
+            </motion.div>
+          </Link>
         ))}
       </div>
     </div>

@@ -78,12 +78,12 @@ export default function WhyChooseUs() {
       <div className="glide__track " data-glide-el="track">
         <ul className="glide__slides text-[#2D464C] h-96 lg:p-4 md:p-4 p-2">
           {data.map((item,index)=>{
-            return <>
-            <li id={index} className="glide__slide lg:p-8 md:p-8 p-4  shadow-[0_0_10px_rgba(0,0,0,0.3)] rounded-tl-[4em] rounded-tr-[1em] rounded-bl-[1em] rounded-br-[4em]">
+            return (
+            <li key={index} className="glide__slide lg:p-8 md:p-8 p-4  shadow-[0_0_10px_rgba(0,0,0,0.3)] rounded-tl-[4em] rounded-tr-[1em] rounded-bl-[1em] rounded-br-[4em]">
            <h3 className="text-2xl mb-2 text-center lg:pt-0 md:pt-0 pt-4">{item.title}</h3>
            <p className="text-left">{item.description}</p>
-          </li>
-            </>
+          </li>)
+
           })}
           
           {/* <li className="glide__slide bg-blue-400 p-10  text-center rounded-lg">

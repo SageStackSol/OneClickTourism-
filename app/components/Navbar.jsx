@@ -195,7 +195,9 @@ function Navbar() {
                 pathname === "/services-offered" ||
                 pathname === "/inbound" ||
                 pathname === "/visa" ||
-                pathname === "/destination"
+                pathname === "/destination" ||
+                pathname === "/flight-bookings" ||
+                pathname === "/car-rentals"
                   ? "text-[#F97A1E]"
                   : "text-black"
               }
@@ -254,6 +256,29 @@ function Navbar() {
                         Destination
                       </li>
                     </Link>
+                    <Link href={"/flight-bookings"}>
+                      <li
+                        className={`${
+                          pathname === "/flight-bookings"
+                            ? "text-[#F97A1E]"
+                            : "text-black"
+                        }`}
+                      >
+                        Flight Bookings
+                      </li>
+                    </Link>
+
+                    <Link href={"/car-rentals"}>
+                      <li
+                        className={`${
+                          pathname === "/car-rentals"
+                            ? "text-[#F97A1E]"
+                            : "text-black"
+                        }`}
+                      >
+                        Car Rentals
+                      </li>
+                    </Link>
                   </ul>
                 </div>
               </>
@@ -289,9 +314,9 @@ function Navbar() {
             </li>
           </Link>
         </ul>
-        {/* <button className=" bg-gradient-to-r bg-[#F97A1E] text-white px-8 py-2 rounded-3xl font-semibold">
+        <button className=" bg-gradient-to-r bg-[#F97A1E] text-white px-8 py-2 rounded-3xl font-semibold lg:flex md:flex hidden">
           Book Now
-        </button> */}
+        </button>
       </div>
     </>
   );
