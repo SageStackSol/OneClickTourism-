@@ -314,9 +314,13 @@ function Navbar() {
             </li>
           </Link>
         </ul>
+          <Link href={"/enquiry"}>
+
         <button className=" bg-gradient-to-r bg-[#F97A1E] text-white px-8 py-2 rounded-3xl font-semibold lg:flex md:flex hidden">
           Book Now
         </button>
+          </Link>
+
       </div>
     </>
   );

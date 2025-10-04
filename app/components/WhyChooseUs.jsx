@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
       autoplay: 2000, // autoplay every 2s
       hoverpause: true, // pause on hover
       animationDuration: 800, // smooth animation
-        gap: 30,
+        // gap: 30,
     });
 
     glide.mount();
