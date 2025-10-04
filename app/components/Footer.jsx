@@ -68,7 +68,7 @@ function Footer() {
       <div className="bg-[#7B7B78] lg:px-20 lg:py-10 md:lg-20 md:py-10 px-4 py-2">
         <h2 className="text-5xl font-bold leading-normal mb-8 lg:text-left md:text-left text-center">Get in Touch</h2>
         <input className="bg-[#D9D9D9] lg:w-[32vw] md:w-[32vw] w-full h-9 rounded-md focus:outline-none mr-8" />
-        <button className="px-8 py-2 bg-gradient-to-r from-[#FFA203] to-[#FDE8BF] mx-auto w-full lg:my-0 md:my-0 my-2 rounded-full">
+        <button className="px-8 py-2 bg-gradient-to-r from-[#FFA203] to-[#FDE8BF] mx-auto lg:w-fit md:w-fit w-full lg:my-0 md:my-0 my-2 rounded-full">
           Submit
         </button>
         <hr className="my-4" />

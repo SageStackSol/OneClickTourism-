@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"], 
-  weight: [ "500"], 
+  // weight: [ "500"], 
   style: ["normal", "italic"],       
 });
 

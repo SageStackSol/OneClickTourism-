@@ -78,9 +78,10 @@ function page() {
       </div>
       {/* about us  */}
       <div className="bg-[#C7B5A2] lg:py-20 lg:px-10 md:py-20 md:px-10 py-8">
-        <div className="flex flex-row-reverse w-[100%] items-center gap-2">
-          <hr className="lg:w-[60%] md:w-[60%] w-[80%] border-[#F97A1E] border-[.1em]" />
+        <div className="flex flex-row-reverse w-[100%] items-center gap-2 lg:px-10 md:px-10 px-4">
+          <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />
           <div className="w-3 h-3 bg-black rounded-full"></div>
+          <h2 className="lg:text-5xl md:text-5xl text-2xl font-bold pr-4">Our Story</h2>
         </div>
         <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
           Founded in Dubai, our journey began with a simple belief — travel
