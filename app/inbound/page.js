@@ -127,7 +127,7 @@ export default function FlipCards() {
   return (
     <div className="px-40 py-20 text-[#2D464C] -z-0">
       <h1 className="text-5xl font-extrabold leading-normal  text-center">
-        Explore the Dubai's Most <br />
+        Explore the Dubai&apos;s Most <br />
         <span className="text-[#F97A1E]">Beautiful Destinations</span>
       </h1>
       <p className="text-center text-base px-44 my-4">
