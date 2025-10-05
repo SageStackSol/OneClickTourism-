@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-function page() {
+function Page() {
   const [bmw, setBmw] = useState(false);
   const [lamborghini, setLamborghini] = useState(false);
   const [benz, setBenz] = useState(false);
@@ -290,4 +290,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

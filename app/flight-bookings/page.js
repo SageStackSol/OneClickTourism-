@@ -1,6 +1,6 @@
 import React from "react";
 
-function page() {
+function Page() {
   return (
     <div className="grid grid-cols-12 gap-6 lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 ">
       <h1 className="text-[#2D464C] lg:text-7xl md:text-7xl text-3xl font-black leading-none text-center lg:mb-4 md:mb-4 col-span-12">
@@ -39,4 +39,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

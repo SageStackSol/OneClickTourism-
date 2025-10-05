@@ -5,7 +5,7 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import InboundCarousal from "../components/InboundCarousal";
 import Link from "next/link";
 
-function page() {
+function Page() {
   const [destinationType, setDestinationType] = useState("inbound");
 
   const chooseUs = [
@@ -342,4 +342,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

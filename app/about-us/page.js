@@ -3,7 +3,7 @@ import Link from "next/link";
 import WhatWeDo from "../components/WhatWeDo";
 import WhyChooseUs from "../components/WhyChooseUs";
 
-function page() {
+function Page() {
   return (
     <>
       {/* <div className="px-40 grid grid-cols-12 items-center min-h-screen gap-4">
@@ -156,4 +156,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

@@ -1,6 +1,6 @@
 import React from "react";
 import WhatWeDo from "../components/WhatWeDo";
-function page() {
+function Page() {
   return (
     <>
       <div className="px-40 py-20 text-[#2D464C]" >
@@ -88,4 +88,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

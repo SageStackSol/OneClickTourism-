@@ -1,6 +1,6 @@
 import React from "react";
 
-function page() {
+function Page() {
   const info = [
     {
       image: "./flight(30).png",
@@ -84,4 +84,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
