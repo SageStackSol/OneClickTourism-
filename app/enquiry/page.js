@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 
-function page() {
+function Page() {
     const [fName,setFName] = useState('')
     const [lName,setLName] = useState('')
     const [email,setEmail] = useState('')
@@ -126,4 +126,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
