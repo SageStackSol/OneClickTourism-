@@ -11,7 +11,8 @@ function Page() {
   const [audi, setAudi] = useState(false);
 
   return (
-    <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 grid grid-cols-12 ">
+    <>
+  <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 lg:grid md:grid hidden grid-cols-12 ">
       <div
         onClick={() => {
           setBmw(!bmw);
@@ -287,6 +288,127 @@ function Page() {
         </div>
       )}
     </div>
+{/* mobile view */}
+      <div className="lg:hidden md:hidden py-16 grid grid-cols-1 gap-2">
+
+         <div
+        onClick={() => {
+          setBmw(!bmw);
+          setBenz(false);
+          setLamborghini(false);
+          setPorsche(false);
+          setFerrari(false);
+          setRr(false);
+          setAudi(false);
+        }}
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 ${
+          bmw ? "bg-[#F97A1E] rounded-t-3xl" : "bg-[#D9D9D9] rounded-3xl"
+        }`}
+      >
+        <img src="./bmw.png" />
+      </div>
+       <div
+        onClick={() => {
+          setBmw(false);
+          setBenz(false);
+          setLamborghini(!lamborghini);
+          setPorsche(false);
+          setFerrari(false);
+          setRr(false);
+          setAudi(false);
+        }}
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 ${
+          lamborghini
+            ? "bg-[#F97A1E] rounded-3xl"
+            : "bg-[#D9D9D9] rounded-3xl"
+        }`}
+      >
+        <img src="./lamborghini.png" />
+      </div>
+
+      <div
+        onClick={() => {
+          setBmw(false);
+          setBenz(!benz);
+          setLamborghini(false);
+          setPorsche(false);
+          setFerrari(false);
+          setRr(false);
+          setAudi(false);
+        }}
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 ${
+          benz ? "bg-[#F97A1E] rounded-3xl" : "bg-[#D9D9D9] rounded-3xl"
+        }`}
+      >
+        <img src="./benz.png" />
+      </div>
+         <div
+        onClick={() => {
+          setBmw(false);
+          setBenz(false);
+          setLamborghini(false);
+          setPorsche(!porsche);
+          setFerrari(false);
+          setRr(false);
+          setAudi(false);
+        }}
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 ${
+          porsche ? "bg-[#F97A1E] rounded-3xl" : "bg-[#D9D9D9] rounded-3xl"
+        }`}
+      >
+        <img src="./porsche.png" />
+      </div>
+      <div
+        onClick={() => {
+          setBmw(false);
+          setBenz(false);
+          setLamborghini(false);
+          setPorsche(false);
+          setFerrari(!ferrari);
+          setRr(false);
+          setAudi(false);
+        }}
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 ${
+          ferrari ? "bg-[#F97A1E] rounded-3xl" : "bg-[#D9D9D9] rounded-3xl"
+        }`}
+      >
+        <img src="./ferrari.png" />
+      </div>
+      <div
+        onClick={() => {
+          setBmw(false);
+          setBenz(false);
+          setLamborghini(false);
+          setPorsche(false);
+          setFerrari(false);
+          setRr(!rr);
+          setAudi(false);
+        }}
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 ${
+          rr ? "bg-[#F97A1E] rounded-3xl" : "bg-[#D9D9D9] rounded-3xl"
+        }`}
+      >
+        <img src="./rr.png" />
+      </div>
+       <div
+        onClick={() => {
+          setBmw(false);
+          setBenz(false);
+          setLamborghini(false);
+          setPorsche(false);
+          setFerrari(false);
+          setRr(false);
+          setAudi(!audi);
+        }}
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 ${
+          audi ? "bg-[#F97A1E] rounded-3xl" : "bg-[#D9D9D9] rounded-3xl"
+        }`}
+      >
+        <img src="./audi.png" />
+      </div>
+      </div>
+    </>
+  
   );
 }
 

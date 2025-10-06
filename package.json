@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.7.1",
+    "@heroicons/react": "^2.2.0",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide": "^4.1.4",
     "framer-motion": "^12.23.16",

@@ -125,50 +125,67 @@ export default function FlipCards() {
   };
 
   return (
-    <div className="px-40 py-20 text-[#2D464C] -z-0">
-      <h1 className="text-5xl font-extrabold leading-normal  text-center">
-        Explore the Dubai&apos;s Most <br />
-        <span className="text-[#F97A1E]">Beautiful Destinations</span>
-      </h1>
-      <p className="text-center text-base px-44 my-4">
-        From tropical paradises to cultural capitals, discover hand-picked
-        destinations that offer unforgettable experiences.
-      </p>
+    <>
+      <div
+        style={{ background: "url('/inbound-bg.png') center/cover no-repeat" }}
+        className="h-screen w-screen bg-cover bg-center flex flex-col-reverse"
+      >
+        <div className="bg-black/50 text-white lg:flex md:flex p-10 gap-20">
+          <h1 className="lg:text-7xl md:text-7xl text-4xl font-bold">Dubai</h1>
+          <p className="text-lg">
+            Did you know? Dubai is home to the world’s largest flower garden,
+            the Dubai Miracle Garden, with over 150 million blooming flowers
+            arranged in incredible designs including life-sized airplanes
+            covered entirely in flowers!
+          </p>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-3 gap-6 p-6">
-        {cardsData.map((card) => (
-          <div
-            key={card.id}
-            className="w-[100%] h-80 perspective"
-            onClick={() => handleFlip(card.id)}
-          >
+      <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 text-[#2D464C] -z-0">
+        <h1 className="lg:text-7xl md:text-7xl text-4xl font-extrabold leading-normal  text-center">
+          Explore the Dubai&apos;s Most <br />
+          <span className="text-[#F97A1E]">Beautiful Destinations</span>
+        </h1>
+        <p className="text-center text-base lg:px-44 md:px-40 my-4">
+          From tropical paradises to cultural capitals, discover hand-picked
+          destinations that offer unforgettable experiences.
+        </p>
+
+        <div className="grid grid-cols-3 gap-6 p-6">
+          {cardsData.map((card) => (
             <div
-              style={{
-                backgroundImage: `url(${card.front.image}) `,
-                backgroundSize: "cover",
-                borderRadius: "12px",
-              }}
-              className={`relative w-[100%] h-80 transition-transform duration-700 preserve-3d ${
-                flipped[card.id] ? "rotate-y-180" : ""
-              }`}
+              key={card.id}
+              className="w-[100%] h-80 perspective lg:col-span-1 md:col-span-1 col-span-3"
+              onClick={() => handleFlip(card.id)}
             >
-              {/* Front */}
               <div
-                className={`absolute inset-0 rounded-xl backface-hidden flex justify-center items-end text-white font-bold text-xl`}
+                style={{
+                  backgroundImage: `url(${card.front.image}) `,
+                  backgroundSize: "cover",
+                  borderRadius: "12px",
+                }}
+                className={`relative w-[100%] h-80 transition-transform duration-700 preserve-3d ${
+                  flipped[card.id] ? "rotate-y-180" : ""
+                }`}
               >
-                {/* {card.front} */}
-                {/* <img className="w-[100%] h-80" src={card.front.image}/> */}
-                <p className="pb-4">{card.front.name}</p>
-              </div>
+                {/* Front */}
+                <div
+                  className={`absolute inset-0 rounded-xl backface-hidden flex justify-center items-end text-white font-bold text-xl`}
+                >
+                  {/* {card.front} */}
+                  {/* <img className="w-[100%] h-80" src={card.front.image}/> */}
+                  <p className="pb-4">{card.front.name}</p>
+                </div>
 
-              {/* Back */}
-              <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-red-500 text-white backface-hidden rotate-y-180">
-                {/* {card.back} */}
+                {/* Back */}
+                <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-red-500 text-white backface-hidden rotate-y-180">
+                  {/* {card.back} */}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -2,7 +2,11 @@ import React from "react";
 import Link from "next/link";
 import WhatWeDo from "../components/WhatWeDo";
 import WhyChooseUs from "../components/WhyChooseUs";
-
+import { Great_Vibes } from "next/font/google";
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+});
 function Page() {
   return (
     <>
@@ -76,12 +80,15 @@ function Page() {
           magic of a city that never sleeps.
         </p>
       </div>
-      {/* about us  */}
-      <div className="bg-[#C7B5A2] lg:py-20 lg:px-10 md:py-20 md:px-10 py-8">
+      {/* about us  bg-[#C7B5A2]*/}
+        
+      <div style={{ background: "url('/about-us-bg.jpg') center/cover no-repeat" }} className=" lg:py-20 lg:px-10 md:py-20 md:px-10 py-8">
         <div className="flex flex-row-reverse w-[100%] items-center gap-2 lg:px-10 md:px-10 px-4">
           <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />
           <div className="w-3 h-3 bg-black rounded-full"></div>
-          <h2 className="lg:text-5xl md:text-5xl text-2xl font-bold pr-4">Our Story</h2>
+          <h2 className="lg:text-5xl md:text-5xl text-2xl font-bold pr-4">
+            <span className={greatVibes.className}> Our Story</span>{" "}
+          </h2>
         </div>
         <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
           Founded in Dubai, our journey began with a simple belief — travel
@@ -105,17 +112,18 @@ function Page() {
         </p>
         <div className="flex justify-center lg:mt-16 md:mt-16 mt-4">
           <Link href="/contact-us">
-           <button className="px-8 py-2 text-2xl bg-[#FFA100] rounded-3xl">
-            Get in Touch
-          </button>
+            <button className="px-8 py-2 text-2xl bg-[#FFA100] rounded-3xl">
+              Get in Touch
+            </button>
           </Link>
-         
         </div>
       </div>
       {/* mission and vision  */}
       <div className="py-20 px-20 lg:grid md:grid hidden grid-cols-12 items-center ">
         <div className="col-span-5 h-52 bg-[#C7541B] flex justify-center items-center rounded-3xl">
-          <h2 className="text-white text-4xl font-black ">Our Mission</h2>
+          <h2 className="text-white text-4xl font-black ">
+            <span className={greatVibes.className}>Our Mission </span>{" "}
+          </h2>
         </div>
         <div className="col-span-7 flex justify-center items-center px-8 bg-[#F5DDD4] h-40 rounded-r-3xl">
           <p>
@@ -134,11 +142,13 @@ function Page() {
             for generations to come.
           </p>
         </div>
-         <div className="col-span-5 h-52 bg-[#2DA39A] flex justify-center items-center rounded-3xl">
-          <h2 className="text-white text-4xl font-black ">Our vision</h2>
+        <div className="col-span-5 h-52 bg-[#2DA39A] flex justify-center items-center rounded-3xl">
+          <h2 className="text-white text-4xl font-black ">
+            <span className={greatVibes.className}> Our vision</span>
+          </h2>
         </div>
       </div>
-   {/* what do we do */}
+      {/* what do we do */}
       <div className="text-[#2D464C] bg-gray-100 lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-center">
         <h2 className="text-5xl font-bold mb-8">
           What we <span className="text-[#F97A1E]">Offer </span>{" "}
@@ -146,12 +156,12 @@ function Page() {
         <WhatWeDo />
       </div>
       {/* why choose us */}
-       <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] text-center">
-               <h2 className="text-5xl font-bold mb-8">
-                 What we <span className="text-[#F97A1E]">Offer </span>{" "}
-               </h2>
-               <WhyChooseUs />
-             </div>
+      <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] text-center">
+        <h2 className="text-5xl font-bold mb-8">
+          What we <span className="text-[#F97A1E]">Offer </span>{" "}
+        </h2>
+        <WhyChooseUs />
+      </div>
     </>
   );
 }
