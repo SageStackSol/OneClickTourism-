@@ -1,12 +1,12 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 
 function Page() {
-    const [fName,setFName] = useState('')
-    const [lName,setLName] = useState('')
-    const [email,setEmail] = useState('')
-    const [phone,setPhone] = useState('')
-    const [message,setMessage] = useState('')
+  const [fName, setFName] = useState("");
+  const [lName, setLName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
 
   return (
     <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 ">
@@ -29,7 +29,13 @@ function Page() {
                 First Name
               </label>
               <br />
-              <input onChange={(e)=>{setFName(e.target.value)}} value={fName} className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8" />
+              <input
+                onChange={(e) => {
+                  setFName(e.target.value);
+                }}
+                value={fName}
+                className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
+              />
             </div>
 
             <div className="w-[100%]">
@@ -37,17 +43,41 @@ function Page() {
                 Last Name
               </label>
               <br />
-              <input onChange={(e)=>{setLName(e.target.value)}} value={lName} className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8" />
+              <input
+                onChange={(e) => {
+                  setLName(e.target.value);
+                }}
+                value={lName}
+                className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
+              />
             </div>
           </div>
 
           <p className="font-semibold text-[.8em] mt-4">Email Address</p>
-          <input onChange={(e)=>{setEmail(e.target.value)}} value={email} className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8" />
+          <input
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            value={email}
+            className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
+          />
           <p className="font-semibold text-[.8em] mt-4">Phone Number</p>
-          <input onChange={(e)=>{setPhone(e.target.value)}} value={phone} className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8" />
+          <input
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
+            value={phone}
+            className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
+          />
 
           <p className="font-semibold text-[.8em] mt-4">Message</p>
-          <input onChange={(e)=>{setMessage(e.target.value)}} value={message} className=" h-12 bg-[#d9d9d931] border-black border rounded-lg w-[100%]" />
+          <input
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+            value={message}
+            className=" h-12 bg-[#d9d9d931] border-black border rounded-lg w-[100%]"
+          />
           <button className="flex gap-2 bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white px-8 py-2 rounded-md font-semibold mt-4">
             <img src="./send.png" className="w-6" /> Submit Enquiry
           </button>
