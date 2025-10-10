@@ -157,7 +157,7 @@ function Page() {
             Most Popular <span className="text-[#F97A1E]">Destinations</span>
           </h2>
           {destinationType === "inbound" ? (
-            <div className="grid grid-cols-12 my-20">
+            <div className="grid grid-cols-12 my-20 items-center">
               <div className="lg:col-span-8 md:col-span-8 col-span-12">
                 <InboundCarousal />
               </div>
@@ -221,6 +221,27 @@ function Page() {
           <p>No stress, no delays: just your passport, ready to fly.</p>
         </div>
         <div className="lg:col-span-6 md:col-span-6 col-span-12 lg:h-full md:h-full h-64 flex items-end justify-center bg-[url('/setup.png')] bg-cover rounded-lg lg:mx-4 md:mx-4"></div>
+        <div className="col-span-12 grid grid-cols-12 mt-12"> 
+          <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
+            <img className="w-8 " src="./tick.jpg"/>
+            <p className="text-lg font-bold">Quick Visa Approvals</p>
+          </div>
+
+           <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
+            <img className="w-12 " src="./laptop.jpg"/>
+            <p className="text-lg font-bold">Hassle-Free Process</p>
+          </div>
+
+           <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
+            <img className="w-12 " src="./globe.png"/>
+            <p className="text-lg font-bold">Global Coverage</p>
+          </div>
+
+           <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
+            <img className="w-8 " src="./mic.png"/>
+            <p className="text-lg font-bold">24/7 Expert Support</p>
+          </div>
+        </div>
       </div>
     </>
   );

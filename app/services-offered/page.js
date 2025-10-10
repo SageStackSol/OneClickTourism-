@@ -3,12 +3,12 @@ import WhatWeDo from "../components/WhatWeDo";
 function Page() {
   return (
     <>
-      <div className="px-40 py-20 text-[#2D464C]" >
-        <h1 className="text-5xl font-extrabold leading-normal text-center">
+      <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 text-[#2D464C]" >
+        <h1 className="lg:text-7xl md:text-7xl text-4xl font-extrabold leading-normal text-center">
           Everything You Need for the <br />
           <span className="text-[#F97A1E]">Perfect Journey</span>
         </h1>
-        <p className="text-center text-base px-44 my-4">
+        <p className="text-center text-base lg:px-44 md:px-40 my-4">
           From planning to execution, we handle every detail of your trip so you
           can focus on creating memories.
         </p>

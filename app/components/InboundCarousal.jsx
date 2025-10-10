@@ -120,22 +120,22 @@ export default function Carousel() {
         className="mySwiper "
       >
         <SwiperSlide>
-          <img src="./al_ain.jpg" alt="Slide 1" className="rounded-xl w-full h-52" />
+          <img src="./al_ain.jpg" alt="Slide 1" className="rounded-xl w-full h-96" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./FujairahEastCoast.jpg" alt="Slide 2" className="rounded-xl w-full h-52" />
+          <img src="./FujairahEastCoast.jpg" alt="Slide 2" className="rounded-xl w-full h-96" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./dubaiCityTour.jpg" alt="Slide 3" className="rounded-xl w-full h-52" />
+          <img src="./dubaiCityTour.jpg" alt="Slide 3" className="rounded-xl w-full h-96" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./dubai_tour.jpg" alt="Slide 3" className="rounded-xl w-full h-52" />
+          <img src="./dubai_tour.jpg" alt="Slide 3" className="rounded-xl w-full h-96" />
         </SwiperSlide>
          <SwiperSlide>
-          <img src="./abu_dhabi.jpg" alt="Slide 3" className="rounded-xl w-full h-52" />
+          <img src="./abu_dhabi.jpg" alt="Slide 3" className="rounded-xl w-full h-96" />
         </SwiperSlide>
          <SwiperSlide>
-          <img src="./sharjah.jpg" alt="Slide 3" className="rounded-xl w-full h-52" />
+          <img src="./sharjah.jpg" alt="Slide 3" className="rounded-xl w-full h-96" />
         </SwiperSlide>
       </Swiper>
     </div>
