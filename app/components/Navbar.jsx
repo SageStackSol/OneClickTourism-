@@ -337,7 +337,7 @@ function Navbar() {
         </button>
         {/* Mobile Menu */}
         {open && (
-          <div className="absolute top-16 right-4  shadow-lg p-4 rounded-md md:hidden bg-white/50 backdrop-blur-lg">
+          <div className="absolute top-16 right-4  shadow-lg p-4 rounded-md md:hidden bg-white/80 backdrop-blur-lg">
             <ul className="space-y-1">
               <li>Services</li>
               <ul className="pl-2">
