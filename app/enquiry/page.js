@@ -9,12 +9,70 @@ function Page() {
   const [message, setMessage] = useState("");
   const [selectedServices, setSelectedServices] = useState([]);
 
+  const [formData, setFormData] = useState({
+    inbound: {},
+    destination: {},
+    visa: {},
+    car: {},
+    flight: {},
+    hotel: {},
+  });
+
   const toggleService = (service) => {
     setSelectedServices((prev) =>
       prev.includes(service)
         ? prev.filter((s) => s !== service)
         : [...prev, service]
     );
+  };
+
+  const handleServiceChange = (service, key, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [service]: { ...prev[service], [key]: value },
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const fullForm = {
+      firstName: fName,
+      lastName: lName,
+      email,
+      phone,
+      message,
+      selectedServices,
+      details: formData,
+    };
+
+    console.log("Submitting JSON:", fullForm);
+
+    const res = await fetch("/api/enquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fullForm),
+    });
+
+    if (res.ok) {
+      alert("Enquiry submitted successfully!");
+      setFName("");
+      setLName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setSelectedServices([]);
+      setFormData({
+        inbound: {},
+        destination: {},
+        visa: {},
+        car: {},
+        flight: {},
+        hotel: {},
+      });
+    } else {
+      alert("Error submitting enquiry.");
+    }
   };
 
   const inboundTypes = [
@@ -52,50 +110,62 @@ function Page() {
         {/* LEFT SIDE FORM */}
         <div className="lg:col-span-6 md:col-span-6 col-span-12">
           <h2 className="text-[1.5em] font-semibold">Send Us a Message</h2>
-          <div className="lg:flex justify-between gap-8">
-            <div className="w-[100%]">
-              <label className="font-semibold text-[.8em] mt-4">First Name</label>
-              <input
-                onChange={(e) => setFName(e.target.value)}
-                value={fName}
-                className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
-              />
+          <form onSubmit={handleSubmit}>
+            <div className="lg:flex justify-between gap-8">
+              <div className="w-full">
+                <label className="font-semibold text-[.8em] mt-4">First Name</label>
+                <input
+                  onChange={(e) => setFName(e.target.value)}
+                  value={fName}
+                  required
+                  className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
+                />
+              </div>
+
+              <div className="w-full">
+                <label className="font-semibold text-[.8em] mt-4">Last Name</label>
+                <input
+                  onChange={(e) => setLName(e.target.value)}
+                  value={lName}
+                  required
+                  className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
+                />
+              </div>
             </div>
 
-            <div className="w-[100%]">
-              <label className="font-semibold text-[.8em] mt-4">Last Name</label>
-              <input
-                onChange={(e) => setLName(e.target.value)}
-                value={lName}
-                className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
-              />
-            </div>
-          </div>
+            <p className="font-semibold text-[.8em] mt-4">Email Address</p>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
+              type="email"
+              className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
+            />
 
-          <p className="font-semibold text-[.8em] mt-4">Email Address</p>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
-          />
+            <p className="font-semibold text-[.8em] mt-4">Phone Number</p>
+            <input
+              onChange={(e) => setPhone(e.target.value)}
+              value={phone}
+              required
+              type="tel"
+              className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
+            />
 
-          <p className="font-semibold text-[.8em] mt-4">Phone Number</p>
-          <input
-            onChange={(e) => setPhone(e.target.value)}
-            value={phone}
-            className="bg-[#d9d9d931] border-black border rounded-lg w-full h-8"
-          />
+            <p className="font-semibold text-[.8em] mt-4">Message</p>
+            <textarea
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              rows="3"
+              className="bg-[#d9d9d931] border-black border rounded-lg w-full"
+            />
 
-          <p className="font-semibold text-[.8em] mt-4">Message</p>
-          <input
-            onChange={(e) => setMessage(e.target.value)}
-            value={message}
-            className="h-12 bg-[#d9d9d931] border-black border rounded-lg w-full"
-          />
-
-          <button className="flex gap-2 bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white px-8 py-2 rounded-md font-semibold mt-4">
-            <img src="./send.png" className="w-6" alt="send" /> Submit Enquiry
-          </button>
+            <button
+              type="submit"
+              className="flex gap-2 bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white px-8 py-2 rounded-md font-semibold mt-4"
+            >
+              <img src="/send.png" className="w-6" alt="send" /> Submit Enquiry
+            </button>
+          </form>
         </div>
 
         {/* RIGHT SIDE SERVICES */}
@@ -136,7 +206,12 @@ function Page() {
             {selectedServices.includes("Inbound") && (
               <div>
                 <h3 className="font-semibold mb-2">Inbound Details</h3>
-                <select className="border rounded w-full h-8 mb-2">
+                <select
+                  className="border rounded w-full h-8 mb-2"
+                  onChange={(e) =>
+                    handleServiceChange("inbound", "type", e.target.value)
+                  }
+                >
                   <option value="">Inbound Type</option>
                   {inboundTypes.map((type) => (
                     <option key={type}>{type}</option>
@@ -146,11 +221,17 @@ function Page() {
                   type="number"
                   placeholder="Travel Duration (Days)"
                   className="border rounded w-full h-8 mb-2"
+                  onChange={(e) =>
+                    handleServiceChange("inbound", "duration", e.target.value)
+                  }
                 />
                 <input
                   type="number"
                   placeholder="Number of People"
                   className="border rounded w-full h-8"
+                  onChange={(e) =>
+                    handleServiceChange("inbound", "people", e.target.value)
+                  }
                 />
               </div>
             )}
@@ -158,7 +239,12 @@ function Page() {
             {selectedServices.includes("Destinations") && (
               <div>
                 <h3 className="font-semibold mb-2">Destination Details</h3>
-                <select className="border rounded w-full h-8 mb-2">
+                <select
+                  className="border rounded w-full h-8 mb-2"
+                  onChange={(e) =>
+                    handleServiceChange("destination", "country", e.target.value)
+                  }
+                >
                   <option value="">Country</option>
                   {countries.map((country) => (
                     <option key={country}>{country}</option>
@@ -168,11 +254,17 @@ function Page() {
                   type="number"
                   placeholder="Travel Duration (Days)"
                   className="border rounded w-full h-8 mb-2"
+                  onChange={(e) =>
+                    handleServiceChange("destination", "duration", e.target.value)
+                  }
                 />
                 <input
                   type="number"
                   placeholder="Number of People"
                   className="border rounded w-full h-8"
+                  onChange={(e) =>
+                    handleServiceChange("destination", "people", e.target.value)
+                  }
                 />
               </div>
             )}
@@ -184,8 +276,16 @@ function Page() {
                   type="number"
                   placeholder="Days Valid"
                   className="border rounded w-full h-8 mb-2"
+                  onChange={(e) =>
+                    handleServiceChange("visa", "daysValid", e.target.value)
+                  }
                 />
-                <select className="border rounded w-full h-8">
+                <select
+                  className="border rounded w-full h-8"
+                  onChange={(e) =>
+                    handleServiceChange("visa", "country", e.target.value)
+                  }
+                >
                   <option value="">Destination Country</option>
                   {countries.map((country) => (
                     <option key={country}>{country}</option>
@@ -197,13 +297,23 @@ function Page() {
             {selectedServices.includes("Car Rentals") && (
               <div>
                 <h3 className="font-semibold mb-2">Car Rentals</h3>
-                <select className="border rounded w-full h-8 mb-2">
+                <select
+                  className="border rounded w-full h-8 mb-2"
+                  onChange={(e) =>
+                    handleServiceChange("car", "brand", e.target.value)
+                  }
+                >
                   <option value="">Car Brand</option>
                   {carBrands.map((brand) => (
                     <option key={brand}>{brand}</option>
                   ))}
                 </select>
-                <select className="border rounded w-full h-8">
+                <select
+                  className="border rounded w-full h-8"
+                  onChange={(e) =>
+                    handleServiceChange("car", "type", e.target.value)
+                  }
+                >
                   <option value="">Car Type</option>
                   {carTypes.map((type) => (
                     <option key={type}>{type}</option>
@@ -215,13 +325,23 @@ function Page() {
             {selectedServices.includes("Flight Booking") && (
               <div>
                 <h3 className="font-semibold mb-2">Flight Booking</h3>
-                <select className="border rounded w-full h-8 mb-2">
+                <select
+                  className="border rounded w-full h-8 mb-2"
+                  onChange={(e) =>
+                    handleServiceChange("flight", "class", e.target.value)
+                  }
+                >
                   <option value="">Class Type</option>
                   {flightClasses.map((cls) => (
                     <option key={cls}>{cls}</option>
                   ))}
                 </select>
-                <select className="border rounded w-full h-8">
+                <select
+                  className="border rounded w-full h-8"
+                  onChange={(e) =>
+                    handleServiceChange("flight", "departure", e.target.value)
+                  }
+                >
                   <option value="">Departure City</option>
                   {countries.map((city) => (
                     <option key={city}>{city}</option>
@@ -233,7 +353,12 @@ function Page() {
             {selectedServices.includes("Hotel Booking") && (
               <div>
                 <h3 className="font-semibold mb-2">Hotel Booking</h3>
-                <select className="border rounded w-full h-8">
+                <select
+                  className="border rounded w-full h-8"
+                  onChange={(e) =>
+                    handleServiceChange("hotel", "rating", e.target.value)
+                  }
+                >
                   <option value="">Star Rating</option>
                   {starRatings.map((star) => (
                     <option key={star}>{star}</option>
