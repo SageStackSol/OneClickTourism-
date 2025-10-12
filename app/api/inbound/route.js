@@ -1,16 +1,41 @@
-// pages/api/data.js
-import clientPromise from "../../lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
+import Inbound from "@/models/Inbound";
+import cloudinary from "@/lib/cloudinary";
 
-export default async function handler(req, res) {
+// 📍 GET: fetch all inbounds
+export async function GET() {
   try {
-    const client = await clientPromise;
-    const db = client.db("yourDatabaseName"); // replace with your DB name
-    const collection = db.collection("yourCollectionName"); // replace with your collection
-    const data = await collection.find({}).toArray();
+    await connectDB();
+    const inbounds = await Inbound.find().sort({ createdAt: -1 });
+    return new Response(JSON.stringify(inbounds), { status: 200 });
+  } catch (error) {
+    return new Response(JSON.stringify({ message: "Error fetching inbounds", error: error.message }), { status: 500 });
+  }
+}
 
-    res.status(200).json(data);
+// 📍 POST: create new inbound
+export async function POST(req) {
+  try {
+    await connectDB();
+    const { name, price, tags, description, imageBase64 } = await req.json();
+
+    if (!name || !price || !description || !imageBase64) {
+      return new Response(JSON.stringify({ message: "Missing required fields" }), { status: 400 });
+    }
+
+    const upload = await cloudinary.uploader.upload(imageBase64, { folder: "inbounds" });
+
+    const newInbound = await Inbound.create({
+      name,
+      price,
+      tags: tags || [],
+      description,
+      image: upload.secure_url,
+    });
+
+    return new Response(JSON.stringify({ message: "Inbound created successfully", inbound: newInbound }), { status: 201 });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to fetch data" });
+    return new Response(JSON.stringify({ message: "Error creating inbound", error: error.message }), { status: 500 });
   }
 }
