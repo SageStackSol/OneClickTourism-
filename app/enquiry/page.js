@@ -1,7 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 function Page() {
+  const searchParams = useSearchParams();
+
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +20,25 @@ function Page() {
     flight: {},
     hotel: {},
   });
+
+  // Pre-fill service and days from query params (e.g. ?service=visa&days=30)
+  useEffect(() => {
+    const service = searchParams.get("service");
+    const days = searchParams.get("days");
+
+    if (service === "visa") {
+      setSelectedServices((prev) =>
+        prev.includes("Visa Assistance") ? prev : [...prev, "Visa Assistance"]
+      );
+
+      if (days) {
+        setFormData((prev) => ({
+          ...prev,
+          visa: { ...prev.visa, daysValid: days },
+        }));
+      }
+    }
+  }, [searchParams]);
 
   const toggleService = (service) => {
     setSelectedServices((prev) =>
@@ -75,6 +97,7 @@ function Page() {
     }
   };
 
+  // Data for dropdowns
   const inboundTypes = [
     "Dubai city tour",
     "Evening desert safari camel/SUV",
@@ -113,7 +136,9 @@ function Page() {
           <form onSubmit={handleSubmit}>
             <div className="lg:flex justify-between gap-8">
               <div className="w-full">
-                <label className="font-semibold text-[.8em] mt-4">First Name</label>
+                <label className="font-semibold text-[.8em] mt-4">
+                  First Name
+                </label>
                 <input
                   onChange={(e) => setFName(e.target.value)}
                   value={fName}
@@ -123,7 +148,9 @@ function Page() {
               </div>
 
               <div className="w-full">
-                <label className="font-semibold text-[.8em] mt-4">Last Name</label>
+                <label className="font-semibold text-[.8em] mt-4">
+                  Last Name
+                </label>
                 <input
                   onChange={(e) => setLName(e.target.value)}
                   value={lName}
@@ -187,17 +214,22 @@ function Page() {
               ))}
             </div>
             <div>
-              {["Destinations", "Car Rentals", "Hotel Booking"].map((service) => (
-                <label key={service} className="flex items-center space-x-2 mb-2">
-                  <input
-                    type="checkbox"
-                    checked={selectedServices.includes(service)}
-                    onChange={() => toggleService(service)}
-                    className="w-4 h-4"
-                  />
-                  <span>{service}</span>
-                </label>
-              ))}
+              {["Destinations", "Car Rentals", "Hotel Booking"].map(
+                (service) => (
+                  <label
+                    key={service}
+                    className="flex items-center space-x-2 mb-2"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedServices.includes(service)}
+                      onChange={() => toggleService(service)}
+                      className="w-4 h-4"
+                    />
+                    <span>{service}</span>
+                  </label>
+                )
+              )}
             </div>
           </div>
 
@@ -275,6 +307,7 @@ function Page() {
                 <input
                   type="number"
                   placeholder="Days Valid"
+                  value={formData.visa.daysValid || ""}
                   className="border rounded w-full h-8 mb-2"
                   onChange={(e) =>
                     handleServiceChange("visa", "daysValid", e.target.value)
