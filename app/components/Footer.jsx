@@ -73,7 +73,18 @@ function Footer() {
         </button>
         <hr className="my-4" />
         <div className="grid grid-cols-12 lg:gap-12 md:gap-12 ">
-          <div className="lg:col-span-5 md:col-span-5 col-span-12 bg-[#D9D9D9] h-full"></div>
+          <div className="lg:col-span-5 md:col-span-5 col-span-12 bg-[#D9D9D9] h-full">
+             
+             <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3630.852798211513!2d54.37021637535896!3d24.490556678172627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDI5JzI2LjAiTiA1NMKwMjInMjIuMSJF!5e0!3m2!1sen!2sin!4v1760355530234!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              // style="border:0;"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
           <div className="lg:col-span-7 md:col-span-7 col-span-12 grid grid-cols-12">
             <div className="col-span-6   ">
               <h3 className="font-semibold text-[1.2em] mb-2 text-[#F97A1E]">

@@ -29,7 +29,9 @@ export default function EditInboundList() {
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-6 text-center">Edit Inbound Items</h1>
+      <h1 className="text-2xl font-semibold mb-6 text-center">
+        Edit Inbound Items
+      </h1>
 
       {inbounds.length === 0 ? (
         <p className="text-center text-gray-500">No inbound items found.</p>
@@ -59,13 +61,15 @@ export default function EditInboundList() {
                     </span>
                   ))}
               </div>
-              <p className="text-sm text-gray-500 line-clamp-2">{item.description}</p>
+              <p className="text-sm text-gray-500 line-clamp-2">
+                {item.description}
+              </p>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   router.push(`/inbound/edit/${item._id}`);
                 }}
-                className="mt-3 bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 w-full"
+                className="mt-3 bg-[#F97A1E] text-white px-3 py-2 rounded text-sm w-full"
               >
                 Edit
               </button>
