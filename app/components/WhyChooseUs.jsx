@@ -26,35 +26,24 @@ export default function WhyChooseUs() {
         "We have access to wide range of travel options, including negotiated and exclusive contract fares with various trade partners.=/suppliers across all classes.",
     },
     {
-      img: "./hotel.png",
+      img: "./hotel1.png",
       title: "Hotel Arrangements",
       description:
         "Through our association with leading hospitality brands, we have access to special contracted concessional hotel rates locally and worldwide.",
     },
     {
-      img: "./clock.jpg",
+      img: "./handshake.png",
       title: "Trusted & Licensed",
       description:
         "Fully Compliant local operator with vetted guides and safe, insured experiences.",
     },
     {
-      img: "./clock.jpg",
+      img: "./select.png",
       title: "Handpicked Experiences",
       description:
         "From desert safaris to cultural city walks, only top rated tours make the cut.",
     },
-    {
-      img: "./clock.jpg",
-      title: "Transparent Pricing",
-      description:
-        "Clear inclusions. No last minute surprises. What you see is what you pay.",
-    },
-    {
-      img: "./clock.jpg",
-      title: "24/7 Guest Support",
-      description:
-        "Real human on chat and phone to help before, during, and after your trip.",
-    },
+ 
   ];
 
   useEffect(() => {
@@ -92,7 +81,7 @@ export default function WhyChooseUs() {
                 key={index}
                 className="glide__slide lg:p-8 md:p-8 p-4  shadow-[0_0_10px_rgba(0,0,0,0.3)] rounded-tl-[4em] rounded-tr-[1em] rounded-bl-[1em] rounded-br-[4em]"
               >
-                <img className="w-16 mx-auto" src={item.img}/>
+                <img className="w-12 mx-auto" src={item.img}/>
                 <h3 className="text-2xl mb-2 text-center lg:pt-0 md:pt-0 pt-4">
                   {item.title}
                 </h3>

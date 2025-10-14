@@ -7,8 +7,9 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 function Navbar() {
   const pathname = usePathname();
-  console.log(pathname);
+  // console.log(pathname);
   const [serviceMenuStatus, setServiceMenuStatus] = useState(false);
+  const [mobileServiceMenuStatus, setMobileServiceMenuStatus] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const serviceRef = useRef();
@@ -174,12 +175,18 @@ function Navbar() {
           <div className="flex">
             {/* <img src="/logo.png" alt="logo" className="w-12" /> */}
             {/* <p className=" text-3xl font-bold"> */}
-              {/* <span className=" font-bold text-black">One Click</span>
+            {/* <span className=" font-bold text-black">One Click</span>
               <br />
               Tourism Services */}
-              {/* Logo */}
+            {/* Logo */}
             {/* </p> */}
-            <img onClick={()=>{setOpen(false)}} src="./logoPI.png" className="w-28" />
+            <img
+              onClick={() => {
+                setOpen(false);
+              }}
+              src="./logoPI.png"
+              className="w-28"
+            />
           </div>
         </Link>
 
@@ -220,7 +227,7 @@ function Navbar() {
             />
             {serviceMenuStatus ? (
               <>
-                <div className="fixed top-16 bg-white/50 px-4 py-2 my-1 rounded-md backdrop-blur-md">
+                <div className="fixed top-16 bg-white/80 px-4 py-2 my-1 rounded-md backdrop-blur-lg">
                   <ul>
                     <Link href={"/services-offered"}>
                       <li
@@ -337,80 +344,119 @@ function Navbar() {
         </button>
         {/* Mobile Menu */}
         {open && (
-          <div className="absolute top-16 right-4  shadow-lg p-4 rounded-md md:hidden bg-white/80 backdrop-blur-lg">
+          <div className="absolute top-16 right-4  shadow-lg px-4 py-6 rounded-md md:hidden bg-white/80 backdrop-blur-lg">
             <ul className="space-y-1">
-              <li>Services</li>
-              <ul className="pl-2">
-                <Link href={"/services-offered"}>
-                  <li
-                    onClick={() => setOpen(!open)}
-                    className={`${
-                      pathname === "/services-offered"
-                        ? "text-[#F97A1E]"
-                        : "text-black"
-                    }`}
-                  >
-                    Services Offered
-                  </li>
-                </Link>
-                <Link href={"/inbound"}>
-                  <li
-                    onClick={() => setOpen(!open)}
-                    className={`${
-                      pathname === "/inbound" ? "text-[#F97A1E]" : "text-black"
-                    }`}
-                  >
-                    Inbound
-                  </li>
-                </Link>
-                <Link href={"/visa"}>
-                  <li
-                    onClick={() => setOpen(!open)}
-                    className={`${
-                      pathname === "/visa" ? "text-[#F97A1E]" : "text-black"
-                    }`}
-                  >
-                    Visa
-                  </li>
-                </Link>
-                <Link href={"/destination"}>
-                  <li
-                    onClick={() => setOpen(!open)}
-                    className={`${
-                      pathname === "/destination"
-                        ? "text-[#F97A1E]"
-                        : "text-black"
-                    }`}
-                  >
-                    Destination
-                  </li>
-                </Link>
-                <Link href={"/flight-bookings"}>
-                  <li
-                    onClick={() => setOpen(!open)}
-                    className={`${
-                      pathname === "/flight-bookings"
-                        ? "text-[#F97A1E]"
-                        : "text-black"
-                    }`}
-                  >
-                    Flight Bookings
-                  </li>
-                </Link>
+              <Link href={"/"}>
+                <li
+                  onClick={() => setOpen(!open)}
+                  className={`${
+                    pathname === "/" ? "text-[#F97A1E]" : "text-black"
+                  }`}
+                >
+                  Home
+                </li>
+              </Link>
+              <li
+                onClick={() => {
+                  setMobileServiceMenuStatus(!mobileServiceMenuStatus);
+                }}
+                className={`relative flex items-center cursor-pointer 
+              ${
+                pathname === "/services-offered" ||
+                pathname === "/inbound" ||
+                pathname === "/visa" ||
+                pathname === "/destination" ||
+                pathname === "/flight-bookings" ||
+                pathname === "/car-rentals"
+                  ? "text-[#F97A1E]"
+                  : "text-black"
+              }
+            `}
+              >
+                Services
+                  <img
+              src="./dropdown.svg"
+              className={`relative w-4  ${
+                mobileServiceMenuStatus ? "rotate-180" : ""
+              } duration-300`}
+            />
+              </li>
+              {mobileServiceMenuStatus && (
+                <ul className="pl-2">
+                  <Link href={"/services-offered"}>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className={`${
+                        pathname === "/services-offered"
+                          ? "text-[#F97A1E]"
+                          : "text-black"
+                      }`}
+                    >
+                      Services Offered
+                    </li>
+                  </Link>
+                  <Link href={"/inbound"}>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className={`${
+                        pathname === "/inbound"
+                          ? "text-[#F97A1E]"
+                          : "text-black"
+                      }`}
+                    >
+                      Inbound
+                    </li>
+                  </Link>
+                  <Link href={"/visa"}>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className={`${
+                        pathname === "/visa" ? "text-[#F97A1E]" : "text-black"
+                      }`}
+                    >
+                      Visa
+                    </li>
+                  </Link>
+                  <Link href={"/destination"}>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className={`${
+                        pathname === "/destination"
+                          ? "text-[#F97A1E]"
+                          : "text-black"
+                      }`}
+                    >
+                      Destination
+                    </li>
+                  </Link>
+                  <Link href={"/flight-bookings"}>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className={`${
+                        pathname === "/flight-bookings"
+                          ? "text-[#F97A1E]"
+                          : "text-black"
+                      }`}
+                    >
+                      Flight Bookings
+                    </li>
+                  </Link>
 
-                <Link href={"/car-rentals"}>
-                  <li
-                    onClick={() => setOpen(!open)}
-                    className={`${
-                      pathname === "/car-rentals"
-                        ? "text-[#F97A1E]"
-                        : "text-black"
-                    }`}
-                  >
-                    Car Rentals
-                  </li>
-                </Link>
-              </ul>
+                  <Link href={"/car-rentals"}>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className={`${
+                        pathname === "/car-rentals"
+                          ? "text-[#F97A1E]"
+                          : "text-black"
+                      }`}
+                    >
+                      Car Rentals
+                    </li>
+                  </Link>
+                </ul>
+              )}
+
               <Link href={"/about-us"}>
                 <li
                   onClick={() => setOpen(!open)}

@@ -5,79 +5,80 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import InboundCarousal from "../components/InboundCarousal";
 import Link from "next/link";
 import Image from "next/image"; // ✅ use next/image for optimization
+import DestinationsCarousel from "../components/DestinationsCarousal";
 
 function Page() {
   const [destinationType, setDestinationType] = useState("inbound");
 
-  const chooseUs = [
-    {
-      image: "/dollar.png",
-      title: "Competitive Prices",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
-    },
-    {
-      image: "/secure.png",
-      title: "Secure Booking",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
-    },
-    {
-      image: "/experience.png",
-      title: "Seamless Experience",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
-    },
-  ];
+  // const chooseUs = [
+  //   {
+  //     image: "/dollar.png",
+  //     title: "Competitive Prices",
+  //     description:
+  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+  //   },
+  //   {
+  //     image: "/secure.png",
+  //     title: "Secure Booking",
+  //     description:
+  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+  //   },
+  //   {
+  //     image: "/experience.png",
+  //     title: "Seamless Experience",
+  //     description:
+  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+  //   },
+  // ];
 
-  const travelSolutions = [
-    {
-      image: "/weather.png",
-      title: "Calculated Weather",
-      description: "Built Wicket longer admire do barton vanity itself do in it.",
-    },
-    {
-      image: "/flight.png",
-      title: "Best Flights",
-      description: "Engrossed listening. Park gate sell they west hard for the.",
-    },
-    {
-      image: "/events.png",
-      title: "Local Events",
-      description: "Barton vanity itself do in it. Preferred to men it engrossed listening.",
-    },
-    {
-      image: "/customization.png",
-      title: "Customization",
-      description: "We deliver outsourced aviation services for military customers",
-    },
-  ];
+  // const travelSolutions = [
+  //   {
+  //     image: "/weather.png",
+  //     title: "Calculated Weather",
+  //     description: "Built Wicket longer admire do barton vanity itself do in it.",
+  //   },
+  //   {
+  //     image: "/flight.png",
+  //     title: "Best Flights",
+  //     description: "Engrossed listening. Park gate sell they west hard for the.",
+  //   },
+  //   {
+  //     image: "/events.png",
+  //     title: "Local Events",
+  //     description: "Barton vanity itself do in it. Preferred to men it engrossed listening.",
+  //   },
+  //   {
+  //     image: "/customization.png",
+  //     title: "Customization",
+  //     description: "We deliver outsourced aviation services for military customers",
+  //   },
+  // ];
 
-  const world = [
-    {
-      image: "/rome.png",
-      place: "Rome, Italy",
-      price: "AED 329",
-      duration: 10,
-    },
-    {
-      image: "/london.png",
-      place: "London, UK",
-      price: "AED 729",
-      duration: 12,
-    },
-    {
-      image: "/egypt.png",
-      place: "Egypt, Africa",
-      price: "AED 939",
-      duration: 28,
-    },
-  ];
+  // const world = [
+  //   {
+  //     image: "/rome.png",
+  //     place: "Rome, Italy",
+  //     price: "AED 329",
+  //     duration: 10,
+  //   },
+  //   {
+  //     image: "/london.png",
+  //     place: "London, UK",
+  //     price: "AED 729",
+  //     duration: 12,
+  //   },
+  //   {
+  //     image: "/egypt.png",
+  //     place: "Egypt, Africa",
+  //     price: "AED 939",
+  //     duration: 28,
+  //   },
+  // ];
 
-  useEffect(() => {
-    const marquee = document.getElementById("marquee");
-    if (marquee) marquee.innerHTML += marquee.innerHTML;
-  }, []);
+  // useEffect(() => {
+  //   const marquee = document.getElementById("marquee");
+  //   if (marquee) marquee.innerHTML += marquee.innerHTML;
+  // }, []);
 
   return (
     <>
@@ -176,7 +177,25 @@ function Page() {
               </div>
             </div>
           ) : (
-            <div>Need data for destination</div>
+            <div className="grid grid-cols-12 my-20 items-center">
+              <div className="lg:col-span-8 md:col-span-8 col-span-12">
+                <DestinationsCarousel />
+              </div>
+              <div className="lg:col-span-4 md:col-span-4 col-span-12">
+                <p>
+                  We offer reliable customer support services for international
+                  tours, managing inquiries, bookings, and travel assistance
+                  with care and efficiency. Our customer-first approach ensures
+                  timely responses, smooth experiences, and lasting traveler
+                  loyalty.
+                </p>
+                <Link href="/destination">
+                  <button className="bg-[#F97A1E] text-[1.2em] font-bold text-white px-8 py-2 rounded-3xl my-2 mx-auto">
+                    Explore More
+                  </button>
+                </Link>
+              </div>
+            </div>
           )}
         </div>
 
@@ -221,24 +240,24 @@ function Page() {
           <p>No stress, no delays: just your passport, ready to fly.</p>
         </div>
         <div className="lg:col-span-6 md:col-span-6 col-span-12 lg:h-full md:h-full h-64 flex items-end justify-center bg-[url('/setup.png')] bg-cover rounded-lg lg:mx-4 md:mx-4"></div>
-        <div className="col-span-12 grid grid-cols-12 mt-12"> 
+        <div className="col-span-12 grid grid-cols-12 mt-12">
           <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
-            <img className="w-8 " src="./tick.jpg"/>
+            <img className="w-8 " src="./tick.png" />
             <p className="text-lg font-bold">Quick Visa Approvals</p>
           </div>
 
-           <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
-            <img className="w-12 " src="./laptop.jpg"/>
+          <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
+            <img className="w-10 " src="./laptop.png" />
             <p className="text-lg font-bold">Hassle-Free Process</p>
           </div>
 
-           <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
-            <img className="w-12 " src="./globe.png"/>
+          <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
+            <img className="w-8 " src="./globe.png" />
             <p className="text-lg font-bold">Global Coverage</p>
           </div>
 
-           <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
-            <img className="w-8 " src="./mic.png"/>
+          <div className="lg:col-span-3 md:col-span-3 col-span-6 flex flex-col items-center justify-center">
+            <img className="w-8 " src="./mic.png" />
             <p className="text-lg font-bold">24/7 Expert Support</p>
           </div>
         </div>
