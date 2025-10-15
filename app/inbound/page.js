@@ -43,6 +43,10 @@ export default function FlipCards() {
   const [flipped, setFlipped] = useState({});
   const [inbounds, setInbounds] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedTag, setSelectedTag] = useState(
+    ["Desert Experience","Wild life & Nature"]
+  );
+
 
   // Fetch all inbound items
   useEffect(() => {
@@ -52,6 +56,8 @@ export default function FlipCards() {
         const data = await res.json();
         setInbounds(data);
         console.log(data);
+  console.log(inbounds);
+
       } catch (error) {
         console.error("Failed to load inbound items", error);
       } finally {
@@ -60,6 +66,18 @@ export default function FlipCards() {
     };
     fetchInbounds();
   }, []);
+
+
+  useEffect(() => {
+  
+  let filteredInbounds = selectedTag
+  ? inbounds.filter((item) => item.tags.includes(selectedTag))
+  : inbounds;
+     console.log(filteredInbounds);
+   
+  },[inbounds]);
+
+
 
   const handleFlip = (id) => {
     setFlipped((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -92,89 +110,102 @@ export default function FlipCards() {
           destinations that offer unforgettable experiences.
         </p>
 
-<div className="grid grid-cols-4 h-screen py-12 gap-6">
-<div className="lg:col-span-1 md:col-span-1 sm:block hidden sticky h-screen">
-<div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] px-4 pb-8 pt-4 rounded-lg">
-<h2 className="text-center text-lg font-bold mb-6">Categories</h2>
-<div className="flex gap-2 flex-wrap">
-<button className=" bg-orange-100 px-3 py-1 rounded-2xl">Desert Experience</button>
-<button className=" bg-orange-100 px-3 py-1 rounded-2xl">Water Adventures</button>
-<button className=" bg-orange-100 px-3 py-1 rounded-2xl">City Tour</button>
-<button className=" bg-orange-100 px-3 py-1 rounded-2xl">Attraction & Landmark</button>
-<button className=" bg-orange-100 px-3 py-1 rounded-2xl">Adventure & Thrill</button>
-<button className=" bg-orange-100 px-3 py-1 rounded-2xl">Wild Life & Nature</button>
-</div>
-
-</div>
-</div>
-<div className="lg:col-span-3 md:col-span-3 col-span-4 grid grid-cols-3 gap-6 h-screen overflow-y-scroll">
-          {inbounds.map((item, index) => (
-            <div
-              key={index}
-              className="w-[100%] h-80 perspective lg:col-span-1 md:col-span-1 col-span-3"
-              onClick={() => {
-                handleFlip(item._id);
-                console.log(index);
-              }}
-            >
-              <div
-                style={{
-                  backgroundImage: `url(${item.image}) `,
-                  backgroundSize: "cover",
-                  borderRadius: "12px",
-                }}
-                className={`relative w-[100%] h-80 transition-transform duration-700 preserve-3d ${
-                  flipped[item._id] ? "rotate-y-180" : ""
-                }`}
-              >
-                {/* Front */}
-                <div
-                  className={`absolute inset-0 rounded-xl backface-hidden flex justify-center items-end text-white font-bold text-xl`}
-                >
-                  {/* {item.front} */}
-                  {/* <img className="w-[100%] h-80" src={item.front.image}/> */}
-                  <p className="pb-4">{item.name}</p>
-                </div>
-
-                {/* Back */}
-                <div className="absolute inset-0 flex flex-col items-center justify-between rounded-xl  text-[#2D464C] bg-white shadow-xl backface-hidden rotate-y-180 p-4">
-                  {/* {item.back} */}
-                <div className="w-full">
-
-                  <h4 className="text-xl font-bold text-center">{item.name}</h4>
-                  <p className="text-left w-full line-clamp-5">{item.description}</p>
-                    <div className="flex flex-wrap justify-start w-full gap-1 mb-2">
-                {item.tags &&
-                  item.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-              </div>
-              <p className="text-left w-full"><b>Price:</b> ₹{item.price}</p>
-</div>
-                <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  // router.push(`/enquiry/${item._id}`);
-                  router.push(`/enquiry/${item._id}`);
-
-                }}
-                className="mt-3  text-white px-3 py-2 rounded text-sm w-[60%] bg-black"
-              >
-                Book Now
-              </button>
-                </div>
+        <div className="grid grid-cols-4 h-screen py-12 gap-6">
+          <div className="lg:col-span-1 md:col-span-1 sm:block hidden sticky h-screen">
+            <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] px-4 pb-8 pt-4 rounded-lg">
+              <h2 className="text-center text-lg font-bold mb-6">Categories</h2>
+              <div className="flex gap-2 flex-wrap">
+                <button className=" bg-orange-100 px-3 py-1 rounded-2xl">
+                  Desert Experience
+                </button>
+                <button className=" bg-orange-100 px-3 py-1 rounded-2xl">
+                  Water Adventures
+                </button>
+                <button className=" bg-orange-100 px-3 py-1 rounded-2xl">
+                  City Tour
+                </button>
+                <button className=" bg-orange-100 px-3 py-1 rounded-2xl">
+                  Attraction & Landmark
+                </button>
+                <button className=" bg-orange-100 px-3 py-1 rounded-2xl">
+                  Adventure & Thrill
+                </button>
+                <button className=" bg-orange-100 px-3 py-1 rounded-2xl">
+                  Wild Life & Nature
+                </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+          <div className="lg:col-span-3 md:col-span-3 col-span-4 grid grid-cols-3 gap-6 h-screen overflow-y-scroll">
+            {inbounds.length>0 && inbounds.map((item, index) => (
+              <div
+                key={index}
+                className="w-[100%] h-80 perspective lg:col-span-1 md:col-span-1 col-span-3"
+                onClick={() => {
+                  handleFlip(item._id);
+                  console.log(index);
+                }}
+              >
+                <div
+                  style={{
+                    backgroundImage: `url(${item.image}) `,
+                    backgroundSize: "cover",
+                    borderRadius: "12px",
+                  }}
+                  className={`relative w-[100%] h-80 transition-transform duration-700 preserve-3d ${
+                    flipped[item._id] ? "rotate-y-180" : ""
+                  }`}
+                >
+                  {/* Front */}
+                  <div
+                    className={`absolute inset-0 rounded-xl backface-hidden flex justify-center items-end text-white font-bold text-xl`}
+                  >
+                    {/* {item.front} */}
+                    {/* <img className="w-[100%] h-80" src={item.front.image}/> */}
+                    <p className="pb-4">{item.name}</p>
+                  </div>
 
-</div>
-        
+                  {/* Back */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-between rounded-xl  text-[#2D464C] bg-white shadow-xl backface-hidden rotate-y-180 p-4">
+                    {/* {item.back} */}
+                    <div className="w-full">
+                      <h4 className="text-xl font-bold text-center">
+                        {item.name}
+                      </h4>
+                      <p className="text-left w-full line-clamp-5">
+                        {item.description}
+                      </p>
+                      <div className="flex flex-wrap justify-start w-full gap-1 mb-2">
+                        {item.tags &&
+                          item.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                      </div>
+                      <p className="text-left w-full">
+                        <b>Price:</b> ₹{item.price}
+                      </p>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // router.push(`/enquiry/${item._id}`);
+                        router.push(`/enquiry/${item._id}`);
+                      }}
+                      className="mt-3  text-white px-3 py-2 rounded text-sm w-[60%] bg-black"
+                    >
+                      Book Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
@@ -261,5 +292,3 @@ export default function FlipCards() {
 // }
 
 // export default page
-
-

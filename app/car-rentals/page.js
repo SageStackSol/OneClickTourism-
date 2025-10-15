@@ -13,6 +13,9 @@ function Page() {
   return (
     <>
   <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 lg:grid md:grid hidden grid-cols-12 ">
+    <h1 className="text-[#2D464C] lg:text-7xl md:text-7xl text-3xl font-black leading-none text-center lg:mb-8 md:mb-8 col-span-12">
+        Car Rentals
+      </h1>
       <div
         onClick={() => {
           setBmw(!bmw);

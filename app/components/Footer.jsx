@@ -67,7 +67,7 @@ function Footer() {
       </div> */}
       <div className="bg-[#7B7B78] lg:px-20 lg:py-10 md:lg-20 md:py-10 px-4 py-2">
         <h2 className="text-5xl font-bold leading-normal mb-8 lg:text-left md:text-left text-center">Get in Touch</h2>
-        <input className="bg-[#D9D9D9] lg:w-[32vw] md:w-[32vw] w-full h-9 rounded-md focus:outline-none lg:mr-8 md:mr-8" />
+        <input placeholder="Email or Mobile Number" className="bg-[#D9D9D9] lg:w-[32vw] md:w-[32vw] w-full h-9 rounded-md focus:outline-none lg:mr-8 md:mr-8 px-2" />
         <button className="px-8 py-2 bg-gradient-to-r from-[#FFA203] to-[#FDE8BF] mx-auto lg:w-fit md:w-fit w-full lg:my-0 md:my-0 my-2 rounded-full">
           Submit
         </button>
@@ -97,8 +97,9 @@ function Footer() {
                 <Link href={"/services-offered"}>
                   <li className="mb-1 text-white">Services</li>
                 </Link>
+                    <Link href={"/destination"}>
 
-                <li className="mb-1 text-white">Destinations</li>
+                <li className="mb-1 text-white">Destinations</li></Link>
                     <Link href={"/contact-us"}>
 
                 <li className="mb-1 text-white">Contact Us</li></Link>
@@ -120,8 +121,8 @@ function Footer() {
                 Contact Info
               </h3>
               <p className="text-white"><span className="font-extrabold">Email:  </span>pacificinternationaltourism@gmail.com</p>
-              <p className="text-white">Address:</p>
-              <p className="text-white">Phone:</p>
+              <p className="text-white">Address: C87,Likhnaysir St, Al Danah, Abu Dhabi, 22220</p>
+              <p className="text-white">Phone: +971 56 467 6342</p>
             </div>
           </div>
         </div>

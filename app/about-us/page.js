@@ -80,6 +80,8 @@ function Page() {
           magic of a city that never sleeps.
         </p>
       </div>
+
+
       {/* about us  bg-[#C7B5A2]*/}
         
       <div style={{ background: "url('/about-us-bg.jpg') center/cover no-repeat" }} className=" lg:py-20 lg:px-10 md:py-20 md:px-10 py-8">
@@ -87,24 +89,24 @@ function Page() {
           <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />
           <div className="w-3 h-3 bg-black rounded-full"></div>
           <h2 className="lg:text-5xl md:text-5xl text-2xl font-bold pr-4">
-            <span className={greatVibes.className}> Our Story</span>{" "}
+            <span className={`${greatVibes.className} `}> Our Story</span>{" "}
           </h2>
         </div>
-        <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
+        <p className="text-xl font-bold lg:mt-8 md:mt-8 mt-4 px-8">
           Founded in Dubai, our journey began with a simple belief — travel
           should be effortless, inspiring, and unforgettable. We set out to
           create experiences that go beyond tickets and tours, offering
           travellers a seamless way to explore Dubai and destinations across the
           world.
         </p>
-        <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
+        <p className="text-xl font-bold lg:mt-8 md:mt-8 mt-4 px-8">
           From the golden sands of the desert to iconic skylines and hidden
           cultural gems, we craft journeys that are easy, convenient, and
           tailored to every traveler’s dream. Our website is designed to be the
           first step of that adventure — intuitive, welcoming, and filled with
           choices that transform plans into lasting memories.
         </p>
-        <p className="text-xl lg:mt-8 md:mt-8 mt-4 px-8">
+        <p className="text-xl font-bold lg:mt-8 md:mt-8 mt-4 px-8">
           Today, we are more than a travel company. We are storytellers,
           experience makers, and trusted companions who bring the world closer
           to you. With us, every journey becomes more than a trip — it becomes a
@@ -120,13 +122,16 @@ function Page() {
       </div>
       {/* mission and vision  */}
       <div className="py-20 px-20 lg:grid md:grid hidden grid-cols-12 items-center ">
-        <div className="col-span-5 h-52 bg-[#C7541B] flex justify-center items-center rounded-3xl">
-          <h2 className="text-white text-4xl font-black ">
+        <div className="col-span-5 h-52 bg-[#C7541B] flex justify-center items-center rounded-3xl border-2 border-black">
+          <h2 className="text-black text-7xl font-black ">
             <span className={greatVibes.className}>Our Mission </span>{" "}
           </h2>
         </div>
-        <div className="col-span-7 flex justify-center items-center px-8 bg-[#F5DDD4] h-40 rounded-r-3xl">
-          <p>
+        <div className="col-span-7 flex justify-center items-center px-8 bg-[#F5DDD4] h-40 relative rounded-r-3xl">
+          <div
+    className="absolute inset-0 bg-[url('/mission.png')]  bg-contain  bg-no-repeat bg-center  opacity-40"
+  ></div>
+          <p className="">
             To deliver enriching, memorable, and innovative travel experiences
             that showcase the natural beauty, cultural heritage, and modern
             wonders of the UAE, welcoming visitors from around the world while
@@ -134,7 +139,10 @@ function Page() {
             journey.
           </p>
         </div>
-        <div className="col-span-7 flex justify-center items-center px-8 bg-[#F5DDD4] h-40 rounded-l-3xl">
+        <div className="col-span-7 relative flex justify-center items-center px-8 bg-[#2da39961] h-40 rounded-l-3xl">
+           <div
+    className="absolute inset-0 bg-[url('/vision.png')]  bg-contain  bg-no-repeat bg-center  opacity-30"
+  ></div>
           <p>
             To establish the UAE as a leading global destination celebrated for
             its diversity, sustainability, and hospitality, inspiring travelers
@@ -142,14 +150,14 @@ function Page() {
             for generations to come.
           </p>
         </div>
-        <div className="col-span-5 h-52 bg-[#2DA39A] flex justify-center items-center rounded-3xl">
-          <h2 className="text-white text-4xl font-black ">
-            <span className={greatVibes.className}> Our vision</span>
+        <div className="col-span-5 h-52 bg-[#2DA39A] flex justify-center items-center rounded-3xl border-2 border-black">
+          <h2 className="text-black text-7xl font-black ">
+            <span className={greatVibes.className}> Our Vision</span>
           </h2>
         </div>
       </div>
       {/* what do we do */}
-      <div className="text-[#2D464C] bg-gray-100 lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-center">
+      <div className="text-[#2D464C]  bg-gray-100 lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-center">
         <h2 className="text-5xl font-bold mb-8">
           What we <span className="text-[#F97A1E]">Offer </span>{" "}
         </h2>
@@ -158,7 +166,7 @@ function Page() {
       {/* why choose us */}
       <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] text-center">
         <h2 className="text-5xl font-bold mb-8">
-          What we <span className="text-[#F97A1E]">Offer </span>{" "}
+          Why Choose <span className="text-[#F97A1E]">Us </span>{" "}
         </h2>
         <WhyChooseUs />
       </div>

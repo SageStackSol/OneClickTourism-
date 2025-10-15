@@ -6,8 +6,11 @@ import InboundCarousal from "../components/InboundCarousal";
 import Link from "next/link";
 import Image from "next/image"; // ✅ use next/image for optimization
 import DestinationsCarousel from "../components/DestinationsCarousal";
+import Marquee from "react-fast-marquee";
+import BelowHeroImage from "../components/BelowHeroImage";
 
 function Page() {
+ 
   const [destinationType, setDestinationType] = useState("inbound");
 
   // const chooseUs = [
@@ -102,7 +105,7 @@ function Page() {
       </div>
 
       {/* section below hero */}
-      <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] grid grid-cols-12 my-12">
+      <div className="lg:py-28 md:py-28 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] grid grid-cols-12 items-center bg-[url('/whiteTexture.jpg')] bg-fit gap-12">
         <div className="lg:col-span-6 md:col-span-6 col-span-12">
           <h2 className="font-semibold text-4xl mb-8">
             &quot;Every Trip, a Story Worth Telling.&quot;
@@ -122,13 +125,14 @@ function Page() {
           </p>
         </div>
         <div className="flex justify-center items-center lg:col-span-6 md:col-span-6 col-span-12">
-          <Image
+          {/* <Image
             src="/belowHero.png"
             width={400}
             height={400}
             alt="Travel illustration"
             className="h-96 rounded-lg shadow-slate-600 shadow-[10px_10px_15px_rgba(0,0,0,0.5)]"
-          />
+          /> */}
+          <BelowHeroImage/>
         </div>
       </div>
 
@@ -140,13 +144,19 @@ function Page() {
         <WhatWeDo />
       </div>
 
-      {/* why choose us */}
-      <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] text-center">
-        <h2 className="text-5xl font-bold mb-8">
-          Why <span className="text-[#F97A1E]">Choose Us</span>
-        </h2>
-        <WhyChooseUs />
-      </div>
+      {/* <Marquee>
+
+  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/clock.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/benz.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/call.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
+  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
+</Marquee> */}
 
       {/* most popular destinations */}
       <div
@@ -261,6 +271,13 @@ function Page() {
             <p className="text-lg font-bold">24/7 Expert Support</p>
           </div>
         </div>
+      </div>
+      {/* why choose us */}
+      <div className="lg:py-20 md:py-20 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] text-center">
+        <h2 className="text-5xl font-bold mb-8">
+          Why <span className="text-[#F97A1E]">Choose Us</span>
+        </h2>
+        <WhyChooseUs />
       </div>
     </>
   );
