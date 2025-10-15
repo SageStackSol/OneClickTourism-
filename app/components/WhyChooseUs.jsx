@@ -8,7 +8,7 @@ export default function WhyChooseUs() {
 
   const data = [
     {
-      img: "./clock.jpg",
+      img: "./clock.png",
       title: "Service Support",
       description:
         "Our regular working hours are from 9 AM to to 6 PM, Monday through Saturday However, corporate travellers can count on constant support via a dedicated telephone line and email is assigned exclusively to serve our client after working hours.",
@@ -20,7 +20,7 @@ export default function WhyChooseUs() {
         "A team of experienced travel counsellors is fully equipped to meet all client requirements. We offer a wide choice of travel options low cost , best route, best value for our corporate clients.",
     },
     {
-      img: "./discount.jpg",
+      img: "./discount.png",
       title: "Special Corporate Deals",
       description:
         "We have access to wide range of travel options, including negotiated and exclusive contract fares with various trade partners.=/suppliers across all classes.",
@@ -45,6 +45,15 @@ export default function WhyChooseUs() {
     },
  
   ];
+  const bgColors = [
+  "bg-[#FFEFE3]", // Peach
+  "bg-[#E6F7F1]", // Mint
+  "bg-[#E5F4FF]", // Sky
+  "bg-[#F3EEFF]", // Lavender
+  "bg-[#E8F7F1]",
+  "bg-[#F7F3EF]"
+];
+
 
   useEffect(() => {
     if (!glideRef.current) return;
@@ -79,9 +88,10 @@ export default function WhyChooseUs() {
             return (
               <li
                 key={index}
-                className="glide__slide lg:p-8 md:p-8 p-4  shadow-[0_0_10px_rgba(0,0,0,0.3)] rounded-tl-[4em] rounded-tr-[1em] rounded-bl-[1em] rounded-br-[4em]"
+                // shadow-[0_0_10px_rgba(0,0,0,0.3)]
+                className={`glide__slide lg:p-8 md:p-8 p-4 shadow-md rounded-tl-[4em] rounded-tr-[1em] rounded-bl-[1em] rounded-br-[4em] ${bgColors[index % bgColors.length]}`}
               >
-                <img className="w-12 mx-auto" src={item.img}/>
+                <img className="w-12 mx-auto mb-4" src={item.img}/>
                 <h3 className="text-2xl mb-2 text-center lg:pt-0 md:pt-0 pt-4">
                   {item.title}
                 </h3>

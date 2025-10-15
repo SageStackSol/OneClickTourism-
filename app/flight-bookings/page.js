@@ -21,20 +21,54 @@ function Page() {
           <img src="./business-class.png" className="w-full" />
         </div>
         <div className="bg-[#E05429] text-white text-center font-bold rounded-3xl p-2 border-t-2 border-black border-dashed">
-          <p className="text-lg my-2">Business Class</p>
+          <p className="text-lg my-2">Premium Economy</p>
           <button className="bg-black px-6 py-2 rounded-xl">Book Now</button>
         </div>
       </div>
 
-        <div className="lg:col-span-4 md:col-span-4 col-span-12">
+      <div className="lg:col-span-4 md:col-span-4 col-span-12">
         <div className="p-4 bg-[#D9D9D9] rounded-3xl">
           <img src="./business-class.png" className="w-full" />
         </div>
         <div className="bg-[#E05429] text-white text-center font-bold rounded-3xl p-2 border-t-2 border-black border-dashed">
-          <p className="text-lg my-2">Business Class</p>
+          <p className="text-lg my-2">Business</p>
           <button className="bg-black px-6 py-2 rounded-xl">Book Now</button>
         </div>
       </div>
+ <div className="lg:col-span-4 md:col-span-4 col-span-12">
+        <div className="p-4 bg-[#D9D9D9] rounded-3xl">
+          <img src="./business-class.png" className="w-full" />
+        </div>
+        <div className="bg-[#E05429] text-white text-center font-bold rounded-3xl p-2 border-t-2 border-black border-dashed">
+          <p className="text-lg my-2">First Class</p>
+          <button className="bg-black px-6 py-2 rounded-xl">Book Now</button>
+        </div>
+      </div>
+      <div className="lg:col-span-4 md:col-span-4 col-span-12">
+        <div className="p-4 bg-[#D9D9D9] rounded-3xl">
+          <img src="./business-class.png" className="w-full" />
+        </div>
+        <div className="bg-[#E05429] text-white text-center font-bold rounded-3xl p-2 border-t-2 border-black border-dashed">
+          <p className="text-lg my-2">Private Jet</p>
+          <button className="bg-black px-6 py-2 rounded-xl">Book Now</button>
+        </div>
+      </div>
+      <div className="lg:col-span-4 md:col-span-4 col-span-12">
+        <div className="p-4 bg-[#D9D9D9] rounded-3xl">
+          <img src="./business-class.png" className="w-full" />
+        </div>
+        <div className="bg-[#E05429] text-white text-center font-bold rounded-3xl p-2 border-t-2 border-black border-dashed">
+          <p className="text-lg my-2">Chopper</p>
+          <button className="bg-black px-6 py-2 rounded-xl">Book Now</button>
+        </div>
+      </div>
+
+       {/* "Economy",
+    "Premium Economy",
+    "Business",
+    "First Class",
+    "Private Jet",
+    "Chopper", */}
     </div>
   );
 }

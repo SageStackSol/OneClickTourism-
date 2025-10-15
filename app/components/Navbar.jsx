@@ -225,6 +225,7 @@ function Navbar() {
                 serviceMenuStatus ? "rotate-180" : ""
               } duration-300`}
             />
+        
             {serviceMenuStatus ? (
               <>
                 <div className="fixed top-16 bg-white/80 px-4 py-2 my-1 rounded-md backdrop-blur-lg">
@@ -251,16 +252,7 @@ function Navbar() {
                         Inbound
                       </li>
                     </Link>
-                    <Link href={"/visa"}>
-                      <li
-                        className={`${
-                          pathname === "/visa" ? "text-[#F97A1E]" : "text-black"
-                        }`}
-                      >
-                        Visa
-                      </li>
-                    </Link>
-                    <Link href={"/destination"}>
+                     <Link href={"/destination"}>
                       <li
                         className={`${
                           pathname === "/destination"
@@ -282,6 +274,27 @@ function Navbar() {
                         Flight Bookings
                       </li>
                     </Link>
+                    <Link href={"/visa"}>
+                      <li
+                        className={`${
+                          pathname === "/visa" ? "text-[#F97A1E]" : "text-black"
+                        }`}
+                      >
+                        Visa
+                      </li>
+                    </Link>
+                   <Link href={"/hotel"}>
+                      <li
+                        className={`${
+                          pathname === "/hotel"
+                            ? "text-[#F97A1E]"
+                            : "text-black"
+                        }`}
+                      >
+                        Hotel Bookings
+                      </li>
+                    </Link>
+                    
 
                     <Link href={"/car-rentals"}>
                       <li
@@ -407,17 +420,8 @@ function Navbar() {
                       Inbound
                     </li>
                   </Link>
-                  <Link href={"/visa"}>
-                    <li
-                      onClick={() => setOpen(!open)}
-                      className={`${
-                        pathname === "/visa" ? "text-[#F97A1E]" : "text-black"
-                      }`}
-                    >
-                      Visa
-                    </li>
-                  </Link>
-                  <Link href={"/destination"}>
+                      {/* Services order- inbound,destinatuions ,flight,visa,hotels,car rentals —— */}
+                       <Link href={"/destination"}>
                     <li
                       onClick={() => setOpen(!open)}
                       className={`${
@@ -429,7 +433,7 @@ function Navbar() {
                       Destination
                     </li>
                   </Link>
-                  <Link href={"/flight-bookings"}>
+   <Link href={"/flight-bookings"}>
                     <li
                       onClick={() => setOpen(!open)}
                       className={`${
@@ -441,6 +445,28 @@ function Navbar() {
                       Flight Bookings
                     </li>
                   </Link>
+                  <Link href={"/visa"}>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className={`${
+                        pathname === "/visa" ? "text-[#F97A1E]" : "text-black"
+                      }`}
+                    >
+                      Visa
+                    </li>
+                  </Link>
+                 
+                <Link href={"/hotel"}>
+                      <li
+                        className={`${
+                          pathname === "/hotel"
+                            ? "text-[#F97A1E]"
+                            : "text-black"
+                        }`}
+                      >
+                        Hotel Bookings
+                      </li>
+                    </Link>
 
                   <Link href={"/car-rentals"}>
                     <li

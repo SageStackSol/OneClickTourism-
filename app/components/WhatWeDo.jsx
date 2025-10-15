@@ -116,7 +116,7 @@ const stats = [
     description:
       "Explore the destinations worldwide with personalized itineraries.",
     image: "./destinationWWD.jpg",
-    link: "/destinations",
+    link: "/destination",
   },
   {
     title: "Visa Assistance",
