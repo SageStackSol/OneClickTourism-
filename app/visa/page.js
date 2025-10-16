@@ -11,9 +11,9 @@ function Page() {
 
   return (
     <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4 text-[#2D464C] ">
-      <h1 className="lg:text-5xl md:text-5xl text-3xl font-extrabold leading-normal text-center">
+      <h1 className="lg:text-5xl md:text-5xl text-3xl font-extrabold text-center">
         Everything You Need for the <br />
-        <span className="text-[#F97A1E]">Perfect Journey</span>
+        <span className="text-[#F97A1E] ">Perfect Journey</span>
       </h1>
       <p className="text-center text-base lg:px-44 md:px-40 my-4">
         From planning to execution, we handle every detail of your trip so you

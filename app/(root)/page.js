@@ -9,6 +9,7 @@ import DestinationsCarousel from "../components/DestinationsCarousal";
 import Marquee from "react-fast-marquee";
 import BelowHeroImage from "../components/BelowHeroImage";
 
+
 function Page() {
  
   const [destinationType, setDestinationType] = useState("inbound");
@@ -105,7 +106,7 @@ function Page() {
       </div>
 
       {/* section below hero */}
-      <div className="lg:py-28 md:py-28 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] grid grid-cols-12 items-center bg-[url('/whiteTexture.jpg')] bg-fit gap-12">
+      <div className="lg:py-28 md:py-28 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] w-screen grid grid-cols-12 items-center bg-[url('/whiteTexture.jpg')] bg-fit gap-6">
         <div className="lg:col-span-6 md:col-span-6 col-span-12">
           <h2 className="font-semibold text-4xl mb-8">
             &quot;Every Trip, a Story Worth Telling.&quot;
@@ -144,19 +145,74 @@ function Page() {
         <WhatWeDo />
       </div>
 
-      {/* <Marquee>
+      <Marquee pauseOnHover>
 
-  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/clock.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/benz.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/call.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
-  <img className="w-12 rounded-full mx-5 my-5" src="/bmw.png"/>
-</Marquee> */}
+  <img className="w-24 my-4 mx-8" src="/airCanada.png"/>
+  <img className="w-24 my-4 mx-8" src="/airFrance.png"/>
+  <img className="w-24 my-4 mx-8" src="/airIndia.png"/>
+  <img className="w-24 my-4 mx-8" src="/airLingus.png"/>
+  <img className="w-24 my-4 mx-8" src="/alaskaAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/americanAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/britishAirways.png"/>
+  <img className="w-24 my-4 mx-8" src="/deltaAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/easyJetAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/emiratesAirlines.png"/>
+  {/* <img className="w-24 my-4 mx-8" src="/emiratesAirlines1.png"/> */}
+  <img className="w-24 my-4 mx-8" src="/ethiopianAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/garudaIndonasiaAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/gulfAir.png"/>
+  {/* <img className="w-24 my-4 mx-8" src="/gulfAir.png"/> */}
+  <img className="w-24 my-4 mx-8" src="/hawaiianAilines.png"/>
+  <img className="w-24 my-4 mx-8" src="/japanAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/klmAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/lufthansaAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/malaysiaAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/qantasAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/qatarAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/ryanair.png"/>
+  <img className="w-24 my-4 mx-8" src="/southwestAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/srilankanAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/swissAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/thaiAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/turkishAirlines.png"/>
+  <img className="w-24 my-4 mx-8" src="/unitedAirlines.png"/>
+
+
+</Marquee>
+
+  <Marquee pauseOnHover direction="right">
+
+  <img className="w-24 my-4 mx-8" src="/accor.png"/>
+  <img className="w-24 my-4 mx-8" src="/conrad.png"/>
+  <img className="w-24 my-4 mx-8" src="/doubletree.png"/>
+  <img className="w-24 my-4 mx-8" src="/fairmont.png"/>
+  <img className="w-24 my-4 mx-8" src="/fourPointsbySheraton.png"/>
+  <img className="w-24 my-4 mx-8" src="/fourSeasons.png"/>
+  <img className="w-24 my-4 mx-8" src="/hilton.png"/>
+  <img className="w-24 my-4 mx-8" src="/holidayInn.png"/>
+  <img className="w-24 my-4 mx-8" src="/hyatt.png"/>
+  <img className="w-24 my-4 mx-8" src="/laQuinta.png"/>
+  {/* <img className="w-24 my-4 mx-8" src="/emiratesAirlines1.png"/> */}
+  <img className="w-24 my-4 mx-8" src="/mariott.png"/>
+  <img className="w-24 my-4 mx-8" src="/mercure.png"/>
+  <img className="w-24 my-4 mx-8" src="/microtel.png"/>
+  {/* <img className="w-24 my-4 mx-8" src="/gulfAir.png"/> */}
+  <img className="w-24 my-4 mx-8" src="/parkHyatt.png"/>
+  <img className="w-24 my-4 mx-8" src="/radisson.png"/>
+  <img className="w-24 my-4 mx-8" src="/redroof.png"/>
+  <img className="w-24 my-4 mx-8" src="/rosewood.png"/>
+  <img className="w-24 my-4 mx-8" src="/sheraton.png"/>
+  <img className="w-24 my-4 mx-8" src="/stregis.png"/>
+  <img className="w-24 my-4 mx-8" src="/theRitzCarlton.png"/>
+  <img className="w-24 my-4 mx-8" src="/travelodge.png"/>
+  <img className="w-24 my-4 mx-8" src="/wyndham.png"/>
+
+
+
+</Marquee>
+
+
+
 
       {/* most popular destinations */}
       <div

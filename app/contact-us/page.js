@@ -14,7 +14,7 @@ function Page() {
         <h1 className="lg:text-[3em] md:text-[3em] text-[2em] font-bold text-center">
           Ready to Plan Your Next
         </h1>
-        <h1 className="lg:text-[3em] md:text-[3em] text-[2em] font-bold text-[#FA7C28] text-center">
+        <h1 className="lg:text-[3em] md:text-[3em] text-[2em] font-bold text-[#FA7C28] text-center leading-tight">
           Adventure?
         </h1>
         <p className="text-center lg:px-48 md:px-48 px-4">
@@ -59,8 +59,8 @@ function Page() {
             </button>
           </div>
 
-          <div className="lg:col-span-6 md:col-span-6 col-span-12 ">
-            <div className="bg-[#827f7f28] p-4 rounded-xl border-black border flex">
+          <div className="lg:col-span-5 md:col-span-5 col-span-12 h-full relative overflow-hidden">
+            {/* <div className="bg-[#827f7f28] p-4 rounded-xl border-black border flex">
               <img src="./call.png" className="w-12 h-12 col-span-1 " />
               <p className="col-span-8 ml-3">
                 <b>Call Us</b>
@@ -91,12 +91,13 @@ function Page() {
                 <img src="./phone_in_talk.png" className="w-6" />
                 <p>Call Emergency Line</p>
               </button>
-            </div>
+            </div> */}
+            <img className=" absolute -bottom-40 -right-28 -rotate-90" src="/world.png"/>
           </div>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12 lg:px-0 md:px-0 px-4">
+      {/* <div className="bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white text-center py-12 lg:px-0 md:px-0 px-4">
         <h1 className="lg:text-[3em] md:text-[3em] text-[2em] font-bold m-0">Never Miss a Great Deal !</h1>
         <p className="mb-2">
           Subscribe to our newsletter and get exclusive travel deals,
@@ -104,7 +105,7 @@ function Page() {
         </p>
         <input className=" bg-white/20 px-4 py-2 rounded-lg placeholder:text-white" placeholder="Enter your email"/>
         <button className="bg-[#FA7C28] px-4 py-2 rounded-lg mx-2 lg:my-0 md:my-0 my-2">Subscribe</button>
-      </div>
+      </div> */}
     </>
   );
 }
