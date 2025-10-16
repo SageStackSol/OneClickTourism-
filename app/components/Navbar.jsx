@@ -212,6 +212,7 @@ function Navbar() {
                 pathname === "/visa" ||
                 pathname === "/destination" ||
                 pathname === "/flight-bookings" ||
+                pathname === "/hotel-bookings" ||
                 pathname === "/car-rentals"
                   ? "text-[#F97A1E]"
                   : "text-black"
@@ -283,10 +284,10 @@ function Navbar() {
                         Visa
                       </li>
                     </Link>
-                   <Link href={"/hotel"}>
+                   <Link href={"/hotel-bookings"}>
                       <li
                         className={`${
-                          pathname === "/hotel"
+                          pathname === "/hotel-bookings"
                             ? "text-[#F97A1E]"
                             : "text-black"
                         }`}
@@ -380,6 +381,7 @@ function Navbar() {
                 pathname === "/visa" ||
                 pathname === "/destination" ||
                 pathname === "/flight-bookings" ||
+                pathname === "/hotel-bookings" ||
                 pathname === "/car-rentals"
                   ? "text-[#F97A1E]"
                   : "text-black"
@@ -456,10 +458,10 @@ function Navbar() {
                     </li>
                   </Link>
                  
-                <Link href={"/hotel"}>
+                <Link href={"/hotel-bookings"}>
                       <li
                         className={`${
-                          pathname === "/hotel"
+                          pathname === "/hotel-bookings"
                             ? "text-[#F97A1E]"
                             : "text-black"
                         }`}

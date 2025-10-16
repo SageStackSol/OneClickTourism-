@@ -60,14 +60,17 @@ export default function BelowHeroImage() {
       >
         {belowHeroImage.map((item,index)=>{
             return( <SwiperSlide>
-            <img
+            {/* <img
             key={index}
                       src={item.image}
                       
                     //   height={400}
                     //   alt="Travel illustration"
                       className="h-[70vh] w-full rounded-lg shadow-slate-600 shadow-[10px_10px_15px_rgba(0,0,0,0.5)]"
-                    />
+                    /> */}
+                    <div   style={{ backgroundImage: `url(${item.image})` }} className=" h-96 bg-center bg-cover  shadow-lg rounded-lg">
+
+                    </div>
         </SwiperSlide>)
         })}
        
