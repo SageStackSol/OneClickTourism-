@@ -26,7 +26,7 @@ function Page() {
           setRr(false);
           setAudi(false);
         }}
-        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 ${
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 transition-all duration-500 ease-in-out ${
           bmw ? "bg-[#F97A1E] rounded-t-3xl" : "bg-[#D9D9D9] rounded-3xl"
         }`}
       >
@@ -68,8 +68,11 @@ function Page() {
       >
         <img src="./benz.png" />
       </div>
-      {bmw && (
-        <div className="col-span-12 bg-[#F97A1E] p-4 grid grid-cols-12 gap-4 rounded-b-3xl mx-2 rounded-r-3xl">
+      {/* {bmw && ( */}
+      <div className="col-span-12">
+
+    
+        <div className={`" bg-[#F97A1E] overflow-hidden grid grid-cols-12 gap-4 rounded-b-3xl mx-2 rounded-r-3xl transition-all duration-600 ease-in-out ${bmw ?"max-h-full opacity-100 p-4 w-[100%] " : "max-h-0 opacity-0"}"`}>
           <img src="./bmw-coupe.png" className=" col-span-6" />
           <div className="col-span-6 font-bold flex flex-col justify-evenly items-center">
             <div className="flex justify-center items-center">
@@ -89,7 +92,8 @@ function Page() {
             </button>
           </div>
         </div>
-      )}
+          </div>
+      {/* )} */}
       {lamborghini && (
         <div className="col-span-12 bg-[#F97A1E] p-4 grid grid-cols-12 gap-4 rounded-3xl">
           <img src="./bmw-coupe.png" className=" col-span-6" />

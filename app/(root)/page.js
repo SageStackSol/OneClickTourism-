@@ -9,93 +9,77 @@ import DestinationsCarousel from "../components/DestinationsCarousal";
 import Marquee from "react-fast-marquee";
 import BelowHeroImage from "../components/BelowHeroImage";
 
-
 function Page() {
- 
   const [destinationType, setDestinationType] = useState("inbound");
+const [homeData,setHomeData]= useState([])
+const [heroImages,setHeroImages] = useState([])
+const [belowHeroImages,setBelowHeroImages] = useState([])
+ const [heading, setHeading] = useState("");
+  const [tagline, setTagline] = useState("");
 
-  // const chooseUs = [
-  //   {
-  //     image: "/dollar.png",
-  //     title: "Competitive Prices",
-  //     description:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
-  //   },
-  //   {
-  //     image: "/secure.png",
-  //     title: "Secure Booking",
-  //     description:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
-  //   },
-  //   {
-  //     image: "/experience.png",
-  //     title: "Seamless Experience",
-  //     description:
-  //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
-  //   },
-  // ];
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/home");
+        const data = await res.json();
+        setHomeData(data);
+        setHeroImages(data[0].heroImages)
+        setHeading(data[0].heading)
+        setTagline(data[0].tagline)
+        setBelowHeroImages(data[0].belowHeroImages)
+        // setFilteredInbounds(data); 
+  console.log(data[0])
+  // console.log(homeData.length)
 
-  // const travelSolutions = [
-  //   {
-  //     image: "/weather.png",
-  //     title: "Calculated Weather",
-  //     description: "Built Wicket longer admire do barton vanity itself do in it.",
-  //   },
-  //   {
-  //     image: "/flight.png",
-  //     title: "Best Flights",
-  //     description: "Engrossed listening. Park gate sell they west hard for the.",
-  //   },
-  //   {
-  //     image: "/events.png",
-  //     title: "Local Events",
-  //     description: "Barton vanity itself do in it. Preferred to men it engrossed listening.",
-  //   },
-  //   {
-  //     image: "/customization.png",
-  //     title: "Customization",
-  //     description: "We deliver outsourced aviation services for military customers",
-  //   },
-  // ];
 
-  // const world = [
-  //   {
-  //     image: "/rome.png",
-  //     place: "Rome, Italy",
-  //     price: "AED 329",
-  //     duration: 10,
-  //   },
-  //   {
-  //     image: "/london.png",
-  //     place: "London, UK",
-  //     price: "AED 729",
-  //     duration: 12,
-  //   },
-  //   {
-  //     image: "/egypt.png",
-  //     place: "Egypt, Africa",
-  //     price: "AED 939",
-  //     duration: 28,
-  //   },
-  // ];
+      } catch (error) {
+        console.error("Failed to load inbound items", error);
+      } 
+      // finally {
+      //   // setLoading(false);
+      // }
+    };
+    fetchData();
+  }, []);
+  useEffect(() => {
+  console.log("homeData updated:", homeData.length);
+// setDataReceived(true)
+}, [homeData]);
 
-  // useEffect(() => {
-  //   const marquee = document.getElementById("marquee");
-  //   if (marquee) marquee.innerHTML += marquee.innerHTML;
-  // }, []);
+
+  // console.log(homeData)
+  // console.log(dataReceived)
+const [currentImage, setCurrentImage] = useState(0);
+useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) =>
+        prev === heroImages.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
+ 
 
   return (
     <>
+
+    
       {/* hero section  */}
-      <div className='h-screen bg-[url("/hero-finalBg.jpg")] bg-cover flex items-end justify-center'>
+{/* {homeData.length > 0 && homeData[0].heroImages.map((img, i) => (
+
+))} */}
+ <div  style={{
+        backgroundImage: `url(${heroImages[currentImage]})`,
+      }} className='h-screen bg-center bg-cover transition-all duration-1000 ease-in-out flex items-end justify-center'>
         <div className="pb-16 lg:px-0 md:px-0 px-4">
           <h1 className="lg:text-7xl md:text-7xl text-4xl font-black text-center leading-none text-white">
-            Not just a <span className="text-[#F97A1E]">Journey</span>, but a{" "}
-            <span className="text-[#F97A1E]">Story</span>
+            {/* Not just a <span className="text-[#F97A1E]">Journey</span>, but a{" "}
+            <span className="text-[#F97A1E]">Story</span> */}
+            {heading}
           </h1>
           <p className="text-white text-center lg:text-[1.8em] md:text-[1.8em] text-[1em] mt-2">
-            Experience the rush of the desert, the beauty of the sea, and the
-            magic of a city that never sleeps.
+           {tagline}
           </p>
           <div className="flex justify-center">
             <button className="bg-[#F97A1E] text-[1.2em] font-bold text-white px-8 py-2 rounded-3xl my-2 mx-auto">
@@ -105,20 +89,24 @@ function Page() {
         </div>
       </div>
 
+
+
+
+
       {/* section below hero */}
       <div className="lg:py-28 md:py-28 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] w-screen grid grid-cols-12 items-center bg-[url('/whiteTexture.jpg')] bg-fit gap-6">
         <div className="lg:col-span-6 md:col-span-6 col-span-12">
-          <h2 className="font-semibold text-4xl mb-8">
+          <h2 className="font-black text-4xl mb-8">
             &quot;Every Trip, a Story Worth Telling.&quot;
           </h2>
-          <p className="text-xl my-4">
+          <p className="text-xl font-bold my-4">
             Every destination holds a secret, and every moment tells a story.
             Our passion is taking you to places where dreams awaken and memories
             are etched forever. From iconic landmarks to hidden treasures far
             from the crowds, we ensure each step of your journey is filled with
             discovery and wonder.
           </p>
-          <p className="text-xl">
+          <p className="text-xl font-bold">
             Your adventure begins the moment you say yes. Let us turn your
             travel dreams into reality with experiences as unique as you are.
             Discover new horizons. Create stories you&apos;ll cherish for a
@@ -133,7 +121,7 @@ function Page() {
             alt="Travel illustration"
             className="h-96 rounded-lg shadow-slate-600 shadow-[10px_10px_15px_rgba(0,0,0,0.5)]"
           /> */}
-          <BelowHeroImage/>
+          <BelowHeroImage />
         </div>
       </div>
 
@@ -146,73 +134,63 @@ function Page() {
       </div>
 
       <Marquee pauseOnHover>
+        <img className="w-24 my-4 mx-8" src="/airCanada.png" />
+        <img className="w-24 my-4 mx-8" src="/airFrance.png" />
+        <img className="w-24 my-4 mx-8" src="/airIndia.png" />
+        <img className="w-24 my-4 mx-8" src="/airLingus.png" />
+        <img className="w-24 my-4 mx-8" src="/alaskaAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/americanAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/britishAirways.png" />
+        <img className="w-24 my-4 mx-8" src="/deltaAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/easyJetAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/emiratesAirlines.png" />
+        {/* <img className="w-24 my-4 mx-8" src="/emiratesAirlines1.png"/> */}
+        <img className="w-24 my-4 mx-8" src="/ethiopianAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/garudaIndonasiaAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/gulfAir.png" />
+        {/* <img className="w-24 my-4 mx-8" src="/gulfAir.png"/> */}
+        <img className="w-24 my-4 mx-8" src="/hawaiianAilines.png" />
+        <img className="w-24 my-4 mx-8" src="/japanAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/klmAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/lufthansaAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/malaysiaAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/qantasAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/qatarAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/ryanair.png" />
+        <img className="w-24 my-4 mx-8" src="/southwestAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/srilankanAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/swissAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/thaiAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/turkishAirlines.png" />
+        <img className="w-24 my-4 mx-8" src="/unitedAirlines.png" />
+      </Marquee>
 
-  <img className="w-24 my-4 mx-8" src="/airCanada.png"/>
-  <img className="w-24 my-4 mx-8" src="/airFrance.png"/>
-  <img className="w-24 my-4 mx-8" src="/airIndia.png"/>
-  <img className="w-24 my-4 mx-8" src="/airLingus.png"/>
-  <img className="w-24 my-4 mx-8" src="/alaskaAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/americanAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/britishAirways.png"/>
-  <img className="w-24 my-4 mx-8" src="/deltaAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/easyJetAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/emiratesAirlines.png"/>
-  {/* <img className="w-24 my-4 mx-8" src="/emiratesAirlines1.png"/> */}
-  <img className="w-24 my-4 mx-8" src="/ethiopianAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/garudaIndonasiaAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/gulfAir.png"/>
-  {/* <img className="w-24 my-4 mx-8" src="/gulfAir.png"/> */}
-  <img className="w-24 my-4 mx-8" src="/hawaiianAilines.png"/>
-  <img className="w-24 my-4 mx-8" src="/japanAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/klmAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/lufthansaAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/malaysiaAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/qantasAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/qatarAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/ryanair.png"/>
-  <img className="w-24 my-4 mx-8" src="/southwestAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/srilankanAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/swissAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/thaiAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/turkishAirlines.png"/>
-  <img className="w-24 my-4 mx-8" src="/unitedAirlines.png"/>
-
-
-</Marquee>
-
-  <Marquee pauseOnHover direction="right">
-
-  <img className="w-24 my-4 mx-8" src="/accor.png"/>
-  <img className="w-24 my-4 mx-8" src="/conrad.png"/>
-  <img className="w-24 my-4 mx-8" src="/doubletree.png"/>
-  <img className="w-24 my-4 mx-8" src="/fairmont.png"/>
-  <img className="w-24 my-4 mx-8" src="/fourPointsbySheraton.png"/>
-  <img className="w-24 my-4 mx-8" src="/fourSeasons.png"/>
-  <img className="w-24 my-4 mx-8" src="/hilton.png"/>
-  <img className="w-24 my-4 mx-8" src="/holidayInn.png"/>
-  <img className="w-24 my-4 mx-8" src="/hyatt.png"/>
-  <img className="w-24 my-4 mx-8" src="/laQuinta.png"/>
-  {/* <img className="w-24 my-4 mx-8" src="/emiratesAirlines1.png"/> */}
-  <img className="w-24 my-4 mx-8" src="/mariott.png"/>
-  <img className="w-24 my-4 mx-8" src="/mercure.png"/>
-  <img className="w-24 my-4 mx-8" src="/microtel.png"/>
-  {/* <img className="w-24 my-4 mx-8" src="/gulfAir.png"/> */}
-  <img className="w-24 my-4 mx-8" src="/parkHyatt.png"/>
-  <img className="w-24 my-4 mx-8" src="/radisson.png"/>
-  <img className="w-24 my-4 mx-8" src="/redroof.png"/>
-  <img className="w-24 my-4 mx-8" src="/rosewood.png"/>
-  <img className="w-24 my-4 mx-8" src="/sheraton.png"/>
-  <img className="w-24 my-4 mx-8" src="/stregis.png"/>
-  <img className="w-24 my-4 mx-8" src="/theRitzCarlton.png"/>
-  <img className="w-24 my-4 mx-8" src="/travelodge.png"/>
-  <img className="w-24 my-4 mx-8" src="/wyndham.png"/>
-
-
-
-</Marquee>
-
-
-
+      <Marquee pauseOnHover direction="right">
+        <img className="w-24 my-4 mx-8" src="/accor.png" />
+        <img className="w-24 my-4 mx-8" src="/conrad.png" />
+        <img className="w-24 my-4 mx-8" src="/doubletree.png" />
+        <img className="w-24 my-4 mx-8" src="/fairmont.png" />
+        <img className="w-24 my-4 mx-8" src="/fourPointsbySheraton.png" />
+        <img className="w-24 my-4 mx-8" src="/fourSeasons.png" />
+        <img className="w-24 my-4 mx-8" src="/hilton.png" />
+        <img className="w-24 my-4 mx-8" src="/holidayInn.png" />
+        <img className="w-24 my-4 mx-8" src="/hyatt.png" />
+        <img className="w-24 my-4 mx-8" src="/laQuinta.png" />
+        {/* <img className="w-24 my-4 mx-8" src="/emiratesAirlines1.png"/> */}
+        <img className="w-24 my-4 mx-8" src="/mariott.png" />
+        <img className="w-24 my-4 mx-8" src="/mercure.png" />
+        <img className="w-24 my-4 mx-8" src="/microtel.png" />
+        {/* <img className="w-24 my-4 mx-8" src="/gulfAir.png"/> */}
+        <img className="w-24 my-4 mx-8" src="/parkHyatt.png" />
+        <img className="w-24 my-4 mx-8" src="/radisson.png" />
+        <img className="w-24 my-4 mx-8" src="/redroof.png" />
+        <img className="w-24 my-4 mx-8" src="/rosewood.png" />
+        <img className="w-24 my-4 mx-8" src="/sheraton.png" />
+        <img className="w-24 my-4 mx-8" src="/stregis.png" />
+        <img className="w-24 my-4 mx-8" src="/theRitzCarlton.png" />
+        <img className="w-24 my-4 mx-8" src="/travelodge.png" />
+        <img className="w-24 my-4 mx-8" src="/wyndham.png" />
+      </Marquee>
 
       {/* most popular destinations */}
       <div
