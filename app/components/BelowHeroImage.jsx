@@ -1,6 +1,6 @@
 "use client"; // if you're in Next.js 13+ with App Router
 
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
@@ -14,21 +14,43 @@ import "swiper/css/pagination";
 import { Navigation} from "swiper/modules";
 
 export default function BelowHeroImage() {
- const belowHeroImage = [
-    { image: "/belowHero.png" },
-    { image: "/belowHero1.jpg" },
-    { image: "/belowHero2.jpg" },
-    { image: "/belowHero3.jpg" },
-    { image: "/belowHero4.jpg" },
-    { image: "/belowHero5.jpg" },
-    { image: "/belowHero6.jpg" },
-    { image: "/belowHero7.jpg" },
-    { image: "/belowHero8.jpg" },
-    { image: "/belowHero9.jpg" },
-    { image: "/belowHero10.jpg" },
-    { image: "/belowHero11.jpg" },
+  const [belowHeroImages,setBelowHeroImages] = useState([])
+   useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const res = await fetch("/api/home");
+          const data = await res.json();
+          // console.log('belowhero',data[0].belowHeroImages)
+          setBelowHeroImages(data[0].belowHeroImages)
+          // setFilteredInbounds(data); 
+    // console.log(data[0])
+    // console.log(homeData.length)
+  
+  
+        } catch (error) {
+          console.error("Failed to load inbound items", error);
+        } 
+        // finally {
+        //   // setLoading(false);
+        // }
+      };
+      fetchData();
+    }, []);
+//  const belowHeroImage = [
+//     { image: "/belowHero.png" },
+//     { image: "/belowHero1.jpg" },
+//     { image: "/belowHero2.jpg" },
+//     { image: "/belowHero3.jpg" },
+//     { image: "/belowHero4.jpg" },
+//     { image: "/belowHero5.jpg" },
+//     { image: "/belowHero6.jpg" },
+//     { image: "/belowHero7.jpg" },
+//     { image: "/belowHero8.jpg" },
+//     { image: "/belowHero9.jpg" },
+//     { image: "/belowHero10.jpg" },
+//     { image: "/belowHero11.jpg" },
 
-  ];
+//   ];
 
   return (
     <div className="w-full max-w-4xl mx-auto">
@@ -58,7 +80,7 @@ export default function BelowHeroImage() {
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper "
       >
-        {belowHeroImage.map((item,index)=>{
+        {belowHeroImages.map((item,index)=>{
             return( <SwiperSlide>
             {/* <img
             key={index}
@@ -68,7 +90,7 @@ export default function BelowHeroImage() {
                     //   alt="Travel illustration"
                       className="h-[70vh] w-full rounded-lg shadow-slate-600 shadow-[10px_10px_15px_rgba(0,0,0,0.5)]"
                     /> */}
-                    <div   style={{ backgroundImage: `url(${item.image})` }} className=" h-96 bg-center bg-cover  shadow-lg rounded-lg">
+                    <div  key={index} style={{ backgroundImage: `url(${item})` }} className=" h-96 bg-center bg-cover  shadow-lg rounded-lg">
 
                     </div>
         </SwiperSlide>)

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import WhatWeDo from "../components/WhatWeDo";
 import WhyChooseUs from "../components/WhyChooseUs";
@@ -7,7 +8,40 @@ const greatVibes = Great_Vibes({
   subsets: ["latin"],
   weight: "400",
 });
+
+
 function Page() {
+const [aboutUsHeroImages,setAboutUsHeroImages] = useState([])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/about-us");
+        const data = await res.json();
+
+        setAboutUsHeroImages(data[0].aboutUsHeroImages);
+        // setFilteredInbounds(data);
+        console.log(data[0].aboutUsHeroImages);
+        // console.log(homeData.length)
+      } catch (error) {
+        console.error("Failed to load inbound items", error);
+      }
+      // finally {
+      //   // setLoading(false);
+      // }
+    };
+    fetchData();
+  }, []);
+
+
+  const [currentImage, setCurrentImage] = useState(0);
+  useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentImage((prev) =>
+          prev === aboutUsHeroImages.length - 1 ? 0 : prev + 1
+        );
+      }, 4000);
+      return () => clearInterval(interval);
+    }, [aboutUsHeroImages.length]);
   return (
     <>
       {/* <div className="px-40 grid grid-cols-12 items-center min-h-screen gap-4">
@@ -71,7 +105,10 @@ function Page() {
         </div>
       </div> */}
       {/* aboutUs Hero */}
-      <div className=" bg-[url('/aboutUsHeroCrop.png')] bg-cover bg-center h-screen py-44 lg:px-10 md:px-10 px-4">
+      <div
+      style={{
+        backgroundImage: `url(${aboutUsHeroImages[currentImage]})`,
+      }}  className=" bg-center bg-cover transition-all duration-1000 ease-in-out h-screen py-44 lg:px-10 md:px-10 px-4">
         <h1 className="lg:text-7xl md:text-7xl text-3xl font-black leading-none text-white lg:mb-4 md:mb-4">
           Not just a Journey, but a Story
         </h1>
@@ -81,16 +118,20 @@ function Page() {
         </p>
       </div>
 
-
       {/* about us  bg-[#C7B5A2]*/}
-        
-      <div style={{ background: "url('/about-us-bg.jpg') center/cover no-repeat" }} className=" lg:py-20 lg:px-10 md:py-20 md:px-10 py-8">
-        <div className="flex flex-row-reverse w-[100%] items-center gap-2 lg:px-10 md:px-10 px-4">
-          <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />
-          <div className="w-3 h-3 bg-black rounded-full"></div>
+
+      <div
+        style={{ background: "url('/about-us-bg.jpg') center/cover no-repeat" }}
+        className=" lg:py-20 lg:px-10 md:py-20 md:px-10 py-8"
+      >
+        <div className="flex w-[100%] items-center gap-2 lg:px-10 md:px-10 px-4">
           <h2 className="lg:text-5xl md:text-5xl text-2xl font-bold pr-4">
             <span className={`${greatVibes.className} `}> Our Story</span>{" "}
           </h2>
+          <div className="w-3 h-3 bg-black rounded-full"></div>
+          <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />
+          
+          
         </div>
         <p className="text-xl font-bold lg:mt-8 md:mt-8 mt-4 px-8">
           Founded in Dubai, our journey began with a simple belief — travel
@@ -128,9 +169,7 @@ function Page() {
           </h2>
         </div>
         <div className="col-span-7 flex justify-center items-center px-8 bg-[#F5DDD4] h-40 relative rounded-r-3xl">
-          <div
-    className="absolute inset-0 bg-[url('/mission.png')]  bg-contain  bg-no-repeat bg-center  opacity-40"
-  ></div>
+          <div className="absolute inset-0 bg-[url('/mission.png')]  bg-contain  bg-no-repeat bg-center  opacity-40"></div>
           <p className="">
             To deliver enriching, memorable, and innovative travel experiences
             that showcase the natural beauty, cultural heritage, and modern
@@ -140,9 +179,7 @@ function Page() {
           </p>
         </div>
         <div className="col-span-7 relative flex justify-center items-center px-8 bg-[#2da39961] h-40 rounded-l-3xl">
-           <div
-    className="absolute inset-0 bg-[url('/vision.png')]  bg-contain  bg-no-repeat bg-center  opacity-30"
-  ></div>
+          <div className="absolute inset-0 bg-[url('/vision.png')]  bg-contain  bg-no-repeat bg-center  opacity-30"></div>
           <p>
             To establish the UAE as a leading global destination celebrated for
             its diversity, sustainability, and hospitality, inspiring travelers
