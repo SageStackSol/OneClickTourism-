@@ -184,7 +184,7 @@ function Navbar() {
               onClick={() => {
                 setOpen(false);
               }}
-              src="./logoPI.png"
+              src="./logoPIS.png"
               className="w-28"
             />
           </div>

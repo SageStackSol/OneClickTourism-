@@ -92,7 +92,7 @@ function Page() {
                 <p>Call Emergency Line</p>
               </button>
             </div> */}
-            <img className=" absolute -bottom-40 -right-28 -rotate-90" src="/world.png"/>
+            <img className=" absolute -bottom-40 -right-28 -rotate-90 w-" src="/world.png"/>
           </div>
         </div>
       </div>

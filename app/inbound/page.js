@@ -306,6 +306,7 @@ export default function FlipCards() {
   const [filteredInbounds, setFilteredInbounds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedTags, setSelectedTags] = useState([]); // ✅ multiple tags
+  const [categoriesMenuStatus,seCategoriesMenuStatus] = useState(false)
 
   const allTags = [
     "Desert Experience",
@@ -384,7 +385,39 @@ export default function FlipCards() {
         {/* --- TAG FILTER SIDEBAR --- */}
         <div className="grid grid-cols-4 h-screen py-12 gap-6">
           <div className="lg:col-span-1 md:col-span-1 sm:block hidden sticky h-screen">
-            <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] px-4 pb-8 pt-4 rounded-lg">
+                {/* --- SEARCH BAR --- */}
+<div className="mb-6">
+  <input
+    type="text"
+    placeholder="Search destinations..."
+    onChange={(e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      if (!searchTerm) {
+        setFilteredInbounds(
+          selectedTags.length === 0
+            ? inbounds
+            : inbounds.filter((item) =>
+                selectedTags.every((tag) => item.tags.includes(tag))
+              )
+        );
+        return;
+      }
+
+      // filter by name + active tags
+      const filtered = inbounds.filter((item) => {
+        const matchesName = item.name.toLowerCase().includes(searchTerm);
+        const matchesTags =
+          selectedTags.length === 0 ||
+          selectedTags.every((tag) => item.tags.includes(tag));
+        return matchesName && matchesTags;
+      });
+
+      setFilteredInbounds(filtered);
+    }}
+    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:ring-2 focus:ring-[#F97A1E] outline-none"
+  />
+</div>
+            <div className="bg-white border border-gray-200 px-4 pb-8 pt-4 rounded-lg">
               <h2 className="text-center text-lg font-bold mb-6">Categories</h2>
               <div className="flex gap-2 flex-wrap">
                 {allTags.map((tag, index) => (
@@ -404,7 +437,65 @@ export default function FlipCards() {
             </div>
           </div>
 
+          <div className="lg:hidden md:hidden col-span-4 p-2 border border-gray-200 rounded-lg">
+            <div>
+  <input
+    type="text"
+    placeholder="Search destinations..."
+    onChange={(e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      if (!searchTerm) {
+        setFilteredInbounds(
+          selectedTags.length === 0
+            ? inbounds
+            : inbounds.filter((item) =>
+                selectedTags.every((tag) => item.tags.includes(tag))
+              )
+        );
+        return;
+      }
+
+      // filter by name + active tags
+      const filtered = inbounds.filter((item) => {
+        const matchesName = item.name.toLowerCase().includes(searchTerm);
+        const matchesTags =
+          selectedTags.length === 0 ||
+          selectedTags.every((tag) => item.tags.includes(tag));
+        return matchesName && matchesTags;
+      });
+
+      setFilteredInbounds(filtered);
+    }}
+    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:ring-2 focus:ring-[#F97A1E] outline-none"
+  />
+</div>
+            <div onClick={()=>{seCategoriesMenuStatus(!categoriesMenuStatus)}} className="flex justify-between items-center">
+              <h2 className=" text-lg font-bold">Categories</h2>
+              <img className={` w-4   ${
+                categoriesMenuStatus ? "rotate-180" : ""
+              } duration-300`} src="/categoriesDropdown.png" />
+            </div>
+            {categoriesMenuStatus && <div className={`transition-all duration-500 ease-in-out pt-6 flex gap-2 flex-wrap${
+          categoriesMenuStatus ? " opacity-100 scale-100" : " opacity-0 scale-95"
+        } `}>
+                {allTags.map((tag, index) => (
+                  <button
+                    key={index}
+                    onClick={() => toggleTag(tag)}
+                    className={`px-3 py-1 rounded-2xl border ${
+                      selectedTags.includes(tag)
+                        ? "bg-[#F97A1E] text-white border-[#F97A1E]"
+                        : "bg-orange-100 text-black border-transparent"
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>}
+          </div>
           {/* --- CARD GRID --- */}
+      
+
           <div className="lg:col-span-3 md:col-span-3 col-span-4 grid grid-cols-3 gap-6 h-screen overflow-y-scroll">
             {filteredInbounds.length > 0 ? (
               filteredInbounds.map((item, index) => (
