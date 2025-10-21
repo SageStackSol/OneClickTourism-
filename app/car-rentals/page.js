@@ -26,7 +26,7 @@ function Page() {
           setRr(false);
           setAudi(false);
         }}
-        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 transition-all duration-500 ease-in-out ${
+        className={`lg:col-span-4 md:col-span-4 col-span-12 mx-2  p-4 mt-2 transition-all duration-100 ease-in-out ${
           bmw ? "bg-[#F97A1E] rounded-t-3xl" : "bg-[#D9D9D9] rounded-3xl"
         }`}
       >

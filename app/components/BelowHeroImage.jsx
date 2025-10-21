@@ -15,6 +15,7 @@ import { Navigation} from "swiper/modules";
 
 export default function BelowHeroImage() {
   const [belowHeroImages,setBelowHeroImages] = useState([])
+  const [dataReceived,setDataReceived]= useState(false)
    useEffect(() => {
       const fetchData = async () => {
         try {
@@ -23,8 +24,9 @@ export default function BelowHeroImage() {
           // console.log('belowhero',data[0].belowHeroImages)
           setBelowHeroImages(data[0].belowHeroImages)
           // setFilteredInbounds(data); 
-    // console.log(data[0])
-    // console.log(homeData.length)
+    console.log(data)
+    // console.log(belowHeroImages.length)
+    setDataReceived(true)
   
   
         } catch (error) {
@@ -53,7 +55,10 @@ export default function BelowHeroImage() {
 //   ];
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <>
+    {dataReceived && 
+
+     <div className="w-full max-w-4xl mx-auto">
       <Swiper
          effect={"coverflow"}
         grabCursor={true}
@@ -98,6 +103,11 @@ export default function BelowHeroImage() {
        
       
       </Swiper>
-    </div>
+    </div>}
+   
+  </>
+
+
   );
 }
+  
