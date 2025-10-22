@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 
 function Page() {
   const [hotels, setHotels] = useState([
-    { name: "hotel1", img: "/hotelWWD.jpg" },
-    { name: "hotel2", img: "/hotelWWD.jpg" },
-    { name: "hotel3", img: "/hotelWWD.jpg" },
-    { name: "hotel4", img: "/hotelWWD.jpg" },
-    { name: "hotel5", img: "/hotelWWD.jpg" },
+    // { name: "hotel1", img: "/hotelWWD.jpg" },
+    // { name: "hotel2", img: "/hotelWWD.jpg" },
+    // { name: "hotel3", img: "/hotelWWD.jpg" },
+    // { name: "hotel4", img: "/hotelWWD.jpg" },
+    // { name: "hotel5", img: "/hotelWWD.jpg" },
   ]);
   //   setHotels([
   //     { name: "hotel1", img: "/hotelWWD.jpg" },
@@ -16,6 +16,22 @@ function Page() {
   //     { name: "hotel4", img: "/hotelWWD.jpg" },
   //     { name: "hotel5", img: "/hotelWWD.jpg" },
   //   ]);
+    useEffect(() => {
+        const fetchHotels = async () => {
+          try {
+            const res = await fetch("/api/hotel");
+            const data = await res.json();
+            setHotels(data);
+            console.log(data);
+          } catch (error) {
+            console.error("Failed to load destination items", error);
+          } 
+          // finally {
+          //   setLoading(false);
+          // }
+        };
+        fetchHotels();
+      }, []);
   return (
     <>
       <div className="grid grid-cols-12 lg:gap-6 md:gap-2 gap-2 lg:py-20 md:py-20 py-16 lg:px-40 md:px-12 px-4 ">
@@ -25,7 +41,7 @@ function Page() {
         {hotels.length > 0 &&
           hotels.map((item, index) => {
            return <div key={index} className="bg-white shadow-lg border border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center  lg:col-span-4 md:col-span-4 col-span-12">
-              <img src={item.img} className="rounded-lg h-44" />
+              <img src={item.image} className="rounded-lg h-44" />
               <p className=" my-2 text-xl font-bold">{item.name}</p>
               <button className="cursor-pointer bg-[#2D464C] text-white px-8 py-2 rounded-sm">
                 Book Now
