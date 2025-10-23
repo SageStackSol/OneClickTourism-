@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function CreateInbound() {
   const router = useRouter();
-  const [form, setForm] = useState({ name: "", price: "", tags: "", description: "", imageBase64: "" });
+  const [form, setForm] = useState({ name: "", price: "", categoryTags: "", timeTags: "", experienceTags: "", description: "", imageBase64: "" });
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -24,7 +24,9 @@ export default function CreateInbound() {
       body: JSON.stringify({
         ...form,
         price: Number(form.price),
-        tags: form.tags.split(",").map((tag) => tag.trim()),
+        categoryTags: form.categoryTags.split(",").map((tag) => tag.trim()),
+        timeTags: form.timeTags.split(",").map((tag) => tag.trim()),
+        experienceTags: form.experienceTags.split(",").map((tag) => tag.trim()),
       }),
     });
 
@@ -39,7 +41,9 @@ export default function CreateInbound() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input name="name" placeholder="Name" onChange={handleChange} required />
         <input name="price" type="number" placeholder="Price" onChange={handleChange} required />
-        <input name="tags" placeholder="Tags (comma separated)" onChange={handleChange} />
+        <input name="categoryTags" placeholder="categoryTags (comma separated)" onChange={handleChange} />
+        <input name="timeTags" placeholder="timeTags (comma separated)" onChange={handleChange} />
+        <input name="experienceTags" placeholder="experienceTags (comma separated)" onChange={handleChange} />
         <textarea name="description" placeholder="Description" onChange={handleChange} required />
         <input type="file" accept="image/*" onChange={handleImage} required />
         {form.imageBase64 && <img src={form.imageBase64} alt="Preview" className="w-32 h-32 object-cover rounded" />}

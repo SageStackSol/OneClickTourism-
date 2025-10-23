@@ -18,8 +18,8 @@ export async function GET(req, { params }) {
 export async function PUT(req, { params }) {
   try {
     await connectDB();
-    const { name, price, tags, description, imageBase64, oldImage } = await req.json();
-    const updateData = { name, price, description, tags };
+    const { name, price, categoryTags, timeTags, experienceTags, description, imageBase64, oldImage } = await req.json();
+    const updateData = { name, price, description, categoryTags, timeTags, experienceTags };
 
     if (imageBase64) {
       if (oldImage) {

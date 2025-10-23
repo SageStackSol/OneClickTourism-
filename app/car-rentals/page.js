@@ -72,7 +72,7 @@ function Page() {
       <div className="col-span-12">
 
     
-        <div className={`" bg-[#F97A1E] overflow-hidden grid grid-cols-12 gap-4 rounded-b-3xl mx-2 rounded-r-3xl transition-all duration-600 ease-in-out ${bmw ?"max-h-full opacity-100 p-4 w-[100%] " : "max-h-0 opacity-0"}"`}>
+        <div className={`" bg-[#F97A1E] overflow-hidden grid grid-cols-12 gap-4 rounded-b-3xl mx-2 rounded-r-3xl transition-all duration-1000 ease-in-out ${bmw ?"max-h-full opacity-100 p-4 w-[100%] " : "max-h-0 opacity-0"}"`}>
           <img src="./bmw-coupe.png" className=" col-span-6" />
           <div className="col-span-6 font-bold flex flex-col justify-evenly items-center">
             <div className="flex justify-center items-center">

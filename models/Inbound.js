@@ -5,7 +5,9 @@ const inboundSchema = new mongoose.Schema(
     name: { type: String, required: true },
     image: { type: String, required: true },
     price: { type: Number, required: true },
-    tags: { type: [String], default: [] },
+    categoryTags: { type: [String], default: [] },
+    timeTags: { type: [String], default: [] },
+    experienceTags: { type: [String], default: [] },
     description: { type: String, required: true },
   },
   { timestamps: true }
