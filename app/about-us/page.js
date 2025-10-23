@@ -9,9 +9,8 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-
 function Page() {
-const [aboutUsHeroImages,setAboutUsHeroImages] = useState([])
+  const [aboutUsHeroImages, setAboutUsHeroImages] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,16 +31,15 @@ const [aboutUsHeroImages,setAboutUsHeroImages] = useState([])
     fetchData();
   }, []);
 
-
   const [currentImage, setCurrentImage] = useState(0);
   useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentImage((prev) =>
-          prev === aboutUsHeroImages.length - 1 ? 0 : prev + 1
-        );
-      }, 4000);
-      return () => clearInterval(interval);
-    }, [aboutUsHeroImages.length]);
+    const interval = setInterval(() => {
+      setCurrentImage((prev) =>
+        prev === aboutUsHeroImages.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [aboutUsHeroImages.length]);
   return (
     <>
       {/* <div className="px-40 grid grid-cols-12 items-center min-h-screen gap-4">
@@ -106,9 +104,11 @@ const [aboutUsHeroImages,setAboutUsHeroImages] = useState([])
       </div> */}
       {/* aboutUs Hero */}
       <div
-      style={{
-        backgroundImage: `url(${aboutUsHeroImages[currentImage]})`,
-      }}  className=" bg-center bg-cover transition-all duration-1000 ease-in-out h-screen py-44 lg:px-10 md:px-10 px-4">
+        style={{
+          backgroundImage: `url(${aboutUsHeroImages[currentImage]})`,
+        }}
+        className=" bg-center bg-cover transition-all duration-1000 ease-in-out h-screen py-44 lg:px-10 md:px-10 px-4"
+      >
         <h1 className="lg:text-7xl md:text-7xl text-3xl font-black leading-none text-white lg:mb-4 md:mb-4">
           Not just a Journey, but a Story
         </h1>
@@ -130,8 +130,6 @@ const [aboutUsHeroImages,setAboutUsHeroImages] = useState([])
           </h2>
           <div className="w-3 h-3 bg-black rounded-full"></div>
           <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />
-          
-          
         </div>
         <p className="text-xl font-bold lg:mt-8 md:mt-8 mt-4 px-8">
           Founded in Dubai, our journey began with a simple belief — travel
@@ -155,7 +153,7 @@ const [aboutUsHeroImages,setAboutUsHeroImages] = useState([])
         </p>
         <div className="flex justify-center lg:mt-16 md:mt-16 mt-4">
           <Link href="/contact-us">
-            <button className="px-8 py-2 text-2xl bg-[#FFA100] rounded-3xl">
+            <button className="px-8 py-2 text-2xl bg-[#F97A1E] rounded-3xl">
               Get in Touch
             </button>
           </Link>
@@ -206,6 +204,109 @@ const [aboutUsHeroImages,setAboutUsHeroImages] = useState([])
           Why Choose <span className="text-[#F97A1E]">Us </span>{" "}
         </h2>
         <WhyChooseUs />
+      </div>
+{/* Our Team  */}
+      <div className="lg:py-20 lg:px-10 md:py-20 md:px-10 py-8 px-4 bg-[url('/whiteTexture.jpg')] bg-cover bg-center ">
+        {/* <div className="flex w-[100%] items-center gap-2 lg:px-10 md:px-10 px-4">
+          <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />
+          <div className="w-3 h-3 bg-black rounded-full"></div>
+
+          <h2 className={`${greatVibes.className} lg:text-5xl md:text-5xl text-2xl font-bold pr-4`}>
+       Our Team
+          </h2>
+          </div> */}
+
+        <div className="grid grid-cols-12 border border-gray-400 rounded-lg mb-2 gap-4 p-4">
+          <div className="lg:col-span-7 md:col-span-7 col-span-12 flex flex-col items-center justify-center">
+            <h3
+              className={`${greatVibes.className} text-[#F97A1E] text-center lg:text-5xl md:text-5xl text-2xl font-bold`}
+            >
+              {" "}
+              Our Team{" "}
+            </h3>
+            <p>
+              When you travel with us, you partner with proven expertise. Our
+              team is made up of seasoned travel professionals whose deep
+              expertise in the field—from complex logistics to local secrets
+              enables us to craft tailor-made travel solutions that exceed your
+              expectations. We don't just solve problems; we anticipate them,
+              providing seamless and effortless trips. Your personalized
+              experience starts with a thorough consultation, where we match
+              your dreams with the best possible destination and itinerary. From
+              this initial idea, we provide complete, end-to-end support:
+              handling all visas, transfers, and accommodations, and offering a
+              24-hour emergency hotline for total peace of mind while you're
+              traveling.Explore our wide range of thoughtfully curated travel
+              collections. Whether your tastes incline toward adventurous
+              mountain safaris, luxurious cultural immersion, or peaceful beach
+              escapes, our diverse range of unique package tours ensures you
+              have the perfect itinerary…
+            </p>
+          </div>
+          <div className="lg:col-span-5 md:col-span-5 col-span-12">
+            <img src="/respect.png" />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12 border border-gray-400 rounded-lg gap-4 mb-2 p-4">
+          <div className="lg:col-span-7 md:col-span-7 col-span-12">
+            <img src="/frames.png" />
+          </div>
+          <div className="lg:col-span-5 md:col-span-5 col-span-12 flex flex-col items-center justify-center">
+            <h3
+              className={`${greatVibes.className} text-[#F97A1E] text-center lg:text-5xl md:text-5xl text-2xl font-bold`}
+            >
+              Customized Holiday Packages 
+            </h3>
+            <p>
+              Stop dreaming and start traveling. Our expert consultants design
+              vacations built entirely around you. We offer both flexible,
+              curated packages and completely bespoke itineraries, ensuring your
+              journey perfectly matches your specific requirements.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12 border border-gray-400 rounded-lg mb-2 gap-4 p-4">
+          <div className="lg:col-span-7 md:col-span-7 col-span-12 flex flex-col items-center justify-center">
+            <h3
+              className={`${greatVibes.className} text-[#F97A1E] text-center lg:text-5xl md:text-5xl text-2xl font-bold`}
+            >
+              Credibility
+            </h3>
+            <p>
+              Stop dreaming and start traveling. Our expert consultants design
+              vacations built entirely around you. We offer both flexible,
+              curated packages and completely bespoke itineraries, ensuring your
+              journey perfectly matches your specific requirements. Your peace
+              of mind is guaranteed: We are fully permitted by local authorities
+              and adhere to the highest standards as members of leading travel
+              trade associations.
+            </p>
+          </div>
+          <div className="lg:col-span-5 md:col-span-5 col-span-12">
+            <img className="" src="/handshake-businessmen.jpg" />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12 border border-gray-400 rounded-lg gap-4 mb-2 p-4">
+          <div className="lg:col-span-7 md:col-span-7 col-span-12">
+            <img className="" src="/skilledEmployees.jpg" />
+          </div>
+          <div className="lg:col-span-5 md:col-span-5 col-span-12 flex flex-col items-center justify-center">
+            <h3
+              className={`${greatVibes.className} text-[#F97A1E] text-center lg:text-5xl md:text-5xl text-2xl font-bold`}
+            >
+              Skilled and Professional Staff
+            </h3>
+            <p>
+              We’ve developed remarkable travel experiences for thousands of
+              clients from all around the world since our inception, which is
+              due to the caliber of our workforce.Our employees are
+              knowledgeable and enthusiastic about their work.
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );
