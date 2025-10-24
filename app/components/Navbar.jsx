@@ -460,6 +460,7 @@ function Navbar() {
                  
                 <Link href={"/hotel-bookings"}>
                       <li
+                      onClick={() => setOpen(!open)}
                         className={`${
                           pathname === "/hotel-bookings"
                             ? "text-[#F97A1E]"
