@@ -717,31 +717,6 @@ export default function FlipCards() {
     );
   };
 
-  // ✅ Combined filtering logic
-// useEffect(() => {
-//   const filtered = inbounds.filter((item) => {
-//     const itemTags = (item.tags || []).map((t) => t.toLowerCase());
-
-//     // ✅ Check categories: all selected category tags must exist in item.tags
-//     const categoryMatch =
-//       selectedCategories.length === 0 ||
-//       selectedCategories.every((tag) => itemTags.includes(tag.toLowerCase()));
-
-//     // ✅ Check times: all selected time tags must exist
-//     const timeMatch =
-//       selectedTimes.length === 0 ||
-//       selectedTimes.every((tag) => itemTags.includes(tag.toLowerCase()));
-
-//     // ✅ Check experience: all selected experience tags must exist
-//     const experienceMatch =
-//       selectedExperiences.length === 0 ||
-//       selectedExperiences.every((tag) => itemTags.includes(tag.toLowerCase()));
-
-//     return categoryMatch && timeMatch && experienceMatch;
-//   });
-
-//   setFilteredInbounds(filtered);
-// }, [inbounds, selectedCategories, selectedTimes, selectedExperiences]);
 useEffect(() => {
   const filtered = inbounds.filter((item) => {
     // Normalize arrays

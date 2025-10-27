@@ -21,24 +21,51 @@ function EnquiryForm() {
     hotel: {},
   });
 
-  // Pre-fill logic for URL params (optional)
+  // 🔹 Handle toggling of services with inbound-destination restriction
+  const toggleService = (service) => {
+    setSelectedServices((prev) => {
+      let updated = [...prev];
+
+      if (prev.includes(service)) {
+        updated = updated.filter((s) => s !== service);
+      } else {
+        if (service === "Inbound") {
+          updated = updated.filter((s) => s !== "Destinations");
+        }
+        if (service === "Destinations") {
+          updated = updated.filter((s) => s !== "Inbound");
+        }
+        updated.push(service);
+      }
+
+      return updated;
+    });
+  };
+
+  // 🔹 Pre-fill logic based on URL params (visa, flight, etc.)
   useEffect(() => {
     const service = searchParams.get("service");
-    if (service) {
-      toggleService(service);
+    const days = searchParams.get("days");
+    const flightClass = searchParams.get("class");
+
+    if (service === "visa") {
+      setSelectedServices(["Visa Assistance"]);
+      setFormData((prev) => ({
+        ...prev,
+        visa: { ...prev.visa, travelDuration: `${days} Days` },
+      }));
+    }
+
+    if (service === "flight") {
+      setSelectedServices(["Flight Booking"]);
+      setFormData((prev) => ({
+        ...prev,
+        flight: { ...prev.flight, airlineClass: flightClass || "" },
+      }));
     }
   }, [searchParams]);
 
-  // Toggle multi-select
-  const toggleService = (service) => {
-    setSelectedServices((prev) =>
-      prev.includes(service)
-        ? prev.filter((s) => s !== service)
-        : [...prev, service]
-    );
-  };
-
-  // Handle field changes
+  // 🔹 Handle input changes for each service section
   const handleServiceChange = (service, key, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -46,6 +73,7 @@ function EnquiryForm() {
     }));
   };
 
+  // 🔹 Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -88,10 +116,11 @@ function EnquiryForm() {
     }
   };
 
-  // For dropdowns
+  // Dropdown options
   const inboundTypes = ["Adventure", "Luxury", "Family", "Culture"];
   const tripTypes = ["Leisure", "Business", "Honeymoon", "Group Trip"];
   const carTypes = ["SUV", "Sedan", "Luxury", "Van"];
+  const visaDurations = ["15 Days", "30 Days", "60 Days"];
 
   return (
     <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4">
@@ -196,8 +225,9 @@ function EnquiryForm() {
               ))}
             </div>
 
-            {/* Conditional Questionnaires */}
+            {/* Conditional Service Details */}
             <div className="mt-6 space-y-8">
+              {/* Inbound */}
               {selectedServices.includes("Inbound") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Inbound Details</h3>
@@ -246,6 +276,7 @@ function EnquiryForm() {
                 </div>
               )}
 
+              {/* Destinations */}
               {selectedServices.includes("Destinations") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Destination Details</h3>
@@ -294,6 +325,7 @@ function EnquiryForm() {
                 </div>
               )}
 
+              {/* Visa Assistance */}
               {selectedServices.includes("Visa Assistance") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Visa Assistance Details</h3>
@@ -313,14 +345,19 @@ function EnquiryForm() {
                     }
                   />
 
-                  <label>Intended Travel Date / Duration</label>
-                  <input
-                    type="text"
+                  <label>Visa Duration</label>
+                  <select
+                    value={formData.visa.travelDuration || ""}
                     className="w-full border rounded-lg mb-2"
                     onChange={(e) =>
                       handleServiceChange("visa", "travelDuration", e.target.value)
                     }
-                  />
+                  >
+                    <option value="">Select</option>
+                    {visaDurations.map((d) => (
+                      <option key={d}>{d}</option>
+                    ))}
+                  </select>
 
                   <label>Applied before for same country?</label>
                   <select
@@ -336,9 +373,11 @@ function EnquiryForm() {
                 </div>
               )}
 
+              {/* Flight Booking */}
               {selectedServices.includes("Flight Booking") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Flight Booking Details</h3>
+
                   <label>Departure & Arrival City</label>
                   <input
                     type="text"
@@ -370,6 +409,7 @@ function EnquiryForm() {
                   <input
                     type="text"
                     className="w-full border rounded-lg"
+                    value={formData.flight.airlineClass || ""}
                     onChange={(e) =>
                       handleServiceChange("flight", "airlineClass", e.target.value)
                     }
@@ -377,6 +417,7 @@ function EnquiryForm() {
                 </div>
               )}
 
+              {/* Car Rental */}
               {selectedServices.includes("Car Rental") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Car Rental Details</h3>
@@ -425,6 +466,7 @@ function EnquiryForm() {
                 </div>
               )}
 
+              {/* Hotel Booking */}
               {selectedServices.includes("Hotel Booking") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Hotel Booking Details</h3>

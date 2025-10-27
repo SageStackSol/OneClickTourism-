@@ -1,314 +1,217 @@
 "use client";
-import React, { useState, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 
-function EnquiryForm() {
-  //  const {id}  = params;
-  // console.log(id)
-  const params = useParams();
-  const id = params?.id;
-  const searchParams = useSearchParams();
-  console.log(id);
+export default function EnquiryPage() {
+  const { id } = useParams();
+  const [inbound, setInbound] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    mobileNumber: "",
+    email: "",
+    fromDate: "",
+    toDate: "",
+    numberOfPeople: "",
+    message: "",
+  });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
+  // ✅ Fetch inbound details
   useEffect(() => {
     const fetchInbound = async () => {
-      const res = await fetch(`/api/inbound/${id}`);
-      const data = await res.json();
-      // setForm({
-      //   name: data.name,
-      //   price: data.price,
-      //   tags: data.tags.join(", "),
-      //   description: data.description,
-      //   imageBase64: "",
-      // });
-      // setCurrentImage(data.image);
-      console.log(data)
+      try {
+        const res = await fetch(`/api/inbound/${id}`);
+        const data = await res.json();
+        setInbound(data);
+      } catch (err) {
+        console.error("Failed to load inbound:", err);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchInbound();
-
-      const fetchDestination = async () => {
-      const res = await fetch(`/api/destination/${id}`);
-      const data = await res.json();
-    //   setForm({
-    //     name: data.name,
-    //     price: data.price,
-    //     tags: data.tags.join(", "),
-    //     description: data.description,
-    //     imageBase64: "",
-    //   });
-    //   setCurrentImage(data.image);
-      console.log(data)
-    };
-    fetchDestination();
+    if (id) fetchInbound();
   }, [id]);
 
-  const [fName, setFName] = useState("");
-  const [lName, setLName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
-  const [selectedServices, setSelectedServices] = useState([]);
-
-  const [formData, setFormData] = useState({
-    inbound: {},
-    destination: {},
-    visa: {},
-    car: {},
-    flight: {},
-    hotel: {},
-  });
-
-  // ✅ This is safe now, inside Suspense
-  useEffect(() => {
-    const service = searchParams.get("service");
-    const days = searchParams.get("days");
-
-    if (service === "visa") {
-      setSelectedServices((prev) =>
-        prev.includes("Visa Assistance") ? prev : [...prev, "Visa Assistance"]
-      );
-
-      if (days) {
-        setFormData((prev) => ({
-          ...prev,
-          visa: { ...prev.visa, daysValid: days },
-        }));
-      }
-    }
-  }, [searchParams]);
-
-  const toggleService = (service) => {
-    setSelectedServices((prev) =>
-      prev.includes(service)
-        ? prev.filter((s) => s !== service)
-        : [...prev, service]
-    );
+  // ✅ Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleServiceChange = (service, key, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [service]: { ...prev[service], [key]: value },
-    }));
-  };
-
+  // ✅ Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
 
-    const fullForm = {
-      firstName: fName,
-      lastName: lName,
-      email,
-      phone,
-      message,
-      selectedServices,
-      details: formData,
-    };
+    // Validation
+    if (
+      !formData.fullName ||
+      !formData.mobileNumber ||
+      !formData.email ||
+      !formData.fromDate ||
+      !formData.toDate ||
+      !formData.numberOfPeople
+    ) {
+      setError("Please fill in all required fields.");
+      return;
+    }
 
-    console.log("Submitting JSON:", fullForm);
-
-    const res = await fetch("/api/enquiry", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(fullForm),
-    });
-
-    if (res.ok) {
-      alert("Enquiry submitted successfully!");
-      setFName("");
-      setLName("");
-      setEmail("");
-      setPhone("");
-      setMessage("");
-      setSelectedServices([]);
-      setFormData({
-        inbound: {},
-        destination: {},
-        visa: {},
-        car: {},
-        flight: {},
-        hotel: {},
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, destination: inbound?.name }),
       });
-    } else {
-      alert("Error submitting enquiry.");
+
+      if (res.ok) {
+        setSuccess("Your enquiry has been submitted successfully!");
+        setFormData({
+          fullName: "",
+          mobileNumber: "",
+          email: "",
+          fromDate: "",
+          toDate: "",
+          numberOfPeople: "",
+          message: "",
+        });
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Error submitting form.");
     }
   };
 
-  // Data for dropdowns
-  const inboundTypes = [
-    "Dubai city tour",
-    "Evening desert safari camel/SUV",
-    "Jet ski adventure",
-  ];
-  const countries = ["France", "USA", "China", "Spain", "Mexico", "Italy"];
-  const carBrands = ["BMW", "Mercedes", "Ferrari", "Rolls Royce"];
-  const carTypes = ["Sedan", "SUV", "Van", "Luxury"];
-  const flightClasses = [
-    "Economy",
-    "Premium Economy",
-    "Business",
-    "First Class",
-    "Private Jet",
-    "Chopper",
-  ];
-  const starRatings = ["3 star", "4 star", "5 star", "Luxury"];
+  if (loading)
+    return (
+      <div className="flex justify-center items-center h-screen text-xl">
+        Loading...
+      </div>
+    );
+
+  if (!inbound)
+    return (
+      <div className="flex justify-center items-center h-screen text-xl text-gray-500">
+        Destination not found.
+      </div>
+    );
 
   return (
-    <div className="lg:py-20 md:py-20 py-16 lg:px-40 md:px-40 px-4">
-      {/* --- your entire form code as before --- */}
-      {/* no change in layout or form code, only moved inside Suspense */}
-      <h1 className="lg:text-[3em] md:text-[3em] text-[2em] font-bold text-center">
-        Ready to Plan Your Next
-      </h1>
-      <h1 className="lg:text-[3em] md:text-[3em] text-[2em] font-bold text-[#FA7C28] text-center">
-        Adventure?
-      </h1>
-      <p className="text-center lg:px-48 md:px-48 px-4">
-        Our travel experts are standing by to help you create the perfect
-        itinerary. Contact us today for a free consultation.
-      </p>
-      <div className="grid grid-cols-12 mt-8 lg:gap-12 md:gap-12 gap-6">
-        <div className=" lg:col-span-6 md:col-span-6 col-span-12 ">
-          <h2 className="text-[1.5em] font-semibold">Send Us a Message</h2>
-          <div className="lg:flex justify-between gap-8">
-            <div className="w-[100%]">
-              <label className="font-semibold text-[.8em] mt-4">
-                First Name
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50">
+      {/* Left Side - Form */}
+      <div className="lg:w-1/2 w-full bg-white p-10 flex flex-col justify-center">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">
+          Enquire for {inbound.name}
+        </h1>
+        <p className="text-gray-600 mb-6">
+          Fill in the details below and our travel team will reach out to you
+          shortly.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Full Name *"
+            value={formData.fullName}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 outline-none"
+          />
+
+          <input
+            type="tel"
+            name="mobileNumber"
+            placeholder="Mobile Number *"
+            value={formData.mobileNumber}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 outline-none"
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email *"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 outline-none"
+          />
+
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <label className="block text-sm text-gray-600 mb-1">
+                From Date *
               </label>
-              <br />
               <input
-                onChange={(e) => {
-                  setFName(e.target.value);
-                }}
-                value={fName}
-                className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
+                type="date"
+                name="fromDate"
+                value={formData.fromDate}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 outline-none"
               />
             </div>
-
-            <div className="w-[100%]">
-              <label className="font-semibold text-[.8em] mt-4">
-                Last Name
+            <div className="w-1/2">
+              <label className="block text-sm text-gray-600 mb-1">
+                To Date *
               </label>
-              <br />
               <input
-                onChange={(e) => {
-                  setLName(e.target.value);
-                }}
-                value={lName}
-                className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
+                type="date"
+                name="toDate"
+                value={formData.toDate}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 outline-none"
               />
             </div>
           </div>
 
-          <p className="font-semibold text-[.8em] mt-4">Email Address</p>
           <input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            value={email}
-            className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
-          />
-          <p className="font-semibold text-[.8em] mt-4">Phone Number</p>
-          <input
-            onChange={(e) => {
-              setPhone(e.target.value);
-            }}
-            value={phone}
-            className="bg-[#d9d9d931] border-black border rounded-lg w-[100%] h-8"
+            type="number"
+            name="numberOfPeople"
+            placeholder="Number of People *"
+            value={formData.numberOfPeople}
+            onChange={handleChange}
+            min="1"
+            className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 outline-none"
           />
 
-          <p className="font-semibold text-[.8em] mt-4">Message</p>
-          <input
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-            value={message}
-            className=" h-12 bg-[#d9d9d931] border-black border rounded-lg w-[100%]"
-          />
-          <button className="flex gap-2 bg-gradient-to-r from-[#089CE0] to-[#16DBE4] text-white px-8 py-2 rounded-md font-semibold mt-4">
-            <img src="./send.png" className="w-6" /> Submit Enquiry
+          <textarea
+            name="message"
+            placeholder="Message"
+            value={formData.message}
+            onChange={handleChange}
+            rows={3}
+            className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 outline-none"
+          ></textarea>
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {success && <p className="text-green-600 text-sm">{success}</p>}
+
+          <button
+            type="submit"
+            className="w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition"
+          >
+            Submit Enquiry
           </button>
-        </div>
+        </form>
+      </div>
 
-        <div className="lg:col-span-6 md:col-span-6 col-span-12 ">
-          <p className="font-bold mb-4">Select Services</p>
-
-          <form className="lg:flex md:flex gap-8">
-            <div>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="Services"
-                  value="Inbound"
-                  className="w-4 h-4"
-                />
-                <span>Inbound</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="Services"
-                  value="Visa Assistance"
-                  className="w-4 h-4"
-                />
-                <span>Visa Assistance</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="Services"
-                  value="Flight Booking"
-                  className="w-4 h-4"
-                />
-                <span>Flight Booking</span>
-              </label>
-            </div>
-            <div>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="Services"
-                  value="Destinations"
-                  className="w-4 h-4"
-                />
-                <span>Destinations</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="Services"
-                  value="Car Rentals"
-                  className="w-4 h-4"
-                />
-                <span>Car Rentals</span>
-              </label>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="Services"
-                  value="Hotel Booking"
-                  className="w-4 h-4"
-                />
-                <span>Hotel Booking</span>
-              </label>
-            </div>
-            {/* <button type="submit" class="mt-3 px-4 py-2 bg-blue-500 text-white rounded">Submit</button> */}
-          </form>
+      {/* Right Side - Destination Preview */}
+      <div className="lg:w-1/2 w-full relative">
+        <img
+          src={inbound.image}
+          alt={inbound.name}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute bottom-0 left-0 bg-black/50 text-white p-6 w-full">
+          <h2 className="text-2xl font-bold">{inbound.name}</h2>
+          <p className="mt-2 text-sm line-clamp-3">{inbound.description}</p>
+          <p className="mt-2 font-semibold">₹{inbound.price}</p>
         </div>
       </div>
     </div>
-  );
-}
-
-// ✅ Wrap in Suspense for Next.js
-export default function Page() {
-  return (
-    <Suspense fallback={<div>Loading enquiry form...</div>}>
-      <EnquiryForm />
-    </Suspense>
   );
 }
