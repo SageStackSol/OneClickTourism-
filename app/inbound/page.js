@@ -708,7 +708,7 @@ const filtered = inbounds.filter((item) => {
                         onClick={(e) => {
                           e.stopPropagation();
                           router.push(
-                            `/enquiry?service=Inbound&destination=${encodeURIComponent(item.name)}`
+                            `/enquiry?service=Inbound&destination=${encodeURIComponent(item._id)}`
                           );
                         }}
                         className="mt-3 text-white px-3 py-2 rounded text-sm w-[60%] bg-black"

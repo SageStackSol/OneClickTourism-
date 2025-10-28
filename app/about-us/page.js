@@ -205,7 +205,7 @@ function Page() {
         </h2>
         <WhyChooseUs />
       </div>
-{/* Our Team  */}
+      {/* Our Team  */}
       <div className="lg:py-20 lg:px-10 md:py-20 md:px-10 py-8 px-4 bg-[url('/whiteTexture.jpg')] bg-cover bg-center ">
         {/* <div className="flex w-[100%] items-center gap-2 lg:px-10 md:px-10 px-4">
           <hr className="lg:w-[80%] md:w-[80%] w-[50%] border-[#F97A1E] border-[.1em]" />

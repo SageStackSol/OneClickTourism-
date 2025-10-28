@@ -314,7 +314,9 @@ export default function FlipCards() {
 
         {/* LOADING STATE */}
         {loading ? (
-          <p className="text-center text-gray-500 py-10">Loading destinations...</p>
+          <p className="text-center text-gray-500 py-10">
+            Loading destinations...
+          </p>
         ) : (
           <div className="grid grid-cols-4 gap-6 my-8">
             {filteredDestinations.length > 0 ? (
@@ -369,7 +371,9 @@ export default function FlipCards() {
                         onClick={(e) => {
                           e.stopPropagation();
                           router.push(
-                            `/enquiry?service=Destinations&destination=${encodeURIComponent(item.name)}`
+                            `/enquiry?service=Destinations&destination=${encodeURIComponent(
+                              item._id
+                            )}`
                           );
                         }}
                         className="mt-3 text-white px-3 py-2 rounded text-sm w-[60%] bg-black"

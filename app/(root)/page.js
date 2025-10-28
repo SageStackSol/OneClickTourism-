@@ -11,30 +11,28 @@ import BelowHeroImage from "../components/BelowHeroImage";
 
 function Page() {
   const [destinationType, setDestinationType] = useState("inbound");
-const [homeData,setHomeData]= useState([])
-const [heroImages,setHeroImages] = useState([])
-const [belowHeroImages,setBelowHeroImages] = useState([])
- const [heading, setHeading] = useState("");
+  const [homeData, setHomeData] = useState([]);
+  const [heroImages, setHeroImages] = useState([]);
+  const [belowHeroImages, setBelowHeroImages] = useState([]);
+  const [heading, setHeading] = useState("");
   const [tagline, setTagline] = useState("");
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/home");
         const data = await res.json();
         setHomeData(data);
-        setHeroImages(data[0].heroImages)
-        setHeading(data[0].heading)
-        setTagline(data[0].tagline)
-        setBelowHeroImages(data[0].belowHeroImages)
-        // setFilteredInbounds(data); 
-  console.log(data[0])
-  // console.log(homeData.length)
-
-
+        setHeroImages(data[0].heroImages);
+        setHeading(data[0].heading);
+        setTagline(data[0].tagline);
+        setBelowHeroImages(data[0].belowHeroImages);
+        // setFilteredInbounds(data);
+        console.log(data[0]);
+        // console.log(homeData.length)
       } catch (error) {
         console.error("Failed to load inbound items", error);
-      } 
+      }
       // finally {
       //   // setLoading(false);
       // }
@@ -42,15 +40,14 @@ const [belowHeroImages,setBelowHeroImages] = useState([])
     fetchData();
   }, []);
   useEffect(() => {
-  console.log("homeData updated:", homeData.length);
-// setDataReceived(true)
-}, [homeData]);
-
+    console.log("homeData updated:", homeData.length);
+    // setDataReceived(true)
+  }, [homeData]);
 
   // console.log(homeData)
   // console.log(dataReceived)
-const [currentImage, setCurrentImage] = useState(0);
-useEffect(() => {
+  const [currentImage, setCurrentImage] = useState(0);
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) =>
         prev === heroImages.length - 1 ? 0 : prev + 1
@@ -59,19 +56,18 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, [heroImages.length]);
 
- 
-
   return (
     <>
-
-    
       {/* hero section  */}
-{/* {homeData.length > 0 && homeData[0].heroImages.map((img, i) => (
+      {/* {homeData.length > 0 && homeData[0].heroImages.map((img, i) => (
 
 ))} */}
- <div  style={{
-        backgroundImage: `url(${heroImages[currentImage]})`,
-      }} className='h-screen bg-center bg-cover transition-all duration-1000 ease-in-out flex items-end justify-center'>
+      <div
+        style={{
+          backgroundImage: `url(${heroImages[currentImage]})`,
+        }}
+        className="h-screen bg-center bg-cover transition-all duration-1000 ease-in-out flex items-end justify-center"
+      >
         <div className="pb-16 lg:px-0 md:px-0 px-4">
           <h1 className="lg:text-7xl md:text-7xl text-4xl font-black text-center leading-none text-white">
             {/* Not just a <span className="text-[#F97A1E]">Journey</span>, but a{" "}
@@ -79,7 +75,7 @@ useEffect(() => {
             {heading}
           </h1>
           <p className="text-white text-center lg:text-[1.8em] md:text-[1.8em] text-[1em] mt-2">
-           {tagline}
+            {tagline}
           </p>
           <div className="flex justify-center">
             <button className="bg-[#F97A1E] text-[1.2em] font-bold text-white px-8 py-2 rounded-3xl my-2 mx-auto">
@@ -88,10 +84,6 @@ useEffect(() => {
           </div>
         </div>
       </div>
-
-
-
-
 
       {/* section below hero */}
       <div className="lg:py-28 md:py-28 py-8 lg:px-40 md:px-40 px-4 text-[#2D464C] w-screen grid grid-cols-12 items-center bg-[url('/whiteTexture.jpg')] bg-fit gap-6">

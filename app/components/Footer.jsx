@@ -2,10 +2,16 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-
+import { Poppins } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400"], // choose what you need
+  variable: "--font-poppins",
+});
 function Footer() {
   const [input, setInput] = useState("");
   const [status, setStatus] = useState("");
+  // console.log(Poppins)
 
   const handleSubmit = async () => {
     if (!input.trim()) {
@@ -132,9 +138,10 @@ function Footer() {
                 info@pacificinternationalservices.com
               </p>
               <p className="text-white">
-                Address: C87, Likhnaysir St, Al Danah, Abu Dhabi, 22220
+                Address: 1603,16th Floor, Tower, Likhnaysir Street, Al Danah,
+                Abu Dhabi
               </p>
-              <p className="text-white">Phone: +971 56 467 6342</p>
+              <p className="text-white">Phone: <span className={`${poppins.className} text-sm font-thin`}>+971564676342 </span> </p>
             </div>
           </div>
         </div>
