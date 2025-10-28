@@ -132,10 +132,12 @@
 
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const [carBrands, setCarBrands] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
@@ -145,6 +147,13 @@ function Page() {
     }
     fetchData();
   }, []);
+
+  const handleRideNow = (brandName) => {
+    // Navigate to enquiry page with preselected fields
+    router.push(
+      `/enquiry?service=Car%20Rentals&brand=${encodeURIComponent(brandName)}`
+    );
+  };
 
   return (
     <div className="py-12 px-4 lg:px-40">
@@ -166,7 +175,11 @@ function Page() {
                   : "bg-[#D9D9D9] rounded-3xl"
               }`}
             >
-              <img src={brand.logo.url} className="w-full h-24 sm:h-32 object-contain" alt={brand.name} />
+              <img
+                src={brand.logo.url}
+                className="w-full h-24 sm:h-32 object-contain"
+                alt={brand.name}
+              />
             </div>
 
             {/* Details for selected brand */}
@@ -196,7 +209,10 @@ function Page() {
                     </ul>
                   </div>
 
-                  <button className="px-6 py-2 bg-black text-white rounded-full w-full sm:w-auto text-center">
+                  <button
+                    onClick={() => handleRideNow(brand.name)}
+                    className="px-6 py-2 bg-black text-white rounded-full w-full sm:w-auto text-center"
+                  >
                     Ride Now
                   </button>
                 </div>
@@ -210,3 +226,4 @@ function Page() {
 }
 
 export default Page;
+

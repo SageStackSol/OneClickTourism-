@@ -368,7 +368,9 @@ export default function FlipCards() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          router.push(`/enquiry/${item._id}`);
+                          router.push(
+                            `/enquiry?service=Destinations&destination=${encodeURIComponent(item.name)}`
+                          );
                         }}
                         className="mt-3 text-white px-3 py-2 rounded text-sm w-[60%] bg-black"
                       >

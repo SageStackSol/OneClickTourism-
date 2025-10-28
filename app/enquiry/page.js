@@ -45,8 +45,12 @@ function EnquiryForm() {
   // 🔹 Pre-fill logic based on URL params (visa, flight, etc.)
   useEffect(() => {
     const service = searchParams.get("service");
+    const inboundDestination = searchParams.get("destination");
+    const destination = searchParams.get("destination");
     const days = searchParams.get("days");
     const flightClass = searchParams.get("class");
+    const hotelName = searchParams.get("hotelName");
+    const brand = searchParams.get("brand");
 
     if (service === "visa") {
       setSelectedServices(["Visa Assistance"]);
@@ -63,9 +67,51 @@ function EnquiryForm() {
         flight: { ...prev.flight, airlineClass: flightClass || "" },
       }));
     }
-  }, [searchParams]);
 
-  // 🔹 Handle input changes for each service section
+    if (service === "hotel") {
+  const hotelName = searchParams.get("hotelName");
+  setSelectedServices(["Hotel Booking"]);
+  setFormData((prev) => ({
+    ...prev,
+    hotel: {
+      ...prev.hotel,
+      name: hotelName || "",
+    },
+  }));
+}
+
+if (service === "Car Rentals" || service === "car") {
+      setSelectedServices(["Car Rental"]);
+      setFormData((prev) => ({
+        ...prev,
+        car: { ...prev.car, brand: brand || "" },
+      }));
+    }
+
+    if (service === "Inbound") {
+    setSelectedServices(["Inbound"]);
+    setFormData((prev) => ({
+      ...prev,
+      inbound: { ...prev.inbound, destination: inboundDestination || "" },
+    }));
+  }
+
+
+  if (service === "Destinations") {
+  setSelectedServices(["Destinations"]);
+  setFormData((prev) => ({
+    ...prev,
+    destination: {
+      ...prev.destination,
+      preferredDestination: destination || "",
+    },
+  }));
+}
+
+
+}, [searchParams]);
+
+
   const handleServiceChange = (service, key, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -73,7 +119,6 @@ function EnquiryForm() {
     }));
   };
 
-  // 🔹 Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -116,7 +161,6 @@ function EnquiryForm() {
     }
   };
 
-  // Dropdown options
   const inboundTypes = ["Adventure", "Luxury", "Family", "Culture"];
   const tripTypes = ["Leisure", "Business", "Honeymoon", "Group Trip"];
   const carTypes = ["SUV", "Sedan", "Luxury", "Van"];
@@ -207,14 +251,18 @@ function EnquiryForm() {
                   <input
                     type="checkbox"
                     value={service}
-                    disabled={selectedServices.includes("Inbound") && service === "Destinations"}
+                    disabled={
+                      (selectedServices.includes("Inbound") && service === "Destinations") ||
+                      (selectedServices.includes("Destinations") && service === "Inbound")
+                    }
                     checked={selectedServices.includes(service)}
                     onChange={() => toggleService(service)}
                     className="w-4 h-4"
                   />
                   <span
                     className={
-                      selectedServices.includes("Inbound") && service === "Destinations"
+                      (selectedServices.includes("Inbound") && service === "Destinations") ||
+                      (selectedServices.includes("Destinations") && service === "Inbound")
                         ? "text-gray-400 line-through"
                         : ""
                     }
@@ -231,6 +279,16 @@ function EnquiryForm() {
               {selectedServices.includes("Inbound") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Inbound Details</h3>
+                  <label>Destination Name</label>
+                  <input
+                    type="text"
+                    value={formData.inbound.destination || ""}
+                    className="w-full border rounded-lg mb-2"
+                    onChange={(e) =>
+                      handleServiceChange("inbound", "destination", e.target.value)
+                    }
+                  />
+
                   <label>Type of Dubai Experience</label>
                   <select
                     onChange={(e) =>
@@ -283,12 +341,12 @@ function EnquiryForm() {
                   <label>Preferred Destination</label>
                   <input
                     type="text"
+                    value={formData.destination.preferredDestination || ""}
                     className="w-full border rounded-lg mb-2"
                     onChange={(e) =>
                       handleServiceChange("destination", "preferredDestination", e.target.value)
                     }
                   />
-
                   <label>Expected Travel Duration</label>
                   <input
                     type="text"
@@ -417,10 +475,21 @@ function EnquiryForm() {
                 </div>
               )}
 
-              {/* Car Rental */}
+             {/* 🔹 Car Rental */}
               {selectedServices.includes("Car Rental") && (
                 <div className="border p-4 rounded-md">
                   <h3 className="font-semibold mb-2">Car Rental Details</h3>
+
+                  <label>Car Brand</label>
+                  <input
+                    type="text"
+                    value={formData.car.brand || ""}
+                    className="w-full border rounded-lg mb-2"
+                    onChange={(e) =>
+                      handleServiceChange("car", "brand", e.target.value)
+                    }
+                  />
+
                   <label>Type of Car</label>
                   <select
                     className="w-full border rounded-lg mb-2"
@@ -439,7 +508,11 @@ function EnquiryForm() {
                     type="text"
                     className="w-full border rounded-lg mb-2"
                     onChange={(e) =>
-                      handleServiceChange("car", "pickupDropoff", e.target.value)
+                      handleServiceChange(
+                        "car",
+                        "pickupDropoff",
+                        e.target.value
+                      )
                     }
                   />
 
@@ -447,7 +520,11 @@ function EnquiryForm() {
                   <select
                     className="w-full border rounded-lg mb-2"
                     onChange={(e) =>
-                      handleServiceChange("car", "drivingOption", e.target.value)
+                      handleServiceChange(
+                        "car",
+                        "drivingOption",
+                        e.target.value
+                      )
                     }
                   >
                     <option value="">Select</option>
@@ -466,47 +543,64 @@ function EnquiryForm() {
                 </div>
               )}
 
+
               {/* Hotel Booking */}
-              {selectedServices.includes("Hotel Booking") && (
-                <div className="border p-4 rounded-md">
-                  <h3 className="font-semibold mb-2">Hotel Booking Details</h3>
-                  <label>Preferred City / Area</label>
-                  <input
-                    type="text"
-                    className="w-full border rounded-lg mb-2"
-                    onChange={(e) =>
-                      handleServiceChange("hotel", "city", e.target.value)
-                    }
-                  />
+             {selectedServices.includes("Hotel Booking") && (
+  <div className="border p-4 rounded-md">
+    <h3 className="font-semibold mb-2">Hotel Booking Details</h3>
 
-                  <label>Check-in & Check-out Dates</label>
-                  <input
-                    type="text"
-                    className="w-full border rounded-lg mb-2"
-                    onChange={(e) =>
-                      handleServiceChange("hotel", "dates", e.target.value)
-                    }
-                  />
+    <label>Hotel Name</label>
+    <input
+      type="text"
+      value={formData.hotel.name || ""}
+      className="w-full border rounded-lg mb-2"
+      onChange={(e) =>
+        handleServiceChange("hotel", "name", e.target.value)
+      }
+    />
 
-                  <label>Guests (Adults & Children)</label>
-                  <input
-                    type="text"
-                    className="w-full border rounded-lg mb-2"
-                    onChange={(e) =>
-                      handleServiceChange("hotel", "guests", e.target.value)
-                    }
-                  />
+    <label>Preferred City / Area</label>
+    <input
+      type="text"
+      value={formData.hotel.city || ""}
+      className="w-full border rounded-lg mb-2"
+      onChange={(e) =>
+        handleServiceChange("hotel", "city", e.target.value)
+      }
+    />
 
-                  <label>Hotel Category / Budget</label>
-                  <input
-                    type="text"
-                    className="w-full border rounded-lg"
-                    onChange={(e) =>
-                      handleServiceChange("hotel", "budget", e.target.value)
-                    }
-                  />
-                </div>
-              )}
+    <label>Check-in & Check-out Dates</label>
+    <input
+      type="text"
+      value={formData.hotel.dates || ""}
+      className="w-full border rounded-lg mb-2"
+      onChange={(e) =>
+        handleServiceChange("hotel", "dates", e.target.value)
+      }
+    />
+
+    <label>Guests (Adults & Children)</label>
+    <input
+      type="text"
+      value={formData.hotel.guests || ""}
+      className="w-full border rounded-lg mb-2"
+      onChange={(e) =>
+        handleServiceChange("hotel", "guests", e.target.value)
+      }
+    />
+
+    <label>Hotel Category / Budget</label>
+    <input
+      type="text"
+      value={formData.hotel.budget || ""}
+      className="w-full border rounded-lg"
+      onChange={(e) =>
+        handleServiceChange("hotel", "budget", e.target.value)
+      }
+    />
+  </div>
+)}
+
             </div>
           </div>
         </div>
