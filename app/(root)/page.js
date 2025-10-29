@@ -131,7 +131,7 @@ function Page() {
         <img className="w-24 my-4 mx-8" src="/airIndia.png" />
         <img className="w-24 my-4 mx-8" src="/airLingus.png" />
         <img className="w-24 my-4 mx-8" src="/alaskaAirlines.png" />
-        <img className="w-24 my-4 mx-8" src="/americanairlines.png" />
+        <img className="w-24 my-4 mx-8" src="/americanAirLines.png" />
         <img className="w-24 my-4 mx-8" src="/britishAirways.png" />
         <img className="w-24 my-4 mx-8" src="/deltaAirlines.png" />
         <img className="w-24 my-4 mx-8" src="/easyJetAirlines.png" />
@@ -162,10 +162,10 @@ function Page() {
         <img className="w-24 my-4 mx-8" src="/conrad.png" />
         <img className="w-24 my-4 mx-8" src="/doubletree.png" />
         <img className="w-24 my-4 mx-8" src="/fairmont.png" />
-        <img className="w-24 my-4 mx-8" src="/fourpointsbysheraton.png" />
+        <img className="w-24 my-4 mx-8" src="/FourPointsbySheraton.png" />
         <img className="w-24 my-4 mx-8" src="/fourSeasons.png" />
         <img className="w-24 my-4 mx-8" src="/hilton.png" />
-        <img className="w-24 my-4 mx-8" src="/holidayinn.png" />
+        <img className="w-24 my-4 mx-8" src="/HolidayInn.png" />
         <img className="w-24 my-4 mx-8" src="/hyatt.png" />
         <img className="w-24 my-4 mx-8" src="/laQuinta.png" />
         {/* <img className="w-24 my-4 mx-8" src="/emiratesAirlines1.png"/> */}

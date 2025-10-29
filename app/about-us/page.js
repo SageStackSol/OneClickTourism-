@@ -244,7 +244,7 @@ function Page() {
             </p>
           </div>
           <div className="lg:col-span-5 md:col-span-5 col-span-12">
-            <img src="/respect.png" />
+            <img src="/RESPECT.png" />
           </div>
         </div>
 
