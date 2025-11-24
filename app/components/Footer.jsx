@@ -138,15 +138,10 @@ function Footer() {
                 info@pacificinternationalservices.com
               </p>
               <p className="text-white">
-                1603,16th Floor, Tower C, ADCP Tower, Behind City Season Hotel
+                Address:  1603,16th Floor, Tower C, ADCP Tower, Behind City Season Hotel
                 Likhnaysir Street,Al Danah, Abu Dhabi
               </p>
-              <p className="text-white">
-                Phone:{" "}
-                <span className={`${poppins.className} text-sm font-thin`}>
-                  +971564676342{" "}
-                </span>{" "}
-              </p>
+              <p className="text-white">Phone: <span className={`${poppins.className} text-sm font-thin`}>+971564676342 </span> </p>
             </div>
           </div>
         </div>
