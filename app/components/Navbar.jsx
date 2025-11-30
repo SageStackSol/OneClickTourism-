@@ -264,7 +264,7 @@ function Navbar() {
                         Destination
                       </li>
                     </Link>
-                    <Link href={"/flight-bookings"}>
+                    <Link target="_blank" href={"https://www.skyscanner.co.in/"}>
                       <li
                         className={`${
                           pathname === "/flight-bookings"
@@ -284,7 +284,7 @@ function Navbar() {
                         Visa
                       </li>
                     </Link>
-                   <Link href={"/hotel-bookings"}>
+                   <Link target="_blank" href={"https://www.skyscanner.co.in/"}>
                       <li
                         className={`${
                           pathname === "/hotel-bookings"
@@ -296,7 +296,17 @@ function Navbar() {
                       </li>
                     </Link>
                     
-
+  <Link target="_blank" href={"https://www.skyscanner.co.in/"}>
+                      <li
+                        className={`${
+                          pathname === "/hotel-bookings"
+                            ? "text-[#F97A1E]"
+                            : "text-black"
+                        }`}
+                      >
+                        Cruise
+                      </li>
+                    </Link>
                     <Link href={"/car-rentals"}>
                       <li
                         className={`${
@@ -435,7 +445,7 @@ function Navbar() {
                       Destination
                     </li>
                   </Link>
-   <Link href={"/flight-bookings"}>
+   <Link target="_blank" href={"https://www.skyscanner.co.in/"}>
                     <li
                       onClick={() => setOpen(!open)}
                       className={`${
@@ -458,7 +468,7 @@ function Navbar() {
                     </li>
                   </Link>
                  
-                <Link href={"/hotel-bookings"}>
+                <Link target="_blank" href={"https://www.skyscanner.co.in/"}>
                       <li
                       onClick={() => setOpen(!open)}
                         className={`${
@@ -470,7 +480,19 @@ function Navbar() {
                         Hotel Bookings
                       </li>
                     </Link>
-
+  
+                <Link target="_blank" href={"https://www.skyscanner.co.in/"}>
+                      <li
+                      onClick={() => setOpen(!open)}
+                        className={`${
+                          pathname === "/hotel-bookings"
+                            ? "text-[#F97A1E]"
+                            : "text-black"
+                        }`}
+                      >
+                       Cruise
+                      </li>
+                    </Link>
                   <Link href={"/car-rentals"}>
                     <li
                       onClick={() => setOpen(!open)}
