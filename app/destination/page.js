@@ -364,7 +364,7 @@ export default function FlipCards() {
                             ))}
                         </div>
                         <p className="text-left w-full">
-                          <b>Price:</b> ₹{item.price}
+                          <b>Price:</b> AED {item.price}
                         </p>
                       </div>
                       <button
