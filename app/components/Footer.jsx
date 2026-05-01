@@ -113,7 +113,7 @@ function Footer() {
                 Phone : +971 56 783 6979
               </li>
               <li className="text-white text-sm opacity-80">
-                Landline : +971 2 626 6038
+                Landline : +971-26266038
               </li>
             </ul>
           </div>
@@ -170,7 +170,8 @@ function Footer() {
               Hotel Likhnaysir Street, Al Danah, Abu Dhabi
             </p>
             <p className="text-white text-sm">
-              Phone: +971564676342
+              Phone: +971-26266038
+              
             </p>
           </div>
         </div>
